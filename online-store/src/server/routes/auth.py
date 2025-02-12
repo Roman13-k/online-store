@@ -1,10 +1,12 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
+from pydantic import EmailStr
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.database import async_session
 from database.models import BuyerModel, SellerModel
 from schemes import BuyerSchema, SellerSchema
-from utils.security import hash_password
+from utils.security import hash_password, verify_password
 
 auth_router = APIRouter(tags=["auth (main stage) 🔐"])
 
@@ -14,7 +16,7 @@ async def get_session():
         yield conn
 
 
-@auth_router.post("/registration/buyer")  # Регистрация покупателя
+@auth_router.post("/registration/buyer") # Регистрация покупателя
 async def registration_buyer(
     buyer: BuyerSchema, db: AsyncSession = Depends(get_session)
 ):
@@ -26,7 +28,7 @@ async def registration_buyer(
     return {"message": "OK"}
 
 
-@auth_router.post("/registration/seller")
+@auth_router.post("/registration/seller") # Регистрация продавца
 async def registration_seller(
     seller: SellerSchema, db: AsyncSession = Depends(get_session)
 ):
@@ -46,3 +48,23 @@ async def registration_seller(
     db.add(new_seller)
     await db.commit()
     return {"message": "OK"}
+
+
+@auth_router.post("/login/buyer") # Вход покупателя
+async def login_buyer(email: EmailStr, password: str, db: AsyncSession = Depends(get_session)):
+    buyer = await db.execute(select(BuyerModel).where(BuyerModel.email == email))
+    buyer = buyer.scalar_one_or_none()
+
+    if not buyer or not verify_password(password, buyer.password):
+        raise HTTPException(status_code=401, detail="Invalid login or password")
+    return buyer
+
+
+@auth_router.post("/login/seller") # Вход продавца
+async def login_seller(email: EmailStr, password: str, db: AsyncSession = Depends(get_session)):
+    seller = await db.execute(select(SellerModel).where(SellerModel.email == email))
+    seller = seller.scalar_one_or_none()
+
+    if not seller or not verify_password(password, seller.password):
+        raise HTTPException(status_code=401, detail="Invalid login or password")
+    return seller
