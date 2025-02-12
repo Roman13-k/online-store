@@ -16,11 +16,13 @@ async def get_session():
         yield conn
 
 
-@auth_router.post("/registration/buyer") # Регистрация покупателя
+@auth_router.post("/registration/buyer")  # Регистрация покупателя
 async def registration_buyer(
     buyer: BuyerSchema, db: AsyncSession = Depends(get_session)
 ):
-    check_buyer = await db.execute(select(BuyerModel).where(BuyerModel.email == buyer.email))
+    check_buyer = await db.execute(
+        select(BuyerModel).where(BuyerModel.email == buyer.email)
+    )
     check_buyer = check_buyer.scalar_one_or_none()
 
     if check_buyer:
@@ -34,11 +36,13 @@ async def registration_buyer(
     return {"message": "OK"}
 
 
-@auth_router.post("/registration/seller") # Регистрация продавца
+@auth_router.post("/registration/seller")  # Регистрация продавца
 async def registration_seller(
     seller: SellerSchema, db: AsyncSession = Depends(get_session)
 ):
-    check_seller = await db.execute(select(BuyerModel).where(BuyerModel.email == seller.email))
+    check_seller = await db.execute(
+        select(BuyerModel).where(BuyerModel.email == seller.email)
+    )
     check_seller = check_seller.scalar_one_or_none()
 
     if check_seller:
@@ -62,8 +66,10 @@ async def registration_seller(
     return {"message": "OK"}
 
 
-@auth_router.post("/login/buyer") # Вход покупателя
-async def login_buyer(email: EmailStr, password: str, db: AsyncSession = Depends(get_session)):
+@auth_router.post("/login/buyer")  # Вход покупателя
+async def login_buyer(
+    email: EmailStr, password: str, db: AsyncSession = Depends(get_session)
+):
     buyer = await db.execute(select(BuyerModel).where(BuyerModel.email == email))
     buyer = buyer.scalar_one_or_none()
 
@@ -72,8 +78,10 @@ async def login_buyer(email: EmailStr, password: str, db: AsyncSession = Depends
     return buyer
 
 
-@auth_router.post("/login/seller") # Вход продавца
-async def login_seller(email: EmailStr, password: str, db: AsyncSession = Depends(get_session)):
+@auth_router.post("/login/seller")  # Вход продавца
+async def login_seller(
+    email: EmailStr, password: str, db: AsyncSession = Depends(get_session)
+):
     seller = await db.execute(select(SellerModel).where(SellerModel.email == email))
     seller = seller.scalar_one_or_none()
 
