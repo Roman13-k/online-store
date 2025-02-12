@@ -24,7 +24,7 @@ async def registration_buyer(
     check_buyer = check_buyer.scalar_one_or_none()
 
     if check_buyer:
-        raise HTTPException(status_code=401, detail="Invalid login")
+        raise HTTPException(status_code=409, detail="Email is already taken")
 
     hashed_password = hash_password(buyer.password)
     new_buyer = BuyerModel(email=buyer.email, password=hashed_password)
@@ -42,7 +42,7 @@ async def registration_seller(
     check_seller = check_seller.scalar_one_or_none()
 
     if check_seller:
-        raise HTTPException(status_code=401, detail="Invalid login")
+        raise HTTPException(status_code=409, detail="Email is already taken")
 
     hashed_password = hash_password(seller.password)
     new_seller = SellerModel(
@@ -68,7 +68,7 @@ async def login_buyer(email: EmailStr, password: str, db: AsyncSession = Depends
     buyer = buyer.scalar_one_or_none()
 
     if not buyer or not verify_password(password, buyer.password):
-        raise HTTPException(status_code=401, detail="Invalid login or password")
+        raise HTTPException(status_code=401, detail="Invalid email or password")
     return buyer
 
 
@@ -78,5 +78,5 @@ async def login_seller(email: EmailStr, password: str, db: AsyncSession = Depend
     seller = seller.scalar_one_or_none()
 
     if not seller or not verify_password(password, seller.password):
-        raise HTTPException(status_code=401, detail="Invalid login or password")
+        raise HTTPException(status_code=401, detail="Invalid email or password")
     return seller
