@@ -9,12 +9,17 @@ function App() {
     <HeroUIProvider>
       <BrowserRouter>
         <Header />
-        <Routes>
-          {publicRoutes.map((route) => (
-            <Route key={route.path} path={route.path} element={route.element} />
-          ))}
-        </Routes>
-        <main className=''></main>
+        <main className=''>
+          <Routes>
+            {publicRoutes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+          </Routes>
+        </main>
         <Footer />
       </BrowserRouter>
     </HeroUIProvider>

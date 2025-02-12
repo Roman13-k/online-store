@@ -1,22 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-
-  --font-first: "Rubik", sans-serif;
-  --font-second: "Montserrat", sans-serif;
-  --font-third: "IBM Plex Sans", sans-serif;
-
-  --color-black:#121212;
-  --color-white:#FFFFFF;
-  --color-yellow: #ffc806;
-  --color-colar:#F8DBD4
-  --color-orange-main:#F35935;
-  --color-orange-secondary:#D43814;
-  --color-orange-tertiary:#FFC2B4;
-  --color-red:#F90707;
-  --color-blue:#105CAA;
-  --color-light-green:#A9E1C0;
-
-  --shadow-normal:0 2px 4px 0 rgba(18, 18, 18, 0.25);
+button {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 18px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 var(--shadow-normal);
 }
