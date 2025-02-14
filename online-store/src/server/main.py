@@ -15,17 +15,10 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-<<<<<<< HEAD
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type"],
-=======
-    allow_origins=["http://localhost:5174"],  # Разрешить фронту отправлять запросы
-    allow_credentials=True,  # Разрешить отправлять куки и заголовки авторизации
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],  # Разрешённые методы
-    allow_headers=["Authorization", "Content-Type"],  # Разрешённые заголовки
->>>>>>> d4626d5a4a9497f83e7cf1d567506b61c1c7cd4f
 )
 
 @app.post("/create_db", tags=["database (develop stage) 🛠️"]) # Создание базы данных
