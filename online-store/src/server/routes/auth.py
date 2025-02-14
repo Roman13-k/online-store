@@ -25,8 +25,15 @@ async def registration_buyer(
     )
     check_buyer = check_buyer.scalar_one_or_none()
 
+    check_seller = await db.execute(
+        select(SellerModel).where(SellerModel.email == buyer.email)
+    )
+    check_seller = check_seller.scalar_one_or_none()
+
     if check_buyer:
         raise HTTPException(status_code=409, detail="Email is already taken")
+    if check_seller:
+        raise HTTPException(status_code=409, detail="You are seller")
 
     hashed_password = hash_password(buyer.password)
     new_buyer = BuyerModel(email=buyer.email, password=hashed_password)
@@ -41,12 +48,19 @@ async def registration_seller(
     seller: SellerSchema, db: AsyncSession = Depends(get_session)
 ):
     check_seller = await db.execute(
-        select(BuyerModel).where(BuyerModel.email == seller.email)
+        select(SellerModel).where(SellerModel.email == seller.email)
     )
     check_seller = check_seller.scalar_one_or_none()
 
+    check_buyer = await db.execute(
+        select(BuyerModel).where(BuyerModel.email == seller.email)
+    )
+    check_buyer = check_buyer.scalar_one_or_none()
+
     if check_seller:
         raise HTTPException(status_code=409, detail="Email is already taken")
+    if check_buyer:
+        raise HTTPException(status_code=409, detail="You are buyer")
 
     hashed_password = hash_password(seller.password)
     new_seller = SellerModel(
