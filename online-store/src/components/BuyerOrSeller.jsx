@@ -1,27 +1,30 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export function Registration({ setIsOpenReg }) {
+export function BuyerOrSeller({ setIsOpenChoose, isOpenChoose }) {
   const navigate = useNavigate();
   return (
     <div
       onClick={() => {
-        setIsOpenReg(false);
+        setIsOpenChoose(false);
         navigate("/");
       }}
       className='absolute flex justify-center items-center bg-grey-e9-70 w-full h-screen overflow-hidden z-30'>
       <div
         onClick={(e) => e.stopPropagation()}
         className='flex flex-col items-center justify-start bg-white w-[503px] h-[535px] rounded-[45px] p-6'>
-        <button onClick={() => navigate("/")} className='ml-auto'>
+        <button
+          onClick={() => {
+            setIsOpenChoose(false), navigate("/");
+          }}
+          className='ml-auto'>
           <img src='/icons/close-btn.svg' />
         </button>
         <Link
           onClick={() => {
-            setIsOpenReg(false);
-            navigate("/");
+            setIsOpenChoose(false);
           }}
-          to='/registration/buyer'
+          to={`${isOpenChoose}/buyer`}
           className='flex flex-col items-center font-medium text-lg text-black'>
           <img src='/icons/buyer.svg' />
           <p className='font-bold text-[22px] leading-[88%] mt-3'>Покупатель</p>
@@ -32,8 +35,8 @@ export function Registration({ setIsOpenReg }) {
           <span className='w-[169px] h-[1px] bg-grey-d9'></span>
         </div>
         <Link
-          onClick={() => setIsOpenReg(false)}
-          to='/registration/seller'
+          onClick={() => setIsOpenChoose(false)}
+          to={`${isOpenChoose}/seller`}
           className='flex flex-col items-center font-medium text-lg text-black'>
           <img src='/icons/seller.svg' className='' />
           <p className='font-bold text-[22px] leading-[88%]'>Продавец</p>
