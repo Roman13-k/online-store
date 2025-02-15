@@ -89,7 +89,7 @@ async def login_buyer(
 
     if not buyer or not verify_password(password, buyer.password):
         raise HTTPException(status_code=401, detail="Invalid email or password")
-    return buyer
+    return {"id": buyer.id, "email": buyer.email}
 
 
 @auth_router.post("/login/seller")  # Вход продавца
@@ -101,4 +101,14 @@ async def login_seller(
 
     if not seller or not verify_password(password, seller.password):
         raise HTTPException(status_code=401, detail="Invalid email or password")
-    return seller
+    return {
+        "id": seller.id,
+        "email": seller.email,
+        "type_organization": seller.type_organization,
+        "country": seller.country,
+        "itn": seller.itn,
+        "name": seller.name,
+        "last_name": seller.last_name,
+        "patronymic": seller.patronymic,
+        "company_name": seller.company_name
+    }
