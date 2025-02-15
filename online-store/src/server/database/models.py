@@ -4,8 +4,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 class Base(DeclarativeBase): ...
 
 
-# Покупатель
-class BuyerModel(Base):
+class BuyerModel(Base): # Покупатель
     __tablename__ = "buyers"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
@@ -13,8 +12,7 @@ class BuyerModel(Base):
     password: Mapped[str] = mapped_column(nullable=False)
 
 
-# Продавец
-class SellerModel(Base):
+class SellerModel(Base): # Продавец
     __tablename__ = "sellers"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)

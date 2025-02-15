@@ -1,12 +1,12 @@
 from pydantic import BaseModel, EmailStr, Field
 
 
-class BuyerSchema(BaseModel):  # Покупатель
+class BuyerAddSchema(BaseModel):  # Покупатель
     email: EmailStr = Field(max_length=40)
     password: str = Field(max_length=20)
 
 
-class SellerSchema(BaseModel):  # Продавец
+class SellerAddSchema(BaseModel):  # Продавец
     email: EmailStr = Field(max_length=40)
     password: str = Field(max_length=20)
 
@@ -18,3 +18,8 @@ class SellerSchema(BaseModel):  # Продавец
     last_name: str
     patronymic: str
     company_name: str
+
+
+class LoginSchema(BaseModel):
+    email: EmailStr
+    password: str
