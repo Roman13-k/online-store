@@ -7,13 +7,19 @@ import { PickupPoints } from "../pages/Pickup-points";
 import { Login } from "../pages/Auth/Login";
 import { RegBuyer } from "../pages/Auth/RegBuyer";
 import { RegSeller } from "../pages/Auth/RegSeller";
+import { Buyer } from "../pages/Account/Buyer";
+import { Seller } from "../pages/Account/Seller";
 
 export const publicRoutes = [
   { path: "/", element: <Home /> },
   { path: "/registration", element: <Home /> },
   { path: "/registration/buyer", element: <RegBuyer /> },
   { path: "/registration/seller", element: <RegSeller /> },
-  { path: "/login", element: <Login /> },
+  { path: "/login", element: <Home /> },
+  { path: "/login/buyer", element: <Login path={"/login/buyer"} /> },
+  { path: "/login/seller", element: <Login path={"/login/seller"} /> },
+  { path: "/buyer", element: <Buyer /> },
+  { path: "/seller", element: <Seller /> },
   { path: "/wholesale", element: <Wholesale /> },
   { path: "/certificates", element: <Certificates /> },
   { path: "/support", element: <Support /> },

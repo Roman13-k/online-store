@@ -1,31 +1,55 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "../styles/header.module.css";
 import { Link } from "react-router-dom";
 import { Button } from "@heroui/react";
 import { RegOrLog } from "./RegOrLog";
-import { Registration } from "./Registration";
+import { BuyerOrSeller } from "./BuyerOrSeller";
+import { Context } from "../context/Context";
+import { AccountIcon } from "../UI/AccountIcon";
 
 export function Header() {
   const [isOpenCatalog, setIsOpenCatalog] = useState(false);
   const [isOpenAuth, setIsOpenAuth] = useState(false);
-  const [isOpenReg, setIsOpenReg] = useState(false);
+  const [isOpenChoose, setIsOpenChoose] = useState(false);
+  const { isAuth, setIsAuth } = useContext(Context);
   //! Пункты выдачи Роутинг
+  //! Роутинги publicRouters buyerRouters sellerRouters
 
   return (
     <>
       {isOpenAuth && (
-        <RegOrLog setIsOpenAuth={setIsOpenAuth} setIsOpenReg={setIsOpenReg} />
+        <RegOrLog
+          setIsOpenAuth={setIsOpenAuth}
+          setIsOpenChoose={setIsOpenChoose}
+        />
       )}
-      {isOpenReg && <Registration setIsOpenReg={setIsOpenReg} />}
+      {!!isOpenChoose && (
+        <BuyerOrSeller
+          setIsOpenChoose={setIsOpenChoose}
+          isOpenChoose={isOpenChoose}
+        />
+      )}
       <header className='flex flex-col max-w-full min-h-[110px] text-sm pt-2 shadow-normal pr-[80px] pl-[80px] relative'>
         <div className='flex justify-between mb-5'>
           <p className={styles.point}>Пункт выдачи — Центральная ул., 1</p>
           <nav className='flex opacity-40 gap-4'>
-            <Link to='/registration'>Стать продавцом</Link>
+            <Link onClick={() => setIsOpenAuth(!isOpenAuth)} to='/registration'>
+              Стать продавцом
+            </Link>
             <Link to='/wholesale'>Оптовые закупки</Link>
             <Link to='/certificates'>Подарочные сертификаты</Link>
             <Link to='/support'>Помощь</Link>
             <Link to='/pickup-points'>Пункты выдачи</Link>
+            {isAuth && (
+              <button
+                onClick={() => {
+                  setIsAuth(false);
+                  localStorage.removeItem("Auth");
+                }}
+                className='text-red bg-transparent'>
+                Выйти
+              </button>
+            )}
           </nav>
         </div>
         <div className='flex items-center'>
@@ -95,12 +119,23 @@ export function Header() {
           />
           <ul className='flex gap-3 ml-[56px]'>
             <li>
-              <button
-                onClick={() => setIsOpenAuth(!isOpenAuth)}
-                className='flex flex-col items-center max-h-[53px] '>
-                <img src='/icons/account.svg' className='w-[33px] h-[33px]' />
-                <p className='font-normal text-sm'>Войти</p>
-              </button>
+              {!isAuth ? (
+                <button
+                  onClick={() => setIsOpenAuth(!isOpenAuth)}
+                  className='flex flex-col items-center max-h-[53px] '>
+                  <AccountIcon stoke={"currentColor"} />
+                  <p className='font-normal text-sm'>Войти</p>
+                </button>
+              ) : (
+                <Link
+                  to={isAuth == "buyer" ? "/buyer" : "/seller"}
+                  className='flex flex-col items-center max-h-[53px] '>
+                  <AccountIcon stoke={"#f35935"} />
+                  <p className='font-normal text-sm text-orange-main'>
+                    Аккаунт
+                  </p>
+                </Link>
+              )}
             </li>
             <li>
               <Link to='' className='flex flex-col items-center max-h-[53px]'>

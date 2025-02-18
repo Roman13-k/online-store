@@ -2,7 +2,7 @@ import { Button } from "@heroui/react";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export function RegOrLog({ setIsOpenAuth, setIsOpenReg }) {
+export function RegOrLog({ setIsOpenAuth, setIsOpenChoose }) {
   return (
     <section
       onClick={() => setIsOpenAuth(false)}
@@ -16,7 +16,7 @@ export function RegOrLog({ setIsOpenAuth, setIsOpenReg }) {
         <Link
           onClick={() => {
             setIsOpenAuth(false);
-            setIsOpenReg(true);
+            setIsOpenChoose("/registration");
           }}
           to='/registration'
           className='flex justify-center items-center h-[62px] w-[385px] text-white font-medium text-lg bg-orange-main rounded-[5px] mt-[40px]'>
@@ -29,7 +29,9 @@ export function RegOrLog({ setIsOpenAuth, setIsOpenReg }) {
         </div>
         <Link
           to='/login'
-          onClick={() => setIsOpenAuth(false)}
+          onClick={() => {
+            setIsOpenAuth(false), setIsOpenChoose("/login");
+          }}
           className='flex justify-center items-center h-[62px] w-[385px] bg-colar font-medium text-lg text-orange-main rounded-[5px]'>
           Войти
         </Link>
