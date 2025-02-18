@@ -11,22 +11,25 @@ load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 
-def create_access_token(data: dict, expires_delta: timedelta | None = None): # Создание JWT
+def create_access_token(
+    data: dict, expires_delta: timedelta | None = None
+):  # Создание JWT
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.now(timezone.utc) + expires_delta
     else:
-        expire = datetime.now(timezone.utc) + timedelta(minutes=15)
+        expire = datetime.now(timezone.utc) + timedelta(minutes=20)
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
 
-def get_current_buyer(token: str = Depends(oauth2_scheme)): # Получение данных из JWT для покупателя
+def get_current_buyer(
+    token: str = Depends(oauth2_scheme),
+):  # Получение данных из JWT для покупателя
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
@@ -46,7 +49,9 @@ def get_current_buyer(token: str = Depends(oauth2_scheme)): # Получение
         )
 
 
-def get_current_seller(token: str = Depends(oauth2_scheme)): # Получение данных из JWT для продавца
+def get_current_seller(
+    token: str = Depends(oauth2_scheme),
+):  # Получение данных из JWT для продавца
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
