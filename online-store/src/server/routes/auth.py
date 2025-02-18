@@ -6,6 +6,7 @@ from database.database import async_session
 from database.models import BuyerModel, SellerModel
 from schemes import BuyerAddSchema, SellerAddSchema, LoginSchema
 from utils.security import hash_password, verify_password
+from utils.jwt import create_access_token
 
 auth_router = APIRouter(tags=["auth (main stage) 🔐"])
 
@@ -88,7 +89,11 @@ async def login_buyer(
 
     if not buyer or not verify_password(buyer_schema.password, buyer.password):
         raise HTTPException(status_code=401, detail="Invalid email or password")
-    return {"id": buyer.id, "email": buyer.email}
+    jwt = create_access_token({
+        "id": buyer.id,
+        "email": buyer.email
+    })
+    return {"token": jwt}
 
 
 @auth_router.post("/login/seller")  # Вход продавца
@@ -100,14 +105,11 @@ async def login_seller(
 
     if not seller or not verify_password(seller_schema.password, seller.password):
         raise HTTPException(status_code=401, detail="Invalid email or password")
-    return {
+    jwt = create_access_token({
         "id": seller.id,
         "email": seller.email,
         "type_organization": seller.type_organization,
         "country": seller.country,
-        "itn": seller.itn,
-        "name": seller.name,
-        "last_name": seller.last_name,
-        "patronymic": seller.patronymic,
         "company_name": seller.company_name
-    }
+    })
+    return {"token": jwt}
