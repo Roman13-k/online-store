@@ -12,17 +12,21 @@ import { Seller } from "../pages/Account/Seller";
 
 export const publicRoutes = [
   { path: "/", element: <Home /> },
-  { path: "/registration", element: <Home /> },
+  { path: "/support", element: <Home /> },
+  { path: "/registration", element: <Support /> },
   { path: "/registration/buyer", element: <RegBuyer /> },
   { path: "/registration/seller", element: <RegSeller /> },
   { path: "/login", element: <Home /> },
   { path: "/login/buyer", element: <Login path={"/login/buyer"} /> },
   { path: "/login/seller", element: <Login path={"/login/seller"} /> },
-  { path: "/buyer", element: <Buyer /> },
-  { path: "/seller", element: <Seller /> },
-  { path: "/wholesale", element: <Wholesale /> },
-  { path: "/certificates", element: <Certificates /> },
-  { path: "/support", element: <Support /> },
-  { path: "/pickup-points", element: <PickupPoints /> },
   { path: "*", element: <ErrorPage /> },
 ];
+
+export const privateRoutes = [
+  { path: "/wholesale", element: <Wholesale /> },
+  { path: "/certificates", element: <Certificates /> },
+  { path: "/pickup-points", element: <PickupPoints /> },
+];
+//! id
+export const buyerRoutes = [{ path: "/buyer", element: <Buyer /> }];
+export const sellerRoutes = [{ path: "/seller", element: <Seller /> }];

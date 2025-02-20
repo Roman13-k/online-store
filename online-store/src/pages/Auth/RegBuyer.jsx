@@ -5,6 +5,7 @@ import { customSubmit } from "../../utils/customSubmit";
 import { SubEvent } from "../../components/SubEvent";
 
 export function RegBuyer() {
+  const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(null);
   const formRef = useRef(null);
 
@@ -16,7 +17,13 @@ export function RegBuyer() {
         className='max-w-xs flex flex-col items-center gap-4'
         validationBehavior='native'
         onSubmit={(e) =>
-          customSubmit(e, formRef, setIsSuccess, "/registration/buyer")
+          customSubmit(
+            e,
+            formRef,
+            setIsSuccess,
+            "/registration/buyer",
+            setIsLoading,
+          )
         }>
         <Input
           isRequired
@@ -39,6 +46,7 @@ export function RegBuyer() {
           radius='sm'
         />
         <Button
+          isLoading={isLoading}
           type='submit'
           className='bg-[#F35935] rounded-[5px] pl-3 pr-3 w-[340px] h-[58px] font-medium text-white text-lg shadow-normal active:translate-y-1'>
           Начать регистрацию

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@heroui/react";
 import { RegOrLog } from "./RegOrLog";
 import { BuyerOrSeller } from "./BuyerOrSeller";
-import { Context } from "../context/Context";
+import { Context } from "../provider/Context.tsx";
 import { AccountIcon } from "../UI/AccountIcon";
 
 export function Header() {
@@ -12,8 +12,7 @@ export function Header() {
   const [isOpenAuth, setIsOpenAuth] = useState(false);
   const [isOpenChoose, setIsOpenChoose] = useState(false);
   const { isAuth, setIsAuth } = useContext(Context);
-  //! Пункты выдачи Роутинг
-  //! Роутинги publicRouters buyerRouters sellerRouters
+  //! Пункты выдачи
 
   return (
     <>
@@ -33,9 +32,7 @@ export function Header() {
         <div className='flex justify-between mb-5'>
           <p className={styles.point}>Пункт выдачи — Центральная ул., 1</p>
           <nav className='flex opacity-40 gap-4'>
-            <Link onClick={() => setIsOpenAuth(!isOpenAuth)} to='/registration'>
-              Стать продавцом
-            </Link>
+            <Link to='/registration/seller'>Стать продавцом</Link>
             <Link to='/wholesale'>Оптовые закупки</Link>
             <Link to='/certificates'>Подарочные сертификаты</Link>
             <Link to='/support'>Помощь</Link>

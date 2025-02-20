@@ -5,9 +5,9 @@ import { customValidator } from "../../utils/customValidator";
 import { SubEvent } from "../../components/SubEvent";
 
 export function RegSeller() {
+  const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(null);
   const formRef = useRef(null);
-  //! validators
   return (
     <div className='flex flex-col justify-start items-center h-full mt-[50px]'>
       <h2 className='text-4xl text-orange-main font-bold mb-4'>Регистрация</h2>
@@ -16,7 +16,13 @@ export function RegSeller() {
         className='max-w-xs flex flex-col items-center gap-2'
         validationBehavior='native'
         onSubmit={(e) =>
-          customSubmit(e, formRef, setIsSuccess, "/registration/seller")
+          customSubmit(
+            e,
+            formRef,
+            setIsSuccess,
+            "/registration/seller",
+            setIsLoading,
+          )
         }>
         <Input
           isRequired
@@ -109,6 +115,7 @@ export function RegSeller() {
           radius='sm'
         />
         <Button
+          isLoading={isLoading}
           type='submit'
           className='bg-[#F35935] rounded-[5px] pl-3 pr-3 w-[340px] h-[58px] font-medium text-white text-lg shadow-normal active:translate-y-1'>
           Начать регистрацию

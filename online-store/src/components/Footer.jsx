@@ -7,7 +7,7 @@ export function Footer() {
 
   return (
     <footer
-      className='flex flex-col shadow-normal'
+      className='flex flex-col shadow-normal mt-[100px]'
       style={{
         background: "linear-gradient(to bottom,#e9e9e9 90%, #d9d9d9 10%)",
       }}>
