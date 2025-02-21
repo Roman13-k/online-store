@@ -4,7 +4,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 class Base(DeclarativeBase): ...
 
 
-class BuyerModel(Base): # Покупатель
+class BuyerModel(Base):  # Покупатель
     __tablename__ = "buyers"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
@@ -12,7 +12,7 @@ class BuyerModel(Base): # Покупатель
     password: Mapped[str] = mapped_column(nullable=False)
 
 
-class SellerModel(Base): # Продавец
+class SellerModel(Base):  # Продавец
     __tablename__ = "sellers"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
@@ -27,3 +27,20 @@ class SellerModel(Base): # Продавец
     last_name: Mapped[str] = mapped_column(nullable=False)  # Фамилия
     patronymic: Mapped[str] = mapped_column(nullable=False)  # Отчество
     company_name: Mapped[str] = mapped_column(nullable=False)  # Название компании
+
+
+class BookModel(Base):  # Книга
+    __tablename__ = "books"
+
+    book_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    title: Mapped[str] = mapped_column(nullable=False)  # Название
+    description: Mapped[str] = mapped_column(nullable=False)  # Описание
+    type_book: Mapped[str] = mapped_column(nullable=False)  # Тип книги
+    price: Mapped[float] = mapped_column(nullable=False)  # Цена
+    author: Mapped[str] = mapped_column(nullable=False)  # Автор книги
+    age_reader: Mapped[int] = mapped_column(nullable=False)  # Возраст читателя
+    language: Mapped[str] = mapped_column(nullable=False)  # Язык
+    type_cover: Mapped[str] = mapped_column(nullable=False)  # Тип обложки
+    publishing: Mapped[str] = mapped_column(nullable=False)  # Издательство
+    isbn: Mapped[int]  # Международный стандартный книжный номер
+    series: Mapped[str] = mapped_column(nullable=False)  # Серия
