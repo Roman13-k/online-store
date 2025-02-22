@@ -4,10 +4,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from database.database import engine
 from database.models import Base
 from routes.auth import auth_router
+from routes.book import book_router
 
 
 app = FastAPI()
 app.include_router(auth_router)
+app.include_router(book_router)
 
 origins = [
     "http://localhost:5173"

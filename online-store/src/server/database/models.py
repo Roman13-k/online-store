@@ -33,7 +33,8 @@ class BookModel(Base):  # Книга
     __tablename__ = "books"
 
     book_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    title: Mapped[str] = mapped_column(nullable=False)  # Название
+    image_url: Mapped[str] = mapped_column(nullable=True) # Ссылка на фотографию
+    title: Mapped[str] = mapped_column(nullable=True)  # Название
     description: Mapped[str] = mapped_column(nullable=False)  # Описание
     type_book: Mapped[str] = mapped_column(nullable=False)  # Тип книги
     price: Mapped[float] = mapped_column(nullable=False)  # Цена
