@@ -23,17 +23,3 @@ class SellerAddSchema(BaseModel):  # Добавление продавца
 class LoginSchema(BaseModel):  # Логин пользователя
     email: EmailStr
     password: str
-
-
-class BookAddSchema(BaseModel):  # Создание книги
-    title: str
-    description: str
-    type_book: str
-    price: float
-    author: str
-    age_reader: int
-    language: str
-    type_cover: str
-    publishing: str
-    isbn: int
-    series: str

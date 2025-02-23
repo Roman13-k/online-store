@@ -1,10 +1,9 @@
-from fastapi import APIRouter, Depends, File, UploadFile, HTTPException
+from fastapi import APIRouter, Form, Depends, File, UploadFile, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.database import async_session
 from database.models import BookModel
-from schemes import BookAddSchema
 from utils.images import save_image
 
 book_router = APIRouter(tags=["books (main stage) 📖"])
@@ -17,24 +16,34 @@ async def get_session():
 
 @book_router.post("/book")
 async def create_book(
-    book: BookAddSchema = Depends(),
+    title: str = Form(...),
+    description: str = Form(...),
+    type_book: str = Form(...),
+    price: float = Form(...),
+    author: str = Form(...),
+    age_reader: int = Form(...),
+    language: str = Form(...),
+    type_cover: str = Form(...),
+    publishing: str = Form(...),
+    isbn: int = Form(...),
+    series: str = Form(...),
     image: UploadFile = File(...),
     db: AsyncSession = Depends(get_session),
 ):
     filename = save_image(image)
     new_book = BookModel(
         image_url=filename,
-        title=book.title,
-        description=book.description,
-        type_book=book.type_book,
-        price=book.price,
-        author=book.author,
-        age_reader=book.age_reader,
-        language=book.language,
-        type_cover=book.type_cover,
-        publishing=book.publishing,
-        isbn=book.isbn,
-        series=book.series,
+        title=title,
+        description=description,
+        type_book=type_book,
+        price=price,
+        author=author,
+        age_reader=age_reader,
+        language=language,
+        type_cover=type_cover,
+        publishing=publishing,
+        isbn=isbn,
+        series=series,
     )
 
     db.add(new_book)

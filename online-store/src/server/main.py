@@ -32,4 +32,4 @@ async def create_db():
     
 
 if __name__ == "__main__":
-    uvicorn.run("main:app")
+    uvicorn.run("main:app", reload=True)
