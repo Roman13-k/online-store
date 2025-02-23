@@ -1,5 +1,4 @@
 from pydantic import BaseModel, EmailStr, Field
-from fastapi import Form
 
 
 class BuyerAddSchema(BaseModel):  # Добавление покупателя
@@ -21,12 +20,12 @@ class SellerAddSchema(BaseModel):  # Добавление продавца
     company_name: str
 
 
-class LoginSchema(BaseModel): # Логин пользователя
+class LoginSchema(BaseModel):  # Логин пользователя
     email: EmailStr
     password: str
 
 
-class BookAddSchema(BaseModel): # Создание книги
+class BookAddSchema(BaseModel):  # Создание книги
     title: str
     description: str
     type_book: str
