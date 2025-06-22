@@ -27,6 +27,6 @@ export const privateRoutes = [
   { path: "/certificates", element: <Certificates /> },
   { path: "/pickup-points", element: <PickupPoints /> },
 ];
-//! id
+
 export const buyerRoutes = [{ path: "/buyer", element: <Buyer /> }];
 export const sellerRoutes = [{ path: "/seller", element: <Seller /> }];

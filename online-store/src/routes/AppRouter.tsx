@@ -5,7 +5,7 @@ import {
   privateRoutes,
   publicRoutes,
   sellerRoutes,
-} from "./routesConfig";
+} from "./routesConfig.jsx";
 import { Context } from "../provider/Context.tsx";
 
 export function AppRouter() {

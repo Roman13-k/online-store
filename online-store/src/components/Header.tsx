@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "../styles/header.module.css";
 import { Link } from "react-router-dom";
 import { Button } from "@heroui/react";
-import { RegOrLog } from "./RegOrLog";
-import { BuyerOrSeller } from "./BuyerOrSeller";
+import { RegOrLog } from "./RegOrLog.jsx";
+import { BuyerOrSeller } from "./BuyerOrSeller.jsx";
 import { Context } from "../provider/Context.tsx";
-import { AccountIcon } from "../UI/AccountIcon";
+import { AccountIcon } from "../UI/AccountIcon.tsx";
 
 export function Header() {
   const [isOpenCatalog, setIsOpenCatalog] = useState(false);
@@ -16,17 +16,9 @@ export function Header() {
 
   return (
     <>
-      {isOpenAuth && (
-        <RegOrLog
-          setIsOpenAuth={setIsOpenAuth}
-          setIsOpenChoose={setIsOpenChoose}
-        />
-      )}
+      {isOpenAuth && <RegOrLog setIsOpenAuth={setIsOpenAuth} setIsOpenChoose={setIsOpenChoose} />}
       {!!isOpenChoose && (
-        <BuyerOrSeller
-          setIsOpenChoose={setIsOpenChoose}
-          isOpenChoose={isOpenChoose}
-        />
+        <BuyerOrSeller setIsOpenChoose={setIsOpenChoose} isOpenChoose={isOpenChoose} />
       )}
       <header className='flex flex-col max-w-full min-h-[110px] text-sm pt-2 shadow-normal pr-[80px] pl-[80px] relative'>
         <div className='flex justify-between mb-5'>
@@ -40,7 +32,7 @@ export function Header() {
             {isAuth && (
               <button
                 onClick={() => {
-                  setIsAuth(false);
+                  setIsAuth("");
                   localStorage.removeItem("Auth");
                 }}
                 className='text-red bg-transparent'>
@@ -64,9 +56,7 @@ export function Header() {
           </Button>
           <ul
             className={`absolute top-[123px] left-[388px] rounded-[5px] grid grid-rows-4 grid-cols-2 bg-grey ${
-              isOpenCatalog
-                ? "opacity-100 translate-y-0 z-50"
-                : "opacity-0 -translate-y-full -z-40"
+              isOpenCatalog ? "opacity-100 translate-y-0 z-50" : "opacity-0 -translate-y-full -z-40"
             } transition-all duration-300`}>
             <li className={styles.catalog}>
               <Link to='' className='text-center'>
@@ -128,9 +118,7 @@ export function Header() {
                   to={isAuth == "buyer" ? "/buyer" : "/seller"}
                   className='flex flex-col items-center max-h-[53px] '>
                   <AccountIcon stoke={"#f35935"} />
-                  <p className='font-normal text-sm text-orange-main'>
-                    Аккаунт
-                  </p>
+                  <p className='font-normal text-sm text-orange-main'>Аккаунт</p>
                 </Link>
               )}
             </li>

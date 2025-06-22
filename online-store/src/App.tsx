@@ -3,7 +3,7 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { useEffect, useState } from "react";
 import { Loading } from "./components/Loading";
-import { AppRouter } from "./routes/AppRouter";
+import { AppRouter } from "./routes/AppRouter.tsx";
 import { Context } from "./provider/Context";
 import { Provider } from "react-redux";
 import { store } from "./provider/store";
