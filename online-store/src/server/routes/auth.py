@@ -2,18 +2,14 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database.database import async_session
 from database.models import BuyerModel, SellerModel
 from schemes import BuyerAddSchema, SellerAddSchema, LoginSchema
 from utils.security import hash_password, verify_password
 from utils.jwt import create_access_token, get_current_buyer, get_current_seller
+from database.database import get_session
+
 
 auth_router = APIRouter(tags=["auth (main stage) 🔐"])
-
-
-async def get_session():
-    async with async_session() as conn:
-        yield conn
 
 
 @auth_router.post("/registration/buyer")  # Регистрация покупателя

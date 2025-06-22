@@ -8,8 +8,8 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 ALLOW_EXTENSIONS = {"image/jpeg", "image/png", "video/mp4"}
 
-def save_image(image: UploadFile) -> str:
 
+def save_image(image: UploadFile) -> str:
     if image.content_type not in ALLOW_EXTENSIONS:
         raise HTTPException(status_code=400, detail="File is not support")
 
