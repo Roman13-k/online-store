@@ -23,13 +23,5 @@ app.add_middleware(
 )
 
 
-@app.post("/create_db", tags=["database (develop stage) 🛠️"])  # Создание базы данных
-async def create_db():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
-        await conn.run_sync(Base.metadata.create_all)
-        return {"message": "Database successfully created"}
-    
-
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)
