@@ -1,11 +1,14 @@
 import axios from "axios";
+import { Dispatch, SetStateAction } from "react";
+
+type reg = "seller" | "buyer";
 
 export const customSubmit = async (
-  e,
-  ref,
-  setIsSuccess,
-  path,
-  setIsLoarding,
+  e: React.FormEvent<HTMLFormElement>,
+  ref: React.RefObject<HTMLFormElement | null>,
+  setIsSuccess: Dispatch<SetStateAction<any>>,
+  path: string,
+  setIsLoarding: Dispatch<SetStateAction<boolean>>,
 ) => {
   e.preventDefault();
 
@@ -21,7 +24,7 @@ export const customSubmit = async (
     setIsSuccess(false);
   }
   setIsLoarding(false);
-  ref.current.reset();
+  if (ref.current) ref.current.reset();
 
   setTimeout(() => setIsSuccess(null), 3000);
 };

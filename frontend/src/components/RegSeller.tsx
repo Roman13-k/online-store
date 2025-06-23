@@ -7,7 +7,7 @@ import { SubEvent } from "./SubEvent";
 export function RegSeller() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(null);
-  const formRef = useRef(null);
+  const formRef = useRef<null | HTMLFormElement>(null);
   return (
     <div className='flex flex-col justify-start items-center h-full mt-[50px]'>
       <h2 className='text-4xl text-orange-main font-bold mb-4'>Регистрация</h2>

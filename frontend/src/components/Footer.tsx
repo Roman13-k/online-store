@@ -3,8 +3,6 @@ import { getYear } from "../utils/getYear";
 import Link from "next/link";
 
 export function Footer() {
-  //! Роутинг Почта
-
   return (
     <footer
       className='flex flex-col shadow-normal mt-[100px]'
