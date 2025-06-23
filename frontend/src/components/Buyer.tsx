@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useUserdataQuery } from "../../API/userApi";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useUserdataQuery } from "../API/userApi";
+import { useRouter } from "next/navigation";
 
 export function Buyer() {
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const token = localStorage.getItem("token");
-  if (!token) navigate("/");
+  if (!token) navigate.push("/");
   const { data, isLoading, isError } = useUserdataQuery({
     token,
     url: "buyer",

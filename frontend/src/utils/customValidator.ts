@@ -1,4 +1,4 @@
-export const customValidator = (value) => {
+export const customValidator = (value: string) => {
   if (value.length < 8) {
     return "Пароль должен содержать 8 или более символов.";
   }

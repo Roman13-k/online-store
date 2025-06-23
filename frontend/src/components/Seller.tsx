@@ -1,6 +1,6 @@
 import React from "react";
-import { useBooksListQuery } from "../../API/booksApi";
-import { Loading } from "../../components/Loading";
+import { useBooksListQuery } from "../API/booksApi";
+import { Loading } from "./Loading";
 
 export function Seller() {
   const { data, isLoading, isError, isSuccess } = useBooksListQuery();
@@ -8,7 +8,7 @@ export function Seller() {
   if (isError) return <p>Ошибка</p>;
   return (
     <section>
-      {data.map((d) => (
+      {data.map((d: any) => (
         <div key={d.name}>
           <h2>{d.name}</h2>
           <p>{d.count}</p>

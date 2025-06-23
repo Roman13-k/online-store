@@ -1,10 +1,10 @@
 "use client";
 import React, { useContext, useState } from "react";
-import styles from "../styles/header.module.css";
 import Link from "next/link";
 import { Context } from "@/contexts/Context";
 import { RegOrLog } from "./RegOrLog";
 import { BuyerOrSeller } from "./BuyerOrSeller";
+import { Button } from "@heroui/react";
 
 export function Header() {
   const [isOpenCatalog, setIsOpenCatalog] = useState(false);
@@ -46,12 +46,12 @@ export function Header() {
               <span className='font-third font-medium'>Книги</span>
             </h1>
           </Link>
-          {/* <Button
+          <Button
             onPress={() => setIsOpenCatalog(!isOpenCatalog)}
             className='bg-[#F35935] rounded-[5px] pl-3 pr-3 w-[124px] h-[46px] font-medium text-white text-lg shadow-normal ml-[56px] mr-5 active:translate-y-1'>
             Католог
             <img src='/icons/open-btn.svg' alt='Icon' className='ml-2' />
-          </Button> */}
+          </Button>
           <ul
             className={`absolute top-[123px] left-[388px] rounded-[5px] grid grid-rows-4 grid-cols-2 bg-grey ${
               isOpenCatalog ? "opacity-100 translate-y-0 z-50" : "opacity-0 -translate-y-full -z-40"

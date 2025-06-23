@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Form, Input, Button } from "@heroui/react";
-import { customValidator } from "../../utils/customValidator";
-import { customSubmit } from "../../utils/customSubmit";
-import { SubEvent } from "../../components/SubEvent";
+import { customValidator } from "../utils/customValidator";
+import { customSubmit } from "../utils/customSubmit";
+import { SubEvent } from "./SubEvent";
 
 export function RegBuyer() {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,13 +17,7 @@ export function RegBuyer() {
         className='max-w-xs flex flex-col items-center gap-4'
         validationBehavior='native'
         onSubmit={(e) =>
-          customSubmit(
-            e,
-            formRef,
-            setIsSuccess,
-            "/registration/buyer",
-            setIsLoading,
-          )
+          customSubmit(e, formRef, setIsSuccess, "/registration/buyer", setIsLoading)
         }>
         <Input
           isRequired
