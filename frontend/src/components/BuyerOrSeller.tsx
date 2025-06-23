@@ -2,9 +2,14 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
-export function BuyerOrSeller({ setIsOpenChoose, isOpenChoose }) {
+interface BuyerOrSellerProps {
+  setIsOpenChoose: Dispatch<SetStateAction<boolean>>;
+  isOpenChoose: boolean;
+}
+
+export function BuyerOrSeller({ setIsOpenChoose, isOpenChoose }: BuyerOrSellerProps) {
   const navigate = useRouter();
   return (
     <div

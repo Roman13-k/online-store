@@ -1,7 +1,12 @@
 import Link from "next/link";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
-export function RegOrLog({ setIsOpenAuth, setIsOpenChoose }) {
+interface RegOrLogProps {
+  setIsOpenAuth: Dispatch<SetStateAction<boolean>>;
+  setIsOpenChoose: Dispatch<SetStateAction<string>>;
+}
+
+export function RegOrLog({ setIsOpenAuth, setIsOpenChoose }: RegOrLogProps) {
   return (
     <section
       onClick={() => setIsOpenAuth(false)}
