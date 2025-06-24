@@ -4,13 +4,9 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from datetime import datetime, timedelta, timezone
 
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
+from config import jwt_config
 
-SECRET_KEY = os.getenv("SECRET_KEY")
-ALGORITHM = "HS256"
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 
@@ -23,7 +19,9 @@ def create_access_token(
     else:
         expire = datetime.now(timezone.utc) + timedelta(minutes=20)
     to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    encoded_jwt = jwt.encode(
+        to_encode, jwt_config.SECRET_KEY, algorithm=jwt_config.ALGORITHM
+    )
     return encoded_jwt
 
 
@@ -31,7 +29,9 @@ def get_current_buyer(
     token: str = Depends(oauth2_scheme),
 ):  # Получение данных из JWT для покупателя
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(
+            token, jwt_config.SECRET_KEY, algorithms=[jwt_config.ALGORITHM]
+        )
 
         id: int = payload.get("id")
         email: int = payload.get("email")
@@ -53,7 +53,9 @@ def get_current_seller(
     token: str = Depends(oauth2_scheme),
 ):  # Получение данных из JWT для продавца
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(
+            token, jwt_config.SECRET_KEY, algorithms=[jwt_config.ALGORITHM]
+        )
 
         id: int = payload.get("id")
         email: str = payload.get("email")
