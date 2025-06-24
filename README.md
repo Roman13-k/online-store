@@ -36,7 +36,8 @@ NEXT_PUBLIC_API_URL="http://127.0.0.1:8000"
 ### 1. Install dependencies
 
 ```bash
-pip install fastapi uvicorn
+pip install uv
+uv sync
 ```
 
 ### 2. Run the backend
