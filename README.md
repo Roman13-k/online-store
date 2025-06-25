@@ -54,7 +54,10 @@ http://127.0.0.1:8000
 Create a .env file in the root of the backend project and add:
 
 ```bash
-
+DB_URL="postgresql+asyncpg://postgres:123@localhost:5432/onechapter"
+DB_ECHO=True
+SECRET_KEY="p0iy3I05KmNOh8Zjk2eTlVcrccX2VSR-Mfh-BMARw-jV1OpU3f7UDNoyZNae2DyWj0446eeuDi1edHyCPF43PQ"
+ALGORITHM="HS256"
 ```
 
 ## Deploy on Vercel
