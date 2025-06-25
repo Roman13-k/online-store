@@ -1,6 +1,6 @@
 "use client";
 
-import { Loading } from "@/components/Loading";
+import { Loading } from "@/components/ui/shared/Loading";
 import { createContext, useEffect, useState } from "react";
 
 export const Context = createContext<{

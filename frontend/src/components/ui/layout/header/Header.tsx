@@ -2,14 +2,14 @@
 import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { Context } from "@/contexts/Context";
-import { RegOrLog } from "./RegOrLog";
-import { BuyerOrSeller } from "./BuyerOrSeller";
+import { RegOrLog } from "../../../RegOrLog";
+import { BuyerOrSeller } from "../../../BuyerOrSeller";
 import { Button } from "@heroui/react";
 
 export function Header() {
   const [isOpenCatalog, setIsOpenCatalog] = useState(false);
   const [isOpenAuth, setIsOpenAuth] = useState(false);
-  const [isOpenChoose, setIsOpenChoose] = useState(false);
+  const [isOpenChoose, setIsOpenChoose] = useState<string | boolean>(false);
   const { isAuth, setIsAuth } = useContext(Context);
 
   return (

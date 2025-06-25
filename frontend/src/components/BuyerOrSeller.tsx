@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import React, { Dispatch, SetStateAction } from "react";
 
 interface BuyerOrSellerProps {
-  setIsOpenChoose: Dispatch<SetStateAction<boolean>>;
-  isOpenChoose: boolean;
+  setIsOpenChoose: Dispatch<SetStateAction<boolean | string>>;
+  isOpenChoose: boolean | string;
 }
 
 export function BuyerOrSeller({ setIsOpenChoose, isOpenChoose }: BuyerOrSellerProps) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { BackIcon } from "@/components/BackIcon";
+import { BackIcon } from "@/components/ui/shared/BackIcon";
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 

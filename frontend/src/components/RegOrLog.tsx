@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction } from "react";
 
 interface RegOrLogProps {
   setIsOpenAuth: Dispatch<SetStateAction<boolean>>;
-  setIsOpenChoose: Dispatch<SetStateAction<string>>;
+  setIsOpenChoose: Dispatch<SetStateAction<string | boolean>>;
 }
 
 export function RegOrLog({ setIsOpenAuth, setIsOpenChoose }: RegOrLogProps) {

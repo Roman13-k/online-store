@@ -1,6 +1,6 @@
 import React from "react";
 import { useBooksListQuery } from "../API/booksApi";
-import { Loading } from "./Loading";
+import { Loading } from "./ui/shared/Loading";
 
 export function Seller() {
   const { data, isLoading, isError, isSuccess } = useBooksListQuery();

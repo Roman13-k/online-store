@@ -1,5 +1,5 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { Footer } from "@/components/ui/layout/footer/Footer";
+import { Header } from "@/components/ui/layout/header/Header";
 
 export default function Home() {
   return (
