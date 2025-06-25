@@ -2,10 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from database.database import engine
-from database.models import Base
-from routes.auth import auth_router
-from routes.book import book_router
+from src.routes.auth import auth_router
+from src.routes.book import book_router
 
 
 app = FastAPI()

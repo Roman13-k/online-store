@@ -13,7 +13,7 @@ class SellerAddSchema(BaseModel):  # Добавление продавца
     type_organization: str
     country: str
 
-    itn: str
+    itn: int
     name: str
     last_name: str
     patronymic: str

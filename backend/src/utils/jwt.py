@@ -5,7 +5,7 @@ from fastapi.security import OAuth2PasswordBearer
 from datetime import datetime, timedelta, timezone
 
 
-from config import jwt_config
+from src.config import jwt_config
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 

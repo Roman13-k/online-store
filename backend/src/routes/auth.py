@@ -2,11 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database.models import BuyerModel, SellerModel
-from schemes import BuyerAddSchema, SellerAddSchema, LoginSchema
-from utils.security import hash_password, verify_password
-from utils.jwt import create_access_token, get_current_buyer, get_current_seller
-from database.database import get_session
+from src.database.models import BuyerModel, SellerModel
+from src.schemes import BuyerAddSchema, SellerAddSchema, LoginSchema
+from src.utils.security import hash_password, verify_password
+from src.utils.jwt import create_access_token, get_current_buyer, get_current_seller
+from src.database.database import get_session
 
 
 auth_router = APIRouter(tags=["auth (main stage) 🔐"])
@@ -72,7 +72,7 @@ async def registration_seller(
         password=hashed_password,
         type_organization=seller.type_organization,
         country=seller.country,
-        itn=seller.itn,
+        itn=int(seller.itn),
         name=seller.name,
         last_name=seller.last_name,
         patronymic=seller.patronymic,
