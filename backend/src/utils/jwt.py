@@ -10,9 +10,7 @@ from src.config import jwt_config
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 
-def create_access_token(
-    data: dict, expires_delta: timedelta | None = None
-):  # Создание JWT
+def create_access_token(data: dict, expires_delta: timedelta | None = None):
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.now(timezone.utc) + expires_delta
@@ -27,7 +25,7 @@ def create_access_token(
 
 def get_current_buyer(
     token: str = Depends(oauth2_scheme),
-):  # Получение данных из JWT для покупателя
+):
     try:
         payload = jwt.decode(
             token, jwt_config.SECRET_KEY, algorithms=[jwt_config.ALGORITHM]
@@ -51,7 +49,7 @@ def get_current_buyer(
 
 def get_current_seller(
     token: str = Depends(oauth2_scheme),
-):  # Получение данных из JWT для продавца
+):
     try:
         payload = jwt.decode(
             token, jwt_config.SECRET_KEY, algorithms=[jwt_config.ALGORITHM]

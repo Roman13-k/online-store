@@ -4,7 +4,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 class Base(DeclarativeBase): ...
 
 
-class BuyerModel(Base):  # Покупатель
+class BuyerModel(Base):
     __tablename__ = "buyers"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
@@ -12,7 +12,7 @@ class BuyerModel(Base):  # Покупатель
     password: Mapped[str] = mapped_column(nullable=False)
 
 
-class SellerModel(Base):  # Продавец
+class SellerModel(Base):
     __tablename__ = "sellers"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
@@ -29,7 +29,7 @@ class SellerModel(Base):  # Продавец
     company_name: Mapped[str] = mapped_column(nullable=False)  # Название компании
 
 
-class BookModel(Base):  # Книга
+class BookModel(Base):
     __tablename__ = "books"
 
     book_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)

@@ -12,7 +12,7 @@ from src.database.database import get_session
 auth_router = APIRouter(tags=["auth (main stage) 🔐"])
 
 
-@auth_router.post("/registration/buyer")  # Регистрация покупателя
+@auth_router.post("/registration/buyer")
 async def registration_buyer(
     buyer: BuyerAddSchema, db: AsyncSession = Depends(get_session)
 ):
@@ -43,7 +43,7 @@ async def registration_buyer(
     return {"message": "OK"}
 
 
-@auth_router.post("/registration/seller")  # Регистрация продавца
+@auth_router.post("/registration/seller")
 async def registration_seller(
     seller: SellerAddSchema, db: AsyncSession = Depends(get_session)
 ):
@@ -84,7 +84,7 @@ async def registration_seller(
     return {"message": "OK"}
 
 
-@auth_router.post("/login/buyer")  # Вход покупателя
+@auth_router.post("/login/buyer")
 async def login_buyer(
     buyer_schema: LoginSchema, db: AsyncSession = Depends(get_session)
 ):
@@ -101,7 +101,7 @@ async def login_buyer(
     return {"token": jwt}
 
 
-@auth_router.post("/login/seller")  # Вход продавца
+@auth_router.post("/login/seller")
 async def login_seller(
     seller_schema: LoginSchema, db: AsyncSession = Depends(get_session)
 ):
@@ -126,11 +126,11 @@ async def login_seller(
     return {"token": jwt}
 
 
-@auth_router.get("/profile/buyer")  # JWT данные о покупателе
+@auth_router.get("/profile/buyer")
 async def get_profile_buyer(current_user: dict = Depends(get_current_buyer)):
     return {"profile": current_user}
 
 
-@auth_router.get("/profile/seller")  # JWT данные о продавце
+@auth_router.get("/profile/seller")
 async def get_profile_seller(current_user: dict = Depends(get_current_seller)):
     return {"profile": current_user}
