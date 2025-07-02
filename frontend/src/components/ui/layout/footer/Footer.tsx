@@ -1,6 +1,6 @@
 import React from "react";
-import { getYear } from "../utils/getYear";
 import Link from "next/link";
+import { getYear } from "@/utils/getYear";
 
 export function Footer() {
   return (

@@ -1,5 +1,6 @@
+import CertificatesScreen from "@/components/screens/CertificatesScreen";
 import React from "react";
 
-export function Certificates() {
-  return <div>Certificates</div>;
+export default function Certificates() {
+  return <CertificatesScreen />;
 }

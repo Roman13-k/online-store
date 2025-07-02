@@ -1,5 +1,6 @@
+import WholeSaleScreen from "@/components/screens/WholeSaleScreen";
 import React from "react";
 
-export function Wholesale() {
-  return <div>Wholesale</div>;
+export default function Wholesale() {
+  return <WholeSaleScreen />;
 }

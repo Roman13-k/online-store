@@ -1,17 +1,20 @@
 "use client";
 
-import { Loading } from "@/components/ui/shared/Loading";
-import { createContext, useEffect, useState } from "react";
+import { Loading } from "@/components/ui/shared/loading/Loading";
+import { createContext, useContext, useEffect, useState } from "react";
 
-export const Context = createContext<{
+export interface AuthContextInterface {
   isAuth: string;
   setIsAuth: (val: string) => void;
-}>({
-  isAuth: "",
-  setIsAuth: () => {},
-});
+}
 
-export function ContextProvider({ children }: { children: React.ReactNode }) {
+export const AuthContext = createContext({} as AuthContextInterface);
+
+export const useAuthContext = () => {
+  return useContext(AuthContext);
+};
+
+export function AuthContextProvider({ children }: { children: React.ReactNode }) {
   const [isAuth, setIsAuth] = useState("");
   const [authLoading, setAuthLoading] = useState(true);
 
@@ -23,5 +26,5 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
 
   if (authLoading) return <Loading />;
 
-  return <Context.Provider value={{ isAuth, setIsAuth }}>{children}</Context.Provider>;
+  return <AuthContext.Provider value={{ isAuth, setIsAuth }}>{children}</AuthContext.Provider>;
 }

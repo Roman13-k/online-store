@@ -1,5 +1,6 @@
+import PickupPointsScreen from "@/components/screens/PickupPointsScreen";
 import React from "react";
 
-export function PickupPoints() {
-  return <div>Pickup-points</div>;
+export default function PickupPoints() {
+  return <PickupPointsScreen />;
 }
