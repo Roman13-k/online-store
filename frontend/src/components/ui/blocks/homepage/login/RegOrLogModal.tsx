@@ -1,12 +1,14 @@
-import Link from "next/link";
+import MainButton from "@/components/ui/shared/buttons/MainButton";
+import TextDivider from "@/components/ui/shared/divider/TextDivider";
+import { AuthChoose } from "@/types";
 import React, { Dispatch, SetStateAction } from "react";
 
-interface RegOrLogProps {
+interface RegOrLogModalProps {
   setIsOpenAuth: Dispatch<SetStateAction<boolean>>;
-  setIsOpenChoose: Dispatch<SetStateAction<string | boolean>>;
+  setIsOpenChoose: Dispatch<SetStateAction<AuthChoose | boolean>>;
 }
 
-export function RegOrLog({ setIsOpenAuth, setIsOpenChoose }: RegOrLogProps) {
+export function RegOrLogModal({ setIsOpenAuth, setIsOpenChoose }: RegOrLogModalProps) {
   return (
     <section
       onClick={() => setIsOpenAuth(false)}
@@ -17,28 +19,22 @@ export function RegOrLog({ setIsOpenAuth, setIsOpenChoose }: RegOrLogProps) {
         <button onClick={() => setIsOpenAuth(false)} className='ml-auto'>
           <img src='/icons/close-btn.svg' />
         </button>
-        <Link
-          onClick={() => {
+        <MainButton
+          onPress={() => {
             setIsOpenAuth(false);
-            setIsOpenChoose("/registration");
+            setIsOpenChoose("registration");
           }}
-          href='/registration'
-          className='flex justify-center items-center h-[62px] w-[385px] text-white font-medium text-lg bg-orange-main rounded-[5px] mt-[40px]'>
+          className='flex justify-center items-center min-h-[62px] min-w-[385px] text-white mt-[40px]'>
           Зарегистрироваться
-        </Link>
-        <div className='flex items-center mt-6 mb-6'>
-          <span className='w-[169px] h-[1px] bg-grey-d9'></span>
-          <p className='ml-3 mr-3'>или</p>
-          <span className='w-[169px] h-[1px] bg-grey-d9'></span>
-        </div>
-        <Link
-          href='/login'
+        </MainButton>
+        <TextDivider />
+        <button
           onClick={() => {
-            setIsOpenAuth(false), setIsOpenChoose("/login");
+            setIsOpenAuth(false), setIsOpenChoose("login");
           }}
           className='flex justify-center items-center h-[62px] w-[385px] bg-colar font-medium text-lg text-orange-main rounded-[5px]'>
           Войти
-        </Link>
+        </button>
       </div>
     </section>
   );

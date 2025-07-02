@@ -12,7 +12,7 @@ export default function MainButton({
 }: PropsWithChildren<MainButtonProps>) {
   return (
     <Button
-      className={`${className} bg-[#F35935] rounded-[5px] px-3 w-[124px] h-[46px] font-medium text-white text-lg shadow-md ml-14 mr-5 active:translate-y-1 flex items-center justify-center`}
+      className={`${className} bg-[#F35935] rounded-[5px] px-3 h-[46px] font-medium text-white text-lg shadow-md active:translate-y-1 flex items-center justify-center`}
       {...props}>
       {children}
     </Button>
