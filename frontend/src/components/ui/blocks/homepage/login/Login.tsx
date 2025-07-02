@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Form, Input, Button } from "@heroui/react";
-import { customValidator } from "../utils/customValidator";
-import { customSubmit } from "../utils/customSubmit";
+import { customValidator } from "../../../../../utils/customValidator";
+import { customSubmit } from "../../../../../utils/customSubmit";
 import { SubEvent } from "./SubEvent";
-import { Context } from "@/contexts/Context";
+import { useAuthContext } from "@/contexts/Context";
 
 export function Login({ path }: { path: string }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(null);
   const formRef = useRef(null);
-  const { isAuth, setIsAuth } = useContext(Context);
+  const { isAuth, setIsAuth } = useAuthContext();
 
   useEffect(() => {
     if (!isAuth && isSuccess) {

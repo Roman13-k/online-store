@@ -2,10 +2,9 @@
 
 import { BackIcon } from "@/components/ui/shared/icons/BackIcon";
 import { Button } from "@heroui/react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default function NotFound() {
-  const navigate = useRouter();
   return (
     <div className='flex flex-col items-center w-full h-full mt-[50px] gap-7'>
       <h2 className='text-xl font-semibold'>Что вы тут делаете?!</h2>
@@ -15,9 +14,13 @@ export default function NotFound() {
         <span className='text-[#ff4f03] text-[300px] font-bold'>4</span>
       </div>
       <Button
-        className='font-semibold text-lg p-6'
-        onPress={() => navigate.push("/")}
-        startContent={<BackIcon />}>
+        className='font-semibold text-lg p-6 flex items-center gap-2'
+        onPress={() => redirect("/")}
+        startContent={
+          <span className='flex items-center'>
+            <BackIcon />
+          </span>
+        }>
         Вернуться домой
       </Button>
     </div>

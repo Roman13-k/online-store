@@ -1,11 +1,12 @@
+import { useBooksListQuery } from "@/API/booksApi";
 import React from "react";
-import { useBooksListQuery } from "../API/booksApi";
-import { Loading } from "./ui/shared/loading/Loading";
+import { Loading } from "../ui/shared/loading/Loading";
 
-export function Seller() {
+export default function SellerScreen() {
   const { data, isLoading, isError, isSuccess } = useBooksListQuery();
   if (isLoading) return <Loading />;
   if (isError) return <p>Ошибка</p>;
+
   return (
     <section>
       {data.map((d: any) => (

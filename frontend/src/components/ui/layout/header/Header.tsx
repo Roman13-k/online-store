@@ -14,6 +14,7 @@ export function Header() {
   const [isOpenCatalog, setIsOpenCatalog] = useState(false);
   const [isOpenAuthModal, setIsOpenAuthModal] = useState(false);
   const [isOpenChoose, setIsOpenChoose] = useState<string | boolean>(false);
+  const [isOpenUploadModal, setIsOpenUploadModal] = useState(false);
 
   return (
     <>
@@ -23,8 +24,8 @@ export function Header() {
       {!!isOpenChoose && (
         <BuyerOrSeller setIsOpenChoose={setIsOpenChoose} isOpenChoose={isOpenChoose} />
       )}
-      <header className='flex flex-col min-h-[110px] text-sm pt-2 shadow-md relative'>
-        <Container>
+      <header className='flex flex-col min-h-[110px] text-sm pt-2 shadow-md '>
+        <Container className='relative'>
           <div>
             <div className='flex justify-between mb-5'>
               <p className='relative before:content-[url("/icons/marker.svg")] before:mr-2'>
@@ -44,7 +45,10 @@ export function Header() {
                 <img src='/icons/open-btn.svg' alt='Icon' className='ml-2' />
               </MainButton>
               <CatologMenu isOpenCatalog={isOpenCatalog} />
-              <SearchInput />
+              <SearchInput
+                isOpenUploadModal={isOpenUploadModal}
+                setIsOpenUploadModal={setIsOpenUploadModal}
+              />
               <UserNav isOpenAuthModal={isOpenAuthModal} setIsOpenAuthModal={setIsOpenAuthModal} />
             </div>
           </div>

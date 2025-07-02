@@ -1,8 +1,8 @@
-import React from "react";
-import { useUserdataQuery } from "../API/userApi";
+import { useUserdataQuery } from "@/API/userApi";
 import { useRouter } from "next/navigation";
+import React from "react";
 
-export function Buyer() {
+export default function BuyerScreen() {
   const navigate = useRouter();
   const token = localStorage.getItem("token");
   if (!token) navigate.push("/");
