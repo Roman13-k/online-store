@@ -4,7 +4,11 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from datetime import datetime, timedelta, timezone
 
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.database.models import BuyerModel, SellerModel
+from src.database.database import get_session
 from src.config import jwt_config
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
@@ -23,8 +27,8 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     return encoded_jwt
 
 
-def get_current_buyer(
-    token: str = Depends(oauth2_scheme),
+async def get_current_buyer(
+    token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_session)
 ):
     try:
         payload = jwt.decode(
@@ -32,14 +36,16 @@ def get_current_buyer(
         )
 
         id: int = payload.get("id")
-        email: int = payload.get("email")
 
-        if id is None or email is None:
+        if id is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token"
             )
 
-        return {"id": id, "email": email}
+        buyer = await db.execute(select(BuyerModel).where(BuyerModel.id == id))
+        buyer = buyer.scalar_one_or_none()
+
+        return buyer
 
     except InvalidTokenError:
         raise HTTPException(
@@ -47,8 +53,8 @@ def get_current_buyer(
         )
 
 
-def get_current_seller(
-    token: str = Depends(oauth2_scheme),
+async def get_current_seller(
+    token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_session)
 ):
     try:
         payload = jwt.decode(
@@ -56,29 +62,16 @@ def get_current_seller(
         )
 
         id: int = payload.get("id")
-        email: str = payload.get("email")
-        type_organization: str = payload.get("type_organization")
-        country: str = payload.get("country")
-        company_name: str = payload.get("company_name")
 
-        if (
-            id is None
-            or email is None
-            or type_organization is None
-            or country is None
-            or company_name is None
-        ):
+        if id is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token"
             )
 
-        return {
-            "id": id,
-            "email": email,
-            "type_organization": type_organization,
-            "country": country,
-            "company_name": company_name,
-        }
+        seller = await db.execute(select(SellerModel).where(SellerModel.id == id))
+        seller = seller.scalar_one_or_none()
+
+        return seller
 
     except InvalidTokenError:
         raise HTTPException(
