@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import uvicorn
 
 from src.routes.auth import auth_router
 from src.routes.book import book_router
