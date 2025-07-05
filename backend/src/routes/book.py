@@ -2,16 +2,11 @@ from fastapi import APIRouter, Form, Depends, File, UploadFile, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.database.database import async_session
+from src.database.database import get_session
 from src.database.models import BookModel
 from src.utils.images import save_image
 
 book_router = APIRouter(tags=["books (main stage) 📖"])
-
-
-async def get_session():
-    async with async_session() as conn:
-        yield conn
 
 
 @book_router.post("/book")
