@@ -9,7 +9,7 @@ app = FastAPI()
 app.include_router(auth_router)
 app.include_router(book_router)
 
-origins = ["http://localhost:5173"]
+origins = ["http://localhost:3000"]
 
 app.add_middleware(
     CORSMiddleware,
