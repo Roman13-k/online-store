@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Dispatch, SetStateAction } from "react";
 
-type reg = "seller" | "buyer";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const customSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
@@ -15,7 +15,7 @@ export const customSubmit = async (
   const data = Object.fromEntries(new FormData(e.currentTarget));
   setIsLoarding(true);
   try {
-    const res = await axios.post(`http://127.0.0.1:8000${path}`, data);
+    const res = await axios.post(`${API_URL}/${path}`, data);
     setIsSuccess(path == "/login/seller" ? "seller" : "buyer");
     setIsLoarding(false);
     return res.data.token;

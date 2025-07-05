@@ -1,8 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export const userApi = createApi({
   reducerPath: "user",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://127.0.0.1:8000/profile/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${API_URL}/profile/` }),
   endpoints: (build) => ({
     userdata: build.query({
       query: ({ token, url }) => ({

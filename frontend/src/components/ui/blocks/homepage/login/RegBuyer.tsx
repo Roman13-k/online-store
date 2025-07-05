@@ -1,20 +1,21 @@
 import React, { useRef, useState } from "react";
 import { Form, Input, Button } from "@heroui/react";
-import { customValidator } from "../utils/customValidator";
-import { customSubmit } from "../utils/customSubmit";
 import { SubEvent } from "./SubEvent";
+import { customSubmit } from "@/utils/customSubmit";
+import { customValidator } from "@/utils/customValidator";
+import ModalLayout from "@/components/ui/layout/ModalLayout";
 
-export function RegBuyer() {
+export function RegBuyer({ handleClose }: { handleClose: () => void }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(null);
   const formRef = useRef(null);
 
   return (
-    <div className='flex flex-col justify-start items-center h-full mt-[150px]'>
+    <ModalLayout onClose={handleClose}>
       <h2 className='text-4xl text-orange-main font-bold mb-4'>Регистрация</h2>
       <Form
         ref={formRef}
-        className='max-w-xs flex flex-col items-center gap-4'
+        className=' flex flex-col items-center gap-4'
         validationBehavior='native'
         onSubmit={(e) =>
           customSubmit(e, formRef, setIsSuccess, "/registration/buyer", setIsLoading)
@@ -51,6 +52,6 @@ export function RegBuyer() {
         textFalse={"Упс!.. такая почта уже занята"}
         textTrue={"Регистрация успешна!"}
       />
-    </div>
+    </ModalLayout>
   );
 }

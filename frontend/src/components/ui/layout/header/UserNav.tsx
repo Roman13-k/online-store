@@ -5,11 +5,10 @@ import { AccountIcon } from "../../shared/icons/AccountIcon";
 import { useAuthContext } from "@/contexts/Context";
 
 interface UserNavProps {
-  isOpenAuthModal: boolean;
-  setIsOpenAuthModal: Dispatch<SetStateAction<boolean>>;
+  setLoginModal: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function UserNav({ isOpenAuthModal, setIsOpenAuthModal }: UserNavProps) {
+export default function UserNav({ setLoginModal }: UserNavProps) {
   const { isAuth } = useAuthContext();
 
   return (
@@ -17,7 +16,7 @@ export default function UserNav({ isOpenAuthModal, setIsOpenAuthModal }: UserNav
       <li>
         {!isAuth ? (
           <button
-            onClick={() => setIsOpenAuthModal(!isOpenAuthModal)}
+            onClick={() => setLoginModal((prev) => !prev)}
             className='flex flex-col items-center max-h-[53px]'>
             <AccountIcon stroke={"currentColor"} />
             <p className='font-normal text-sm'>Войти</p>

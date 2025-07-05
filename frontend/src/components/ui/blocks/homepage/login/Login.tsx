@@ -4,8 +4,16 @@ import { customValidator } from "../../../../../utils/customValidator";
 import { customSubmit } from "../../../../../utils/customSubmit";
 import { SubEvent } from "./SubEvent";
 import { useAuthContext } from "@/contexts/Context";
+import ModalLayout from "@/components/ui/layout/ModalLayout";
+import { AuthChoose, BuyerOrSeller } from "@/types";
 
-export function Login({ path }: { path: string }) {
+interface LoginModalProps {
+  buyerOrSeller: null | BuyerOrSeller;
+  authChoose: null | AuthChoose;
+  handleCLose: () => void;
+}
+
+export function Login({ buyerOrSeller, authChoose, handleCLose }: LoginModalProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(null);
   const formRef = useRef(null);
@@ -19,16 +27,22 @@ export function Login({ path }: { path: string }) {
   }, [isSuccess]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    const token = await customSubmit(e, formRef, setIsSuccess, path, setIsLoading);
+    const token = await customSubmit(
+      e,
+      formRef,
+      setIsSuccess,
+      `${authChoose}/${buyerOrSeller}`,
+      setIsLoading,
+    );
     localStorage.setItem("token", token);
   };
 
   return (
-    <div className='flex flex-col justify-start items-center h-full mt-[150px]'>
+    <ModalLayout onClose={handleCLose}>
       <h2 className='text-4xl text-orange-main font-bold mb-4'>Вход</h2>
       <Form
         ref={formRef}
-        className='max-w-xs flex flex-col items-center gap-4'
+        className=' flex flex-col items-center gap-4'
         validationBehavior='native'
         onSubmit={handleSubmit}>
         <Input
@@ -63,6 +77,6 @@ export function Login({ path }: { path: string }) {
         textFalse={"Неверный логин или пароль"}
         textTrue={"Вы вошли в аккаунт!"}
       />
-    </div>
+    </ModalLayout>
   );
 }

@@ -9,21 +9,48 @@ import MainButton from "../../shared/buttons/MainButton";
 import UserNav from "./UserNav";
 import SearchInput from "../../shared/inputs/SearchInput";
 import Container from "../../shared/containers/Container";
-import { AuthChoose } from "@/types";
+import { AuthChoose, BuyerOrSeller } from "@/types";
+import { Login } from "../../blocks/homepage/login/Login";
+import { RegBuyer } from "../../blocks/homepage/login/RegBuyer";
+import { RegSeller } from "../../blocks/homepage/login/RegSeller";
 
 export function Header() {
-  const [isOpenCatalog, setIsOpenCatalog] = useState(false);
-  const [isOpenAuthModal, setIsOpenAuthModal] = useState(false);
-  const [isOpenChoose, setIsOpenChoose] = useState<AuthChoose | boolean>(false);
+  const [isCatalogMenu, setIsCatalogMenu] = useState(false);
   const [isOpenUploadModal, setIsOpenUploadModal] = useState(false);
+
+  const [loginModal, setLoginModal] = useState(false);
+  const [nextLoginModal, setNextLoginModal] = useState(false);
+  const [authChoose, setAuthChoose] = useState<AuthChoose | null>(null);
+  const [buyerOrSeller, setBuyerOrSeller] = useState<BuyerOrSeller | null>(null);
+
+  const handleCLose = () => {
+    setAuthChoose(null);
+    setBuyerOrSeller(null);
+  };
 
   return (
     <>
-      {isOpenAuthModal && (
-        <RegOrLogModal setIsOpenAuth={setIsOpenAuthModal} setIsOpenChoose={setIsOpenChoose} />
+      {authChoose === "registration" && buyerOrSeller === "buyer" && (
+        <RegBuyer handleClose={handleCLose} />
       )}
-      {!!isOpenChoose && (
-        <BuyerOrSellerModal setIsOpenChoose={setIsOpenChoose} isOpenChoose={isOpenChoose} />
+      {authChoose === "registration" && buyerOrSeller === "seller" && (
+        <RegSeller handleClose={handleCLose} />
+      )}
+      {authChoose === "login" && buyerOrSeller !== null && (
+        <Login authChoose={authChoose} buyerOrSeller={buyerOrSeller} handleCLose={handleCLose} />
+      )}
+      {loginModal && (
+        <RegOrLogModal
+          setNextLoginModal={setNextLoginModal}
+          setLoginModal={setLoginModal}
+          setAuthChoose={setAuthChoose}
+        />
+      )}
+      {nextLoginModal && (
+        <BuyerOrSellerModal
+          setNextLoginModal={setNextLoginModal}
+          setBuyerOrSeller={setBuyerOrSeller}
+        />
       )}
       <header className='flex flex-col min-h-[110px] text-sm pt-2 shadow-md '>
         <Container className='relative'>
@@ -41,16 +68,16 @@ export function Header() {
                   <span className='font-medium font-third'>Книги</span>
                 </h1>
               </Link>
-              <MainButton className='ml-14 mr-5 ' onPress={() => setIsOpenCatalog(!isOpenCatalog)}>
+              <MainButton className='ml-14 mr-5 ' onPress={() => setIsCatalogMenu((prev) => !prev)}>
                 <p> Католог</p>
                 <img src='/icons/open-btn.svg' alt='Icon' className='ml-2' />
               </MainButton>
-              <CatologMenu isOpenCatalog={isOpenCatalog} />
+              <CatologMenu isOpenCatalog={isCatalogMenu} />
               <SearchInput
                 isOpenUploadModal={isOpenUploadModal}
                 setIsOpenUploadModal={setIsOpenUploadModal}
               />
-              <UserNav isOpenAuthModal={isOpenAuthModal} setIsOpenAuthModal={setIsOpenAuthModal} />
+              <UserNav setLoginModal={setLoginModal} />
             </div>
           </div>
         </Container>
