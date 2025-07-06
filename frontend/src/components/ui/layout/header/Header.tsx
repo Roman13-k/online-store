@@ -59,7 +59,7 @@ export function Header() {
               <p className='relative before:content-[url("/icons/marker.svg")] before:mr-2'>
                 Пункт выдачи — Центральная ул., 1
               </p>
-              <NavBar />
+              <NavBar setBuyerOrSeller={setBuyerOrSeller} setAuthChoose={setAuthChoose} />
             </div>
             <div className='flex items-center'>
               <Link href='/'>

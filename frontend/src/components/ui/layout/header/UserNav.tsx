@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 import { AccountIcon } from "../../shared/icons/AccountIcon";
-import { useAuthContext } from "@/contexts/Context";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 interface UserNavProps {
   setLoginModal: Dispatch<SetStateAction<boolean>>;

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Form, Input, Button } from "@heroui/react";
-import { customValidator } from "../../../../../utils/customValidator";
-import { customSubmit } from "../../../../../utils/customSubmit";
+import { customValidator } from "../../../../../utils/login/customValidator";
+import { customSubmit } from "../../../../../utils/login/customSubmit";
 import { SubEvent } from "./SubEvent";
-import { useAuthContext } from "@/contexts/Context";
+import { useAuthContext } from "@/contexts/AuthContext";
 import ModalLayout from "@/components/ui/layout/ModalLayout";
 import { AuthChoose, BuyerOrSeller } from "@/types";
 
@@ -15,27 +15,16 @@ interface LoginModalProps {
 
 export function Login({ buyerOrSeller, authChoose, handleCLose }: LoginModalProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(null);
+  const [isSuccess, setIsSuccess] = useState<null | boolean>(null);
   const formRef = useRef(null);
   const { isAuth, setIsAuth } = useAuthContext();
 
   useEffect(() => {
-    if (!isAuth && isSuccess) {
-      setIsAuth(isSuccess);
-      localStorage.setItem("Auth", isSuccess);
+    if (!isAuth && isSuccess && buyerOrSeller) {
+      setIsAuth(buyerOrSeller);
+      localStorage.setItem("Auth", buyerOrSeller);
     }
   }, [isSuccess]);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    const token = await customSubmit(
-      e,
-      formRef,
-      setIsSuccess,
-      `${authChoose}/${buyerOrSeller}`,
-      setIsLoading,
-    );
-    localStorage.setItem("token", token);
-  };
 
   return (
     <ModalLayout onClose={handleCLose}>
@@ -44,7 +33,9 @@ export function Login({ buyerOrSeller, authChoose, handleCLose }: LoginModalProp
         ref={formRef}
         className=' flex flex-col items-center gap-4'
         validationBehavior='native'
-        onSubmit={handleSubmit}>
+        onSubmit={(e) =>
+          customSubmit(e, formRef, setIsSuccess, `${authChoose}/${buyerOrSeller}`, setIsLoading)
+        }>
         <Input
           isRequired
           errorMessage='Укажите верную почту'

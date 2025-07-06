@@ -38,10 +38,6 @@
 
 button {
   cursor: pointer;
-  font-weight: 500;
-  font-size: 18px;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px 0 var(--shadow-normal);
 }
 
 h4 {

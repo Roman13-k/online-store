@@ -1,10 +1,20 @@
-import React, { PropsWithChildren } from "react";
+"use client";
+import React, { PropsWithChildren, useEffect } from "react";
 
 interface ModalLayoutProps extends PropsWithChildren {
   onClose?: () => void;
 }
 
 export default function ModalLayout({ onClose, children }: ModalLayoutProps) {
+  useEffect(() => {
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, []);
+
   return (
     <div
       onClick={onClose}

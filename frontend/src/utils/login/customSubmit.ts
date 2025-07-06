@@ -6,7 +6,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export const customSubmit = async (
   e: React.FormEvent<HTMLFormElement>,
   ref: React.RefObject<HTMLFormElement | null>,
-  setIsSuccess: Dispatch<SetStateAction<any>>,
+  setIsSuccess: Dispatch<SetStateAction<null | boolean>>,
   path: string,
   setIsLoarding: Dispatch<SetStateAction<boolean>>,
 ) => {
@@ -16,15 +16,16 @@ export const customSubmit = async (
   setIsLoarding(true);
   try {
     const res = await axios.post(`${API_URL}/${path}`, data);
-    setIsSuccess(path == "/login/seller" ? "seller" : "buyer");
-    setIsLoarding(false);
-    return res.data.token;
+    if (res.status === 200) {
+      if (ref.current) ref.current.reset();
+      setIsSuccess(true);
+    }
   } catch (error) {
     console.log(error);
     setIsSuccess(false);
+  } finally {
+    setIsLoarding(false);
   }
-  setIsLoarding(false);
-  if (ref.current) ref.current.reset();
 
-  setTimeout(() => setIsSuccess(null), 3000);
+  setTimeout(() => setIsSuccess(null), 4000);
 };

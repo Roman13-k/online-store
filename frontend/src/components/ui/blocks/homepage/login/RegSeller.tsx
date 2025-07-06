@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
 import { Form, Input, Button } from "@heroui/react";
 import { SubEvent } from "./SubEvent";
-import { customValidator } from "@/utils/customValidator";
-import { customSubmit } from "@/utils/customSubmit";
+import { customValidator } from "@/utils/login/customValidator";
+import { customSubmit } from "@/utils/login/customSubmit";
 import ModalLayout from "@/components/ui/layout/ModalLayout";
 
 export function RegSeller({ handleClose }: { handleClose: () => void }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(null);
+  const [isSuccess, setIsSuccess] = useState<null | boolean>(null);
   const formRef = useRef<null | HTMLFormElement>(null);
 
   return (
@@ -18,7 +18,7 @@ export function RegSeller({ handleClose }: { handleClose: () => void }) {
         className='grid grid-cols-2 gap-4'
         validationBehavior='native'
         onSubmit={(e) =>
-          customSubmit(e, formRef, setIsSuccess, "/registration/seller", setIsLoading)
+          customSubmit(e, formRef, setIsSuccess, "registration/seller", setIsLoading)
         }>
         <Input
           isRequired

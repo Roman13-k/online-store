@@ -8,16 +8,14 @@ interface SubEvent {
 
 export function SubEvent({ isSuccess, textTrue, textFalse }: SubEvent) {
   return (
-    <div className='relative h-5 mb-5 overflow-hidden'>
+    <div className='relative h-5 w-full mt-5 '>
       <p
-        className={`absolute left-0 top-0 text-sm text-red transition-all duration-400
-          ${isSuccess === false ? "opacity-100 translate-x-[5%]" : "-translate-x-full opacity-0"}`}>
-        {textFalse}
-      </p>
-      <p
-        className={`absolute left-0 top-0 text-sm text-green-400 transition-all duration-400
-          ${isSuccess === true ? "opacity-100 translate-x-[5%]" : "-translate-x-full opacity-0"}`}>
-        {textTrue}
+        className={`
+          absolute left-[50%] top-0 text-sm transform -translate-x-1/2 whitespace-nowrap
+          ${isSuccess === true ? "text-green-400" : "text-red"}
+          ${isSuccess !== null ? "block" : "hidden"}
+        `}>
+        {isSuccess === true ? textTrue : textFalse}
       </p>
     </div>
   );

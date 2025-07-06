@@ -1,6 +1,6 @@
 "use client";
 
-import { AuthContextProvider } from "@/contexts/Context";
+import { AuthContextProvider } from "@/contexts/AuthContext";
 import { HeroUIProvider } from "@heroui/react";
 
 export function Providers({ children }: { children: React.ReactNode }) {
