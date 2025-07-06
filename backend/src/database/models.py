@@ -19,29 +19,29 @@ class SellerModel(Base):
     email: Mapped[str] = mapped_column(nullable=False, index=True)
     password: Mapped[str] = mapped_column(nullable=False)
 
-    type_organization: Mapped[str] = mapped_column(nullable=False)  # Тип организации
-    country: Mapped[str] = mapped_column(nullable=False)  # Страна
+    type_organization: Mapped[str] = mapped_column(nullable=False)
+    country: Mapped[str] = mapped_column(nullable=False)
 
-    itn: Mapped[int] = mapped_column(nullable=False)  # ИНН
-    name: Mapped[str] = mapped_column(nullable=False)  # Имя
-    last_name: Mapped[str] = mapped_column(nullable=False)  # Фамилия
-    patronymic: Mapped[str] = mapped_column(nullable=False)  # Отчество
-    company_name: Mapped[str] = mapped_column(nullable=False)  # Название компании
+    itn: Mapped[int] = mapped_column(nullable=False)
+    name: Mapped[str] = mapped_column(nullable=False)
+    last_name: Mapped[str] = mapped_column(nullable=False)
+    patronymic: Mapped[str] = mapped_column(nullable=False)
+    company_name: Mapped[str] = mapped_column(nullable=False)
 
 
 class BookModel(Base):
     __tablename__ = "books"
 
     book_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    image_url: Mapped[str] = mapped_column(nullable=True)  # Ссылка на фотографию
-    title: Mapped[str] = mapped_column(nullable=True)  # Название
-    description: Mapped[str] = mapped_column(nullable=False)  # Описание
-    type_book: Mapped[str] = mapped_column(nullable=False)  # Тип книги
-    price: Mapped[float] = mapped_column(nullable=False)  # Цена
-    author: Mapped[str] = mapped_column(nullable=False)  # Автор книги
-    age_reader: Mapped[int] = mapped_column(nullable=False)  # Возраст читателя
-    language: Mapped[str] = mapped_column(nullable=False)  # Язык
-    type_cover: Mapped[str] = mapped_column(nullable=False)  # Тип обложки
-    publishing: Mapped[str] = mapped_column(nullable=False)  # Издательство
-    isbn: Mapped[int]  # Международный стандартный книжный номер
-    series: Mapped[str] = mapped_column(nullable=False)  # Серия
+    image_url: Mapped[str] = mapped_column(nullable=True)
+    title: Mapped[str] = mapped_column(nullable=True)
+    description: Mapped[str] = mapped_column(nullable=False)
+    type_book: Mapped[str] = mapped_column(nullable=False)
+    price: Mapped[float] = mapped_column(nullable=False)
+    author: Mapped[str] = mapped_column(nullable=False)
+    age_reader: Mapped[int] = mapped_column(nullable=False)
+    language: Mapped[str] = mapped_column(nullable=False)
+    type_cover: Mapped[str] = mapped_column(nullable=False)
+    publishing: Mapped[str] = mapped_column(nullable=False)
+    isbn: Mapped[int]
+    series: Mapped[str] = mapped_column(nullable=False)
