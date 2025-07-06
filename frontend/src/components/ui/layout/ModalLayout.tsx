@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { PropsWithChildren, useEffect } from "react";
 
 interface ModalLayoutProps extends PropsWithChildren {
@@ -23,7 +24,7 @@ export default function ModalLayout({ onClose, children }: ModalLayoutProps) {
         onClick={(e) => e.stopPropagation()}
         className='flex flex-col items-center justify-start bg-white rounded-[45px] p-6 '>
         <button onClick={onClose} className='ml-auto'>
-          <img src='/icons/close-btn.svg' />
+          <Image width={38} height={38} alt='close.svg' src='/icons/close-btn.svg' />
         </button>
         {children}
       </div>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 import { AccountIcon } from "../../shared/icons/AccountIcon";
 import { useAuthContext } from "@/contexts/AuthContext";
+import Image from "next/image";
 
 interface UserNavProps {
   setLoginModal: Dispatch<SetStateAction<boolean>>;
@@ -32,19 +33,19 @@ export default function UserNav({ setLoginModal }: UserNavProps) {
       </li>
       <li>
         <Link href='' className='flex flex-col items-center max-h-[53px]'>
-          <img src='/icons/favorite.svg' className='w-[33px] h-[33px]' />
+          <Image width={33} height={33} alt='favorite.svg' src='/icons/favorite.svg' />
           <p>Избранное</p>
         </Link>
       </li>
       <li>
         <Link href='' className='flex flex-col items-center max-h-[53px]'>
-          <img src='/icons/order.svg' className='w-[33px] h-[33px]' />
+          <Image width={33} height={33} alt='order.svg' src='/icons/order.svg' />
           <p>Заказы</p>
         </Link>
       </li>
       <li>
         <Link href='' className='flex flex-col items-center max-h-[53px]'>
-          <img src='/icons/cart.svg' className='w-[33px] h-[33px]' />
+          <Image width={33} height={33} alt='cart.svg' src='/icons/cart.svg' />
           <p>Корзина</p>
         </Link>
       </li>

@@ -1,4 +1,6 @@
+import Image from "next/image";
 import React, { Dispatch, SetStateAction } from "react";
+import TextDivider from "../divider/TextDivider";
 
 interface SearchInputProps {
   isOpenUploadModal: boolean;
@@ -14,20 +16,16 @@ export function UploadModal({ isOpenUploadModal }: { isOpenUploadModal: boolean 
       <div className='flex flex-col w-full gap-3'>
         <label className='flex w-full gap-3 cursor-pointer items-center'>
           <input type='file' accept='image/*' className='hidden' />
-          <img src='/icons/upload.svg' alt='Загрузить' />
+          <Image width={46} height={46} src='/icons/upload.svg' alt='upload.svg' />
           <p>
             <span className='text-orange-main'>Загрузите фото </span>
             книги или фрагмента из неё
           </p>
         </label>
-        <div className='flex gap-3 items-center'>
-          <span className='border border-black w-[90px] h-[1px]'></span>
-          <p>или</p>
-          <span className='border border-black w-[90px] h-[1px]'></span>
-        </div>
+        <TextDivider className='flex items-center' />
         <label className='flex w-full gap-3 cursor-pointer items-center'>
           <input type='file' accept='image/*' capture='environment' className='hidden' />
-          <img src='/icons/photo.svg' alt='' />
+          <Image width={46} height={46} src='/icons/photo.svg' alt='photo.svg' />
           <p>
             <span className='text-orange-main'>Наведите камеру </span>
             своего устройства на книгу
@@ -52,7 +50,7 @@ export default function SearchInput({ isOpenUploadModal, setIsOpenUploadModal }:
           className='flex items-center gap-5'
           onClick={() => setIsOpenUploadModal((prev) => !prev)}>
           <span className='block border border-black w-[1px] h-[30px]'></span>
-          <img src='/icons/search-icon.svg' alt='' />
+          <Image width={20} height={20} src='/icons/search-icon.svg' alt='search.svg' />
         </button>
       </div>
     </>

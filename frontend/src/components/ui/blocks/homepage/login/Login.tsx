@@ -24,7 +24,7 @@ export function Login({ buyerOrSeller, authChoose, handleCLose }: LoginModalProp
       setIsAuth(buyerOrSeller);
       localStorage.setItem("Auth", buyerOrSeller);
     }
-  }, [isSuccess]);
+  }, [isAuth, isSuccess, buyerOrSeller, setIsAuth]);
 
   return (
     <ModalLayout onClose={handleCLose}>

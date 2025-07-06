@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { getYear } from "@/utils/getYear";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -92,9 +93,9 @@ export function Footer() {
         <div className='flex flex-col gap-3 mb-10'>
           <h4>Принимаем к оплате</h4>
           <div className='flex gap-3'>
-            <img src='/img/mir.png' alt='' />
-            <img src='/img/visa.png' alt='' />
-            <img src='/img/mastercard.png' alt='' />
+            <Image width={105} height={35} src='/img/mir.png' alt='mir.png' />
+            <Image width={105} height={35} src='/img/visa.png' alt='visa.png' />
+            <Image width={105} height={35} src='/img/mastercard.png' alt='mastercard.png' />
           </div>
         </div>
         <div className='flex gap-[44px] opacity-60 mb-3'>

@@ -22,7 +22,7 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     const auth = localStorage.getItem("Auth");
-    if (isFromEnum(auth, ["buyer", "seller"] as const)) setIsAuth(auth);
+    if (isFromEnum<BuyerOrSeller>(auth, ["buyer", "seller"] as const)) setIsAuth(auth);
     setAuthLoading(false);
   }, []);
 

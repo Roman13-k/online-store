@@ -13,6 +13,7 @@ import { AuthChoose, BuyerOrSeller } from "@/types";
 import { Login } from "../../blocks/homepage/login/Login";
 import { RegBuyer } from "../../blocks/homepage/login/RegBuyer";
 import { RegSeller } from "../../blocks/homepage/login/RegSeller";
+import Image from "next/image";
 
 export function Header() {
   const [isCatalogMenu, setIsCatalogMenu] = useState(false);
@@ -70,7 +71,13 @@ export function Header() {
               </Link>
               <MainButton className='ml-14 mr-5 ' onPress={() => setIsCatalogMenu((prev) => !prev)}>
                 <p> Католог</p>
-                <img src='/icons/open-btn.svg' alt='Icon' className='ml-2' />
+                <Image
+                  width={12}
+                  height={16}
+                  src='/icons/open-btn.svg'
+                  alt='open.svg'
+                  className='ml-2'
+                />
               </MainButton>
               <CatologMenu isOpenCatalog={isCatalogMenu} />
               <SearchInput

@@ -1,3 +1,4 @@
+"use client";
 import { useUserdataQuery } from "@/API/userApi";
 import { useRouter } from "next/navigation";
 import React from "react";
