@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.responses import JSONResponse
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -98,7 +99,18 @@ async def login_buyer(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid email or password"
         )
     jwt = create_access_token({"id": buyer.id})
-    return {"token": jwt}
+
+    response = JSONResponse(content={"message": "Logged in"})
+    response.set_cookie(
+        key="access_token",
+        value=jwt,
+        httponly=True,
+        secure=False,
+        samesite="lax",
+        max_age=3600,
+        path="/",
+    )
+    return response
 
 
 @auth_router.post("/login/seller")
@@ -115,7 +127,18 @@ async def login_seller(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid email or password"
         )
     jwt = create_access_token({"id": seller.id})
-    return {"token": jwt}
+
+    response = JSONResponse(content={"message": "Logged in"})
+    response.set_cookie(
+        key="access_token",
+        value=jwt,
+        httponly=True,
+        secure=False,
+        samesite="lax",
+        max_age=3600,
+        path="/",
+    )
+    return response
 
 
 @auth_router.get("/profile/buyer")
