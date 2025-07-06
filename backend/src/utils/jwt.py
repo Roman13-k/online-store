@@ -38,8 +38,9 @@ async def get_current_buyer(request: Request, db: AsyncSession = Depends(get_ses
         )
 
         id: int = payload.get("id")
+        role: str = payload.get("role")
 
-        if id is None:
+        if id is None or role != "buyer":
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token"
             )
@@ -69,8 +70,9 @@ async def get_current_seller(request: Request, db: AsyncSession = Depends(get_se
         )
 
         id: int = payload.get("id")
+        role: str = payload.get("role")
 
-        if id is None:
+        if id is None or role != "seller":
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token"
             )

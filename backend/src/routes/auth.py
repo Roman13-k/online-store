@@ -98,7 +98,7 @@ async def login_buyer(
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid email or password"
         )
-    jwt = create_access_token({"id": buyer.id})
+    jwt = create_access_token({"id": buyer.id, "role": "buyer"})
 
     response = JSONResponse(content={"message": "Logged in"})
     response.set_cookie(
@@ -126,7 +126,7 @@ async def login_seller(
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid email or password"
         )
-    jwt = create_access_token({"id": seller.id})
+    jwt = create_access_token({"id": seller.id, "role": "seller"})
 
     response = JSONResponse(content={"message": "Logged in"})
     response.set_cookie(
