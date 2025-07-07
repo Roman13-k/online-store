@@ -2,15 +2,16 @@ import React from "react";
 import Link from "next/link";
 import { getYear } from "@/utils/getYear";
 import Image from "next/image";
+import Container from "../../shared/containers/Container";
 
 export function Footer() {
   return (
     <footer
-      className='flex flex-col shadow-normal mt-[100px]'
+      className='shadow-normal mt-[100px]'
       style={{
         background: "linear-gradient(to bottom,#e9e9e9 90%, #d9d9d9 10%)",
       }}>
-      <div className='pt-10 pl-20 pr-20'>
+      <Container className='pt-10'>
         <ul className='flex gap-[111px]'>
           <li className='flex flex-col gap-3'>
             <h4>Покупателям и продавцам</h4>
@@ -102,7 +103,7 @@ export function Footer() {
           <p>© ПРОКниги, {getYear()}</p>
           <p>Публичная оферта</p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

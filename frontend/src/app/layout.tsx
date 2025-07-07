@@ -26,7 +26,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           <Header />
-          <main className='min-h-[400px]'>{children}</main>
+          <main>{children}</main>
           <Footer />
         </Providers>
       </body>

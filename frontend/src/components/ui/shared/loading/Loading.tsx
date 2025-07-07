@@ -4,7 +4,7 @@ export function Loading() {
   const delays = [0.6, 0.75, 0.9, 1.05, 1.2, 1.35, 1.5, 1.64];
 
   return (
-    <div className='flex gap-[5px] justify-center items-center w-[570px] h-[30px] mx-auto'>
+    <div className='min-h-screen flex gap-[5px] justify-center items-center w-[570px] h-[30px] mx-auto'>
       {delays.map((delay, index) => (
         <div
           key={index}
