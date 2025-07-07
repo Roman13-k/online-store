@@ -5,17 +5,18 @@ import { customSubmit } from "@/utils/login/customSubmit";
 import { customValidator } from "@/utils/login/customValidator";
 import ModalLayout from "@/components/ui/layout/ModalLayout";
 import { useAuthContext } from "@/contexts/AuthContext";
+import { redirect } from "next/navigation";
 
 export function RegBuyer({ handleClose }: { handleClose: () => void }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState<null | boolean>(null);
   const formRef = useRef(null);
-  const { setAuth, refetchProfile } = useAuthContext();
+  const { setAuth } = useAuthContext();
 
   useEffect(() => {
     if (!isLoading && isSuccess) {
       setAuth("buyer");
-      refetchProfile("buyer");
+      redirect("/profile/buyer");
     }
   }, [isSuccess]);
 

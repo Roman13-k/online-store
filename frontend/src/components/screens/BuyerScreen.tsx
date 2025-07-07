@@ -1,29 +1,20 @@
 "use client";
-import { useUserdataQuery } from "@/store/userApi";
-import { useRouter } from "next/navigation";
-import React from "react";
+import { useAuthContext } from "@/contexts/AuthContext";
+import { useBuyerProfileQuery } from "@/store/userApi";
+import React, { useEffect } from "react";
+import { Loading } from "../ui/shared/loading/Loading";
 
 export default function BuyerScreen() {
-  const navigate = useRouter();
-  const token = localStorage.getItem("token");
-  if (!token) navigate.push("/");
-  const { data, isLoading, isError } = useUserdataQuery({
-    token,
-    url: "buyer",
-  });
+  const { data, isLoading, isError } = useBuyerProfileQuery("");
 
-  if (isError) {
-    return <p>Что-то не так</p>;
-  }
+  if (isLoading) return <Loading />;
 
-  if (isLoading) {
-    return <p>Загрузка...</p>;
-  }
+  if (isError) return <p>Ошибка</p>;
 
   return (
     <div>
       <h2>Профиль пользователя</h2>
-      <p>{data.profile.email}</p>
+      <p>{data}</p>
     </div>
   );
 }

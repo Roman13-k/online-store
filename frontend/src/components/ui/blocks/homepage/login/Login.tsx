@@ -6,6 +6,7 @@ import { SubEvent } from "./SubEvent";
 import ModalLayout from "@/components/ui/layout/ModalLayout";
 import { AuthChoose, BuyerOrSeller } from "@/types";
 import { useAuthContext } from "@/contexts/AuthContext";
+import { redirect } from "next/navigation";
 
 interface LoginModalProps {
   buyerOrSeller: null | BuyerOrSeller;
@@ -17,12 +18,12 @@ export function Login({ buyerOrSeller, authChoose, handleCLose }: LoginModalProp
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState<null | boolean>(null);
   const formRef = useRef(null);
-  const { setAuth, refetchProfile } = useAuthContext();
+  const { setAuth } = useAuthContext();
 
   useEffect(() => {
     if (!isLoading && isSuccess) {
       setAuth(buyerOrSeller);
-      refetchProfile(buyerOrSeller);
+      redirect(`/profile/${buyerOrSeller}`);
     }
   }, [isSuccess]);
 

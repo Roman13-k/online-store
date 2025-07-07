@@ -9,7 +9,6 @@ import { Loading } from "@/components/ui/shared/loading/Loading";
 interface AuthContextInterface {
   auth: BuyerOrSeller | null;
   setAuth: (role: BuyerOrSeller | null) => void;
-  refetchProfile: (profile: BuyerOrSeller | null) => void;
 }
 
 export const AuthContext = createContext({} as AuthContextInterface);
@@ -28,20 +27,13 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
     data: buyerData,
     isLoading: buyerLoading,
     isError: buyerError,
-    refetch: refetchBuyer,
   } = useBuyerProfileQuery("");
 
   const {
     data: sellerData,
     isLoading: sellerLoading,
     isError: sellerError,
-    refetch: refetchSeller,
   } = useSellerProfileQuery("");
-
-  const refetchProfile = (profile: BuyerOrSeller | null) => {
-    if (profile === "buyer") refetchBuyer();
-    if (profile === "seller") refetchSeller();
-  };
 
   const setAuth = (role: BuyerOrSeller | null) => {
     if (role) {
@@ -53,14 +45,18 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
   };
 
   useEffect(() => {
-    if (auth === "buyer" && buyerData) {
-      setAuthState("buyer");
-    } else if (auth === "seller" && sellerData) {
-      setAuthState("seller");
-    } else if ((auth === "buyer" && buyerError) || (auth === "seller" && sellerError)) {
-      setAuth(null);
+    if (auth === "buyer") {
+      if (buyerData) {
+      } else if (buyerError) {
+        setAuth(null);
+      }
+    } else if (auth === "seller") {
+      if (sellerData) {
+      } else if (sellerError) {
+        setAuth(null);
+      }
     }
-  }, [buyerData, sellerData, buyerError, sellerError]);
+  }, [auth, buyerData, sellerData, buyerError, sellerError]);
 
   if (buyerLoading || sellerLoading) return <Loading />;
 
@@ -69,7 +65,6 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
       value={{
         auth,
         setAuth,
-        refetchProfile,
       }}>
       {children}
     </AuthContext.Provider>
