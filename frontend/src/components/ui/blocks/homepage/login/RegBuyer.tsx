@@ -1,14 +1,23 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Form, Input, Button } from "@heroui/react";
 import { SubEvent } from "./SubEvent";
 import { customSubmit } from "@/utils/login/customSubmit";
 import { customValidator } from "@/utils/login/customValidator";
 import ModalLayout from "@/components/ui/layout/ModalLayout";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 export function RegBuyer({ handleClose }: { handleClose: () => void }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState<null | boolean>(null);
   const formRef = useRef(null);
+  const { setAuth, refetchProfile } = useAuthContext();
+
+  useEffect(() => {
+    if (!isLoading && isSuccess) {
+      setAuth("buyer");
+      refetchProfile("buyer");
+    }
+  }, [isSuccess]);
 
   return (
     <ModalLayout onClose={handleClose}>

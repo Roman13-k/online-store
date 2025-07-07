@@ -3,9 +3,9 @@ import { Form, Input, Button } from "@heroui/react";
 import { customValidator } from "../../../../../utils/login/customValidator";
 import { customSubmit } from "../../../../../utils/login/customSubmit";
 import { SubEvent } from "./SubEvent";
-import { useAuthContext } from "@/contexts/AuthContext";
 import ModalLayout from "@/components/ui/layout/ModalLayout";
 import { AuthChoose, BuyerOrSeller } from "@/types";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 interface LoginModalProps {
   buyerOrSeller: null | BuyerOrSeller;
@@ -17,14 +17,14 @@ export function Login({ buyerOrSeller, authChoose, handleCLose }: LoginModalProp
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState<null | boolean>(null);
   const formRef = useRef(null);
-  const { isAuth, setIsAuth } = useAuthContext();
+  const { setAuth, refetchProfile } = useAuthContext();
 
   useEffect(() => {
-    if (!isAuth && isSuccess && buyerOrSeller) {
-      setIsAuth(buyerOrSeller);
-      localStorage.setItem("Auth", buyerOrSeller);
+    if (!isLoading && isSuccess) {
+      setAuth(buyerOrSeller);
+      refetchProfile(buyerOrSeller);
     }
-  }, [isAuth, isSuccess, buyerOrSeller, setIsAuth]);
+  }, [isSuccess]);
 
   return (
     <ModalLayout onClose={handleCLose}>
