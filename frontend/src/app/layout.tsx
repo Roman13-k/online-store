@@ -4,6 +4,8 @@ import "./globals.css";
 import { Providers } from "./providers";
 import { Footer } from "@/components/ui/layout/footer/Footer";
 import { Header } from "@/components/ui/layout/header/Header";
+import ArrowButton from "@/components/ui/shared/buttons/ArrowButton";
+import ScrollToTopButton from "@/components/ui/shared/buttons/ScrollToTopButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +28,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           <Header />
-          <main>{children}</main>
+          <main>
+            {children}
+            <ScrollToTopButton />
+          </main>
           <Footer />
         </Providers>
       </body>

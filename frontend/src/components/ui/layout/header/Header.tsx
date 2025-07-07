@@ -53,7 +53,7 @@ export function Header() {
           setBuyerOrSeller={setBuyerOrSeller}
         />
       )}
-      <header className='sticky top-0 z-50 flex flex-col min-h-[110px] text-sm pt-2 shadow-md bg-white'>
+      <header className='flex flex-col min-h-[110px] text-sm pt-2 shadow-md bg-white'>
         <Container className='relative'>
           <div>
             <div className='flex justify-between mb-5'>

@@ -36,7 +36,7 @@ export default function Intro() {
   }, [selectedBanner]);
 
   return (
-    <section className='w-full bg-grey py-[52px] flex flex-col items-center gap-5'>
+    <section className='w-full bg-grey py-[52px] flex flex-col items-center gap-5 mb-10'>
       <div className='flex flex-row gap-0 justify-center mx-auto max-w-[1460px] w-full overflow-hidden'>
         <div className='relative w-[100px] z-10'>
           <ArrowButton
