@@ -1,7 +1,6 @@
 "use client";
-import { useAuthContext } from "@/contexts/AuthContext";
 import { useBuyerProfileQuery } from "@/store/userApi";
-import React, { useEffect } from "react";
+import React from "react";
 import { Loading } from "../ui/shared/loading/Loading";
 
 export default function BuyerScreen() {

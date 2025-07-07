@@ -4,20 +4,18 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const userApi = createApi({
   reducerPath: "user",
-  baseQuery: fetchBaseQuery({ baseUrl: `${API_URL}/profile/` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${API_URL}/profile/`, credentials: "include" }),
   endpoints: (build) => ({
     buyerProfile: build.query({
       query: () => ({
         url: "buyer",
         method: "GET",
-        credentials: "include",
       }),
     }),
     sellerProfile: build.query({
       query: () => ({
         url: "seller",
         method: "GET",
-        credentials: "include",
       }),
     }),
   }),

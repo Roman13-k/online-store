@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 
 export default function NavBar({ setAuthChoose, setBuyerOrSeller }: AuthInterface) {
-  const { isAuth, setIsAuth } = useAuthContext();
+  const { auth, setAuth } = useAuthContext();
 
   return (
     <nav className='flex opacity-40 gap-4'>
@@ -20,12 +20,11 @@ export default function NavBar({ setAuthChoose, setBuyerOrSeller }: AuthInterfac
       <Link href='/certificates'>Подарочные сертификаты</Link>
       <Link href='/support'>Помощь</Link>
       <Link href='/pickup-points'>Пункты выдачи</Link>
-      {isAuth && (
+      {auth && (
         <button
           onClick={() => {
             //!! logout
-            setIsAuth(null);
-            localStorage.removeItem("Auth");
+            setAuth(null);
           }}
           className='text-red-500 bg-transparent'>
           Выйти

@@ -10,12 +10,12 @@ interface UserNavProps {
 }
 
 export default function UserNav({ setLoginModal }: UserNavProps) {
-  const { isAuth } = useAuthContext();
+  const { auth } = useAuthContext();
 
   return (
     <ul className='flex gap-3 ml-14'>
       <li>
-        {!isAuth ? (
+        {!auth ? (
           <button
             onClick={() => setLoginModal((prev) => !prev)}
             className='flex flex-col items-center max-h-[53px]'>
@@ -24,7 +24,7 @@ export default function UserNav({ setLoginModal }: UserNavProps) {
           </button>
         ) : (
           <Link
-            href={isAuth == "buyer" ? "/buyer" : "/seller"}
+            href={auth == "buyer" ? "/buyer" : "/seller"}
             className='flex flex-col items-center max-h-[53px]'>
             <AccountIcon stroke={"#f35935"} />
             <p className='font-normal text-sm text-[#f35935]'>Аккаунт</p>
