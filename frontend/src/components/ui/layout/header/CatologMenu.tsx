@@ -11,7 +11,7 @@ export default function CatologMenu({ isOpenCatalog }: { isOpenCatalog: boolean 
       {categories.map((item, index) => (
         <li
           key={index}
-          className='bg-[url("/icons/arrow-up.svg")] bg-no-repeat bg-[95%_50%] text-[16px] w-[340px] h-[56px] border border-[#e9e9e9] flex justify-center items-center'>
+          className='bg-[url("/icons/arrows/arrow-up.svg")] bg-no-repeat bg-[95%_50%] text-[16px] w-[340px] h-[56px] border border-[#e9e9e9] flex justify-center items-center'>
           <Link href='' className='text-center'>
             {item}
           </Link>

@@ -57,7 +57,7 @@ export function Header() {
         <Container className='relative'>
           <div>
             <div className='flex justify-between mb-5'>
-              <p className='relative before:content-[url("/icons/marker.svg")] before:mr-2'>
+              <p className='relative before:content-[url("/icons/pick-up/marker.svg")] before:mr-2'>
                 Пункт выдачи — Центральная ул., 1
               </p>
               <NavBar setBuyerOrSeller={setBuyerOrSeller} setAuthChoose={setAuthChoose} />
@@ -74,7 +74,7 @@ export function Header() {
                 <Image
                   width={12}
                   height={16}
-                  src='/icons/open-btn.svg'
+                  src='/icons/btns/open-btn.svg'
                   alt='open.svg'
                   className='ml-2'
                 />

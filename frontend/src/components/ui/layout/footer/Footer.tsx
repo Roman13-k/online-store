@@ -93,9 +93,9 @@ export function Footer() {
         <div className='flex flex-col gap-3 mb-10'>
           <h4>Принимаем к оплате</h4>
           <div className='flex gap-3'>
-            <Image width={105} height={35} src='/img/mir.png' alt='mir.png' />
-            <Image width={105} height={35} src='/img/visa.png' alt='visa.png' />
-            <Image width={105} height={35} src='/img/mastercard.png' alt='mastercard.png' />
+            <Image width={105} height={35} src='/img/cards/mir.png' alt='mir.png' />
+            <Image width={105} height={35} src='/img/cards/visa.png' alt='visa.png' />
+            <Image width={105} height={35} src='/img/cards/mastercard.png' alt='mastercard.png' />
           </div>
         </div>
         <div className='flex gap-[44px] opacity-60 mb-3'>

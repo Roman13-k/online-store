@@ -1,6 +1,4 @@
 "use client";
-
-import { BackIcon } from "@/components/ui/shared/icons/BackIcon";
 import { Button } from "@heroui/react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -24,9 +22,7 @@ export default function NotFound() {
         className='font-semibold text-lg p-6 flex items-center gap-2'
         onPress={() => redirect("/")}
         startContent={
-          <span className='flex items-center'>
-            <BackIcon />
-          </span>
+          <Image width={20} height={20} src={"icons/arrows/back.svg"} alt='back.svg' />
         }>
         Вернуться домой
       </Button>

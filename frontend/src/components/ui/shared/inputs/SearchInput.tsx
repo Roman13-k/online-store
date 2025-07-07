@@ -16,7 +16,7 @@ export function UploadModal({ isOpenUploadModal }: { isOpenUploadModal: boolean 
       <div className='flex flex-col w-full gap-3'>
         <label className='flex w-full gap-3 cursor-pointer items-center'>
           <input type='file' accept='image/*' className='hidden' />
-          <Image width={46} height={46} src='/icons/upload.svg' alt='upload.svg' />
+          <Image width={46} height={46} src='/icons/search/upload.svg' alt='upload.svg' />
           <p>
             <span className='text-orange-main'>Загрузите фото </span>
             книги или фрагмента из неё
@@ -25,7 +25,7 @@ export function UploadModal({ isOpenUploadModal }: { isOpenUploadModal: boolean 
         <TextDivider className='flex items-center' />
         <label className='flex w-full gap-3 cursor-pointer items-center'>
           <input type='file' accept='image/*' capture='environment' className='hidden' />
-          <Image width={46} height={46} src='/icons/photo.svg' alt='photo.svg' />
+          <Image width={46} height={46} src='/icons/search/photo.svg' alt='photo.svg' />
           <p>
             <span className='text-orange-main'>Наведите камеру </span>
             своего устройства на книгу
@@ -43,14 +43,14 @@ export default function SearchInput({ isOpenUploadModal, setIsOpenUploadModal }:
       <div className='flex w-[520px] px-5 h-[46px] rounded-[5px] overflow-hidden border border-black opacity-40'>
         <input
           type='text'
-          className="flex-1  bg-white outline-none bg-[url('/icons/loupe.svg')] bg-no-repeat bg-[95%_50%]"
+          className="flex-1  bg-white outline-none bg-[url('/icons/search/loupe.svg')] bg-no-repeat bg-[95%_50%]"
           placeholder='Найти интересную книгу'
         />
         <button
           className='flex items-center gap-5'
           onClick={() => setIsOpenUploadModal((prev) => !prev)}>
           <span className='block border border-black w-[1px] h-[30px]'></span>
-          <Image width={20} height={20} src='/icons/search-icon.svg' alt='search.svg' />
+          <Image width={20} height={20} src='/icons/search/search-icon.svg' alt='search.svg' />
         </button>
       </div>
     </>

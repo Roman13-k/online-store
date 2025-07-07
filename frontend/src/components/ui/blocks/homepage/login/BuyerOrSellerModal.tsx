@@ -27,14 +27,14 @@ export function BuyerOrSellerModal({
           handleChoose("buyer");
         }}
         className='flex flex-col items-center font-medium text-lg text-black'>
-        <Image alt='buyer.svg' width={150} height={150} src='/icons/buyer.svg' />
+        <Image alt='buyer.svg' width={150} height={150} src='/icons/profile/buyer.svg' />
         <p className='font-bold text-[22px] leading-[88%] mt-3'>Покупатель</p>
       </button>
       <TextDivider />
       <button
         onClick={() => handleChoose("seller")}
         className='flex flex-col items-center font-medium text-lg text-black mb-[38px]'>
-        <Image alt='seller.svg' width={150} height={150} src='/icons/seller.svg' />
+        <Image alt='seller.svg' width={150} height={150} src='/icons/profile/seller.svg' />
         <p className='font-bold text-[22px] leading-[88%]'>Продавец</p>
       </button>
     </ModalLayout>

@@ -15,7 +15,7 @@ export const customSubmit = async (
   const data = Object.fromEntries(new FormData(e.currentTarget));
   setIsLoarding(true);
   try {
-    const res = await axios.post(`${API_URL}/${path}`, data);
+    const res = await axios.post(`${API_URL}/${path}`, data, { withCredentials: true });
     if (res.status === 200) {
       if (ref.current) ref.current.reset();
       setIsSuccess(true);
