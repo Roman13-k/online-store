@@ -80,7 +80,7 @@ export function Header() {
                   className='ml-2'
                 />
               </MainButton>
-              <CatologMenu isOpenCatalog={isCatalogMenu} />
+              <CatologMenu setIsCatalogMenu={setIsCatalogMenu} isOpenCatalog={isCatalogMenu} />
               <SearchInput
                 isOpenUploadModal={isOpenUploadModal}
                 setIsOpenUploadModal={setIsOpenUploadModal}
