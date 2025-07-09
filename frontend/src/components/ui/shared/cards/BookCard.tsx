@@ -18,7 +18,7 @@ export default function BookCard({ price, title, comments, rating, image }: Book
   return (
     <Link
       href='#'
-      className='p-3 bg-grey-f5f7 rounded-[5px] shadow-normal flex flex-col items-center relative font-first w-[281px]'>
+      className='p-3 bg-grey-f5f7 rounded-[5px] shadow-normal flex flex-col items-center relative font-first w-[281px] min-w-[280px]'>
       <LikeButton className='absolute top-3 right-3' />
       <Image
         width={166}

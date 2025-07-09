@@ -14,7 +14,6 @@ export default function ScrollableSection({ children }: { children: React.ReactN
 
     setShowLeft(scrollLeft > 0);
     setShowRight(scrollWidth > clientWidth && scrollLeft + clientWidth < scrollWidth - 1);
-    console.log(scrollWidth);
   };
 
   const scrollByPercent = (percent: number) => {
