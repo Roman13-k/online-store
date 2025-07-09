@@ -1,11 +1,29 @@
+import BookCard from "@/components/ui/shared/cards/BookCard";
+import BooksContainer from "@/components/ui/shared/containers/BooksContainer";
 import { H1 } from "@/components/ui/shared/text";
+import { BookCards } from "@/utils/catalogPage";
 import React from "react";
 
 export default function TopBooks() {
   return (
     <section className='flex flex-col gap-8'>
       <H1>Выгодные предложения</H1>
-      <div></div>
+      <BooksContainer>
+        {Array(20)
+          .fill(BookCards)
+          .map((book, index) => {
+            return (
+              <BookCard
+                price={book.price}
+                title={book.title}
+                comments={book.comments}
+                rating={book.rating}
+                image={book.image}
+                key={index}
+              />
+            );
+          })}
+      </BooksContainer>
     </section>
   );
 }

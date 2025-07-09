@@ -14,6 +14,7 @@ import { Login } from "../../blocks/homepage/login/Login";
 import { RegBuyer } from "../../blocks/homepage/login/RegBuyer";
 import { RegSeller } from "../../blocks/homepage/login/RegSeller";
 import Image from "next/image";
+import { P2 } from "../../shared/text";
 
 export function Header() {
   const [isCatalogMenu, setIsCatalogMenu] = useState(false);
@@ -57,9 +58,9 @@ export function Header() {
         <Container className='relative'>
           <div>
             <div className='flex justify-between mb-5'>
-              <p className='relative before:content-[url("/icons/pick-up/marker.svg")] before:mr-2'>
+              <P2 className='relative before:content-[url("/icons/pick-up/marker.svg")] before:mr-2'>
                 Пункт выдачи — Центральная ул., 1
-              </p>
+              </P2>
               <NavBar setBuyerOrSeller={setBuyerOrSeller} setAuthChoose={setAuthChoose} />
             </div>
             <div className='flex items-center'>

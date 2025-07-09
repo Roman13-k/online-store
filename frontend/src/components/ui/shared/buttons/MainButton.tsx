@@ -1,3 +1,4 @@
+"use client";
 import { Button, type ButtonProps } from "@heroui/react";
 import React, { PropsWithChildren } from "react";
 

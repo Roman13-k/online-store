@@ -1,6 +1,6 @@
 "use client";
 import { useAuthContext } from "@/contexts/AuthContext";
-import { AuthInterface } from "@/interface";
+import { AuthInterface } from "@/interface/homePage/login";
 import Link from "next/link";
 import React from "react";
 

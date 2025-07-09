@@ -1,4 +1,4 @@
-import { IntroBanner } from "@/interface/homePage";
+import { IntroBanner } from "@/interface/homePage/banner";
 
 export const IntroBanners: IntroBanner[] = [
   { id: 0, src: "/img/intro/promos.png" },
