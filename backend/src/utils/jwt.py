@@ -28,7 +28,7 @@ async def get_current_buyer(token: str, db: AsyncSession = Depends(get_session))
     if not token:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Token not found in cookies",
+            detail="Token not found",
         )
 
     try:
@@ -59,7 +59,7 @@ async def get_current_seller(token: str, db: AsyncSession = Depends(get_session)
     if not token:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Token not found in cookies",
+            detail="Token not found",
         )
 
     try:
