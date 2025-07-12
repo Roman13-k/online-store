@@ -129,10 +129,3 @@ async def get_profile_buyer(current_user: dict = Depends(get_current_buyer)):
 @auth_router.get("/profile/seller")
 async def get_profile_seller(current_user: dict = Depends(get_current_seller)):
     return {"profile": current_user}
-
-
-@auth_router.post("/logout")
-async def logout():
-    response = JSONResponse(content={"message": "Logged out"})
-    response.delete_cookie("access_token")
-    return response
