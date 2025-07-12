@@ -100,17 +100,7 @@ async def login_buyer(
         )
     jwt = create_access_token({"id": buyer.id, "role": "buyer"})
 
-    response = JSONResponse(content={"message": "Logged in"})
-    response.set_cookie(
-        key="access_token",
-        value=jwt,
-        httponly=True,
-        secure=False,
-        samesite="lax",
-        max_age=3600,
-        path="/",
-    )
-    return response
+    return {"token": jwt}
 
 
 @auth_router.post("/login/seller")
@@ -128,17 +118,7 @@ async def login_seller(
         )
     jwt = create_access_token({"id": seller.id, "role": "seller"})
 
-    response = JSONResponse(content={"message": "Logged in"})
-    response.set_cookie(
-        key="access_token",
-        value=jwt,
-        httponly=True,
-        secure=False,
-        samesite="lax",
-        max_age=3600,
-        path="/",
-    )
-    return response
+    return {"token": jwt}
 
 
 @auth_router.get("/profile/buyer")

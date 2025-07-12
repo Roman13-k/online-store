@@ -24,8 +24,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     return encoded_jwt
 
 
-async def get_current_buyer(request: Request, db: AsyncSession = Depends(get_session)):
-    token = request.cookies.get("access_token")
+async def get_current_buyer(token: str, db: AsyncSession = Depends(get_session)):
     if not token:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -56,8 +55,7 @@ async def get_current_buyer(request: Request, db: AsyncSession = Depends(get_ses
         )
 
 
-async def get_current_seller(request: Request, db: AsyncSession = Depends(get_session)):
-    token = request.cookies.get("access_token")
+async def get_current_seller(token: str, db: AsyncSession = Depends(get_session)):
     if not token:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
