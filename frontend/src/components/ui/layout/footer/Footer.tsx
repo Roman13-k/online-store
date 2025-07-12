@@ -16,26 +16,20 @@ export function Footer() {
           <li className='flex flex-col gap-3'>
             <h4>Покупателям и продавцам</h4>
             <ul className='flex flex-col gap-2 opacity-60'>
-              <li>
+              {/* <li>
                 <Link href='#'>Заказ, оплата и доставка</Link>
               </li>
               <li>
                 <Link href='#'>Возврат товара</Link>
-              </li>
+              </li> */}
               <li>
                 <Link href='#'>Стать продавцом</Link>
-              </li>
-              <li>
-                <Link href='#'>Стать поставщиком</Link>
               </li>
               <li>
                 <Link href='#'>Открыть пункт выдачи</Link>
               </li>
               <li>
-                <Link href='#'>Оптовые закупки</Link>
-              </li>
-              <li>
-                <Link href='#'>Вопросы и ответы</Link>
+                <Link href='/FAQ'>Вопросы и ответы</Link>
               </li>
             </ul>
           </li>
@@ -43,9 +37,9 @@ export function Footer() {
             <h4>О маркетплейсе</h4>
             <ul className='flex flex-col gap-2 opacity-60'>
               <li>
-                <Link href='#'>О ПРОКниги</Link>
+                <Link href='/about'>О ПРОКниги</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href='#'>Новости</Link>
               </li>
               <li>
@@ -59,30 +53,30 @@ export function Footer() {
               </li>
               <li>
                 <Link href='#'>Политика компании</Link>
-              </li>
+              </li> */}
             </ul>
           </li>
           <li className='flex flex-col gap-3'>
             <h4>Информация</h4>
             <ul className='flex flex-col gap-2 opacity-60'>
-              <li>
+              {/* <li>
                 <Link href='#'>Акции и скидки</Link>
-              </li>
+              </li> */}
               <li>
-                <Link href='#'>Подарочные карты</Link>
+                <Link href='/certificates'>Подарочные карты</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href='#'>Бонусная программа</Link>
-              </li>
+              </li> */}
               <li>
                 <Link href='#'>Адреса пунктов выдачи</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href='#'>Контакты</Link>
               </li>
               <li>
                 <Link href='#'>Обратная связь</Link>
-              </li>
+              </li> */}
             </ul>
           </li>
           <li className='flex flex-col gap-3'>

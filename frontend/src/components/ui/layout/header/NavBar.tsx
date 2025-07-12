@@ -16,7 +16,6 @@ export default function NavBar({ setAuthChoose, setBuyerOrSeller }: AuthInterfac
         }}>
         Стать продавцом
       </button>
-      <Link href='/wholesale'>Оптовые закупки</Link>
       <Link href='/certificates'>Подарочные сертификаты</Link>
       <Link href='/support'>Помощь</Link>
       <Link href='/pickup-points'>Пункты выдачи</Link>
