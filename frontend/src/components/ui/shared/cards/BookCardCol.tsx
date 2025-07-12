@@ -6,7 +6,7 @@ import MainButton from "../buttons/MainButton";
 import CopyButton from "../buttons/CopyButton";
 import Link from "next/link";
 
-interface BookCardProps {
+interface BookCardColProps {
   price: number;
   title: string;
   comments: number;
@@ -14,7 +14,33 @@ interface BookCardProps {
   image: string;
 }
 
-export default function BookCardCol({ price, title, comments, rating, image }: BookCardProps) {
+export function CommentAndRating({
+  comments,
+  rating,
+  title,
+  isNeedCopy = true,
+}: {
+  comments: number;
+  rating: number;
+  title: string;
+  isNeedCopy?: boolean;
+}) {
+  return (
+    <div className='flex w-full gap-6'>
+      <div className='flex gap-1'>
+        <Image width={18} height={18} alt='icon.svg' src={"/icons/bookCard/rate.svg"} />
+        <P1 className='opacity-40'>{rating.toFixed(1)}</P1>
+      </div>
+      <div className='flex gap-1'>
+        <Image width={18} height={18} alt='icon.svg' src={"/icons/bookCard/comment.svg"} />
+        <P1 className='opacity-40'>{comments}</P1>
+      </div>
+      {isNeedCopy && <CopyButton textToCopy={title} className='ml-auto' />}
+    </div>
+  );
+}
+
+export default function BookCardCol({ price, title, comments, rating, image }: BookCardColProps) {
   return (
     <Link
       href='#'
