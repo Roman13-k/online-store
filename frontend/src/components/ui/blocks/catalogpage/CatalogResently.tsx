@@ -1,8 +1,8 @@
 import React from "react";
 import { H1 } from "../../shared/text";
 import { BookCards } from "@/utils/catalogPage";
-import BookCard from "../../shared/cards/BookCard";
 import BooksContainer from "@/components/ui/shared/containers/BooksContainer";
+import BookCardCol from "../../shared/cards/BookCardCol";
 
 export default function CatalogResently() {
   return (
@@ -13,7 +13,7 @@ export default function CatalogResently() {
           .fill(BookCards)
           .map((book, index) => {
             return (
-              <BookCard
+              <BookCardCol
                 price={book.price}
                 title={book.title}
                 comments={book.comments}

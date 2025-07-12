@@ -11,7 +11,7 @@ export default function CatalogPath() {
   return (
     <p className='mb-9 text-[18px]'>
       <span className='text-black/40'>Главная — Каталог — </span>
-      <span className='text-orange-main'>{findCategoryBySlug(categories, slug)}</span>
+      <span className='text-orange-main font-medium'>{findCategoryBySlug(categories, slug)}</span>
     </p>
   );
 }

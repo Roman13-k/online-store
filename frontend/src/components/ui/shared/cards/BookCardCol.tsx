@@ -14,7 +14,7 @@ interface BookCardProps {
   image: string;
 }
 
-export default function BookCard({ price, title, comments, rating, image }: BookCardProps) {
+export default function BookCardCol({ price, title, comments, rating, image }: BookCardProps) {
   return (
     <Link
       href='#'

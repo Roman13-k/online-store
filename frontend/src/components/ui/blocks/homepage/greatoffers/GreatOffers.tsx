@@ -1,4 +1,4 @@
-import BookCard from "@/components/ui/shared/cards/BookCard";
+import BookCardCol from "@/components/ui/shared/cards/BookCardCol";
 import BooksContainer from "@/components/ui/shared/containers/BooksContainer";
 import { H1 } from "@/components/ui/shared/text";
 import { BookCards } from "@/utils/catalogPage";
@@ -13,7 +13,7 @@ export default function GreatOffers() {
           .fill(BookCards)
           .map((book, index) => {
             return (
-              <BookCard
+              <BookCardCol
                 price={book.price}
                 title={book.title}
                 comments={book.comments}
