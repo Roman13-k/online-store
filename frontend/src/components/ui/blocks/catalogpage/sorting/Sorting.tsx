@@ -2,7 +2,7 @@
 import React from "react";
 import SortingChoose from "./SortingChoose";
 import SortingCategories from "./SortingCategories";
-import { DirectionProps } from "@/interface/catalog/sorting";
+import { DirectionProps } from "@/interface/catalogpage/sorting";
 
 export default function Sorting({ direction, setDirection }: DirectionProps) {
   return (

@@ -8,6 +8,7 @@ import LikeButton from "../buttons/LikeButton";
 import MainButton from "../buttons/MainButton";
 
 interface BookCardRowProps {
+  id: string;
   price: number;
   title: string;
   comments: number;
@@ -19,6 +20,7 @@ interface BookCardRowProps {
   isbn: string;
   series: string;
   year: number;
+  category_slug: string;
 }
 
 export default function BookCardRow({
@@ -32,10 +34,12 @@ export default function BookCardRow({
   isbn,
   series,
   year,
+  id,
+  category_slug,
 }: BookCardRowProps) {
   return (
     <Link
-      href='#'
+      href={`/catalog/${category_slug}/${id}`}
       className='py-[30px] px-[28px] bg-grey-f5f7 rounded-[5px] shadow-normal flex items-center gap-[28px] font-first w-full'>
       <Image
         className='object-contain flex-shrink-0'

@@ -1,4 +1,4 @@
-import { SortingOptionsIntrface } from "@/interface/catalog/sorting";
+import { SortingOptionsIntrface } from "@/interface/catalogpage/sorting";
 
 export const sortingChoose = [
   "В наличии",

@@ -1,7 +1,7 @@
 import { FieldSetContainer } from "@/components/ui/shared/fieldset/Fieldset";
 import CurrencyInput from "@/components/ui/shared/inputs/CurrencyInput";
 import RangeSlider from "@/components/ui/shared/inputs/RangeSlider";
-import { BookPriceProps } from "@/interface/catalog/filters";
+import { BookPriceProps } from "@/interface/catalogpage/filters";
 import React from "react";
 
 export default function BookPrice({ priceValue, setPriceValue }: BookPriceProps) {

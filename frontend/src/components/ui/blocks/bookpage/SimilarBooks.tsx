@@ -1,15 +1,15 @@
-import BookCardCol from "@/components/ui/shared/cards/BookCardCol";
-import BooksContainer from "@/components/ui/shared/containers/BooksContainer";
-import { H1 } from "@/components/ui/shared/text";
-import { BookCards } from "@/utils/catalogPage";
 import React from "react";
+import BookCardCol from "../../shared/cards/BookCardCol";
+import { BookCards } from "@/utils/catalogPage";
+import { H1 } from "../../shared/text";
+import BooksContainer from "@/components/ui/shared/containers/BooksContainer";
 
-export default function GreatOffers() {
+export default function SimilarBooks() {
   return (
-    <section className='flex flex-col gap-8'>
-      <H1>Топ-100</H1>
+    <section className='flex flex-col gap-6'>
+      <H1>Похожие книги</H1>
       <BooksContainer>
-        {Array(20)
+        {Array(3)
           .fill(BookCards)
           .map((book, index) => {
             return (

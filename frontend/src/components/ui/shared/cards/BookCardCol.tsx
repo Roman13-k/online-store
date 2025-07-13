@@ -12,6 +12,8 @@ interface BookCardColProps {
   comments: number;
   rating: number;
   image: string;
+  id: string;
+  category_slug: string;
 }
 
 export function CommentAndRating({
@@ -40,10 +42,18 @@ export function CommentAndRating({
   );
 }
 
-export default function BookCardCol({ price, title, comments, rating, image }: BookCardColProps) {
+export default function BookCardCol({
+  price,
+  title,
+  comments,
+  rating,
+  image,
+  id,
+  category_slug,
+}: BookCardColProps) {
   return (
     <Link
-      href='#'
+      href={`/catalog/${category_slug}/${id}`}
       className='p-3 bg-grey-f5f7 rounded-[5px] shadow-normal flex flex-col items-center relative font-first w-[281px] min-w-[280px]'>
       <LikeButton className='absolute top-3 right-3' />
       <Image

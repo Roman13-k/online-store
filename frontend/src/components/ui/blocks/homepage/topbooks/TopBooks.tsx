@@ -14,6 +14,8 @@ export default function TopBooks() {
           .map((book, index) => {
             return (
               <BookCardCol
+                id={book.id}
+                category_slug={book.category_slug}
                 price={book.price}
                 title={book.title}
                 comments={book.comments}

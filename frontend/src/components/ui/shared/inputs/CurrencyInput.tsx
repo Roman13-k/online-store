@@ -1,4 +1,4 @@
-import { BookPriceProps } from "@/interface/catalog/filters";
+import { BookPriceProps } from "@/interface/catalogpage/filters";
 import React from "react";
 
 interface CurrencyInputProps extends BookPriceProps {

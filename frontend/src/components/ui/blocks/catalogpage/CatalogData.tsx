@@ -24,6 +24,8 @@ export default function CatalogData({ direction }: { direction: DirectionType })
           .map((book, index) => {
             return (
               <BookCardCol
+                id={book.id}
+                category_slug={book.category_slug}
                 price={book.price}
                 title={book.title}
                 comments={book.comments}
@@ -39,6 +41,8 @@ export default function CatalogData({ direction }: { direction: DirectionType })
           .map((book, index) => {
             return (
               <BookCardRow
+                id={book.id}
+                category_slug={book.category_slug}
                 key={index}
                 price={book.price}
                 title={book.title}

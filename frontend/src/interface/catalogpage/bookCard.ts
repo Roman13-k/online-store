@@ -1,9 +1,10 @@
+import { ShopInterface } from "../shoppage/shop";
+
 export interface BookCardInterface {
   id: string;
   title: string;
   description: string;
   price: number;
-  author: string;
   publishing: string;
   isbn: string;
   series: string;
@@ -11,8 +12,8 @@ export interface BookCardInterface {
   image: string;
   comments: number;
   rating: number;
-  // age_reader: number;
-  // language: string;
-  // type_cover: string;
-  // type_book: string;
+  type_book: string;
+  category: string;
+  category_slug: string;
+  shop: ShopInterface;
 }

@@ -1,5 +1,5 @@
 "use client";
-import { BookPriceProps } from "@/interface/catalog/filters";
+import { BookPriceProps } from "@/interface/catalogpage/filters";
 import { Slider } from "@heroui/react";
 import React from "react";
 

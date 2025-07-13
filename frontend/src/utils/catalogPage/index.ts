@@ -1,5 +1,5 @@
-import { BookCardInterface } from "@/interface/catalog/bookCard";
-import { CategoriesInterface } from "@/interface/catalog/categories";
+import { BookCardInterface } from "@/interface/catalogpage/bookCard";
+import { CategoriesInterface } from "@/interface/catalogpage/categories";
 
 export const categories: CategoriesInterface[] = [
   {
@@ -45,22 +45,25 @@ export const categories: CategoriesInterface[] = [
 ];
 
 export const BookCards: BookCardInterface = {
-  id: "0",
+  id: "30040300R0",
   title:
     "Отношения. Визуальный гид по любви и дружбе из серии Чему не учат в школе для подростков | Smart Reading",
   description:
     "Умение создавать и поддерживать отношения, без преувеличения, самый важный навык. Из отношений соткана вся жизнь. Близость с людьми является источником как истинного счастья и радости, так и самых глубоких ран и разочарований. Настоящие отношения — основа удовлетворения жизнью и долголетия (научно доказано Гарвардским исследованием).",
   price: 1083,
-  author: "Smart Reading",
   publishing: "Smart Reading",
   isbn: "9785604800904",
   series: "Чему не учат в школе",
   year: 2023,
-  // Дополнительные поля, если они нужны позже:
-  // age_reader: number,
-  // language: string,
-  // type_cover: string,
+  category: "Книги для детей",
+  category_slug: "childrens-books",
+  type_book: "Печатная книга",
   image: "/img/books/book.png",
   comments: 1123,
-  rating: 5.0,
+  rating: 4.0,
+  shop: {
+    title: "Smart Reading",
+    description: "Ценные идеи в инфографике",
+    cover: "/img/shop/shop1.png",
+  },
 };

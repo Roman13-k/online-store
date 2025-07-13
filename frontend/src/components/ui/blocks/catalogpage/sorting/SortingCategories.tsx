@@ -1,7 +1,7 @@
 "use client";
 import SortSelect from "@/components/ui/shared/selectes/SortSelect";
 import { P2 } from "@/components/ui/shared/text";
-import { DirectionProps } from "@/interface/catalog/sorting";
+import { DirectionProps } from "@/interface/catalogpage/sorting";
 import Image from "next/image";
 import { useState } from "react";
 
