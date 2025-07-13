@@ -1,6 +1,6 @@
 import jwt
 from jwt.exceptions import InvalidTokenError
-from fastapi import Depends, HTTPException, status, Request
+from fastapi import Depends, HTTPException, status
 from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import select
