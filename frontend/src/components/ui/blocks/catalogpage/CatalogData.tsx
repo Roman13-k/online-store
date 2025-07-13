@@ -7,7 +7,14 @@ import { DirectionType } from "@/types";
 import Pagination from "../../shared/pagination/Pagination";
 
 export default function CatalogData({ direction }: { direction: DirectionType }) {
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(4);
+  const [page, setPage] = useState(1);
+  const limit = 4;
+
+  const handleShowMore = () => {
+    setCount((prev) => prev + limit);
+    setPage((prev) => prev + 1);
+  };
 
   return (
     <section className='flex flex-wrap w-full gap-5'>
@@ -48,11 +55,11 @@ export default function CatalogData({ direction }: { direction: DirectionType })
           })}
       <div className='flex flex-col gap-5 w-full'>
         <button
-          onClick={() => setCount((prev) => prev + 10)}
+          onClick={handleShowMore}
           className='w-full py-4 shadow-normal bg-grey-f5f7 rounded-[5px] text-black font-first text-[18px]'>
           Показать ещё
         </button>
-        <Pagination />
+        <Pagination page={page} setPage={setPage} count={Math.ceil(count / limit)} />
       </div>
     </section>
   );
