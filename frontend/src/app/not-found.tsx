@@ -1,7 +1,17 @@
 "use client";
 import { Button } from "@heroui/react";
+import { Metadata } from "next";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Страница не найдена | ПРОКниги",
+  description: "Похоже, такой страницы не существует. Вернитесь на главную.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+}; // если не ошибибаюсь Next по умолчанию not-found не индексирует
 
 export default function NotFound() {
   return (
