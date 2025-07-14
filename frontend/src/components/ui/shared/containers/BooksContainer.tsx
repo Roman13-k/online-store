@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import ArrowButton from "../buttons/ArrowButton";
 
-export default function ScrollableSection({ children }: { children: React.ReactNode }) {
+export default function BooksContainer({ children }: { children: React.ReactNode }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(false);

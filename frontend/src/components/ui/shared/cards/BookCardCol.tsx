@@ -11,7 +11,7 @@ interface BookCardColProps {
   title: string;
   comments: number;
   rating: number;
-  image: string;
+  images: string[];
   id: string;
   category_slug: string;
 }
@@ -47,7 +47,7 @@ export default function BookCardCol({
   title,
   comments,
   rating,
-  image,
+  images,
   id,
   category_slug,
 }: BookCardColProps) {
@@ -60,7 +60,7 @@ export default function BookCardCol({
         width={166}
         height={253}
         className='object-contain mb-[14px]'
-        src={image}
+        src={images[0]}
         alt='book.png'
       />
       <P1 className='mb-[11px] line-clamp-2'>{title}</P1>

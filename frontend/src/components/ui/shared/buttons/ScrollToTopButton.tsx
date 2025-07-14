@@ -11,7 +11,7 @@ export default function ScrollToTopButton() {
     <ArrowButton
       onClick={handleScrollUp}
       className='fixed bottom-[80px] left-2.5 w-[60px] h-[60px] bg-colar p-[18px] z-50'
-      imgSrc='icons/arrows/arrowTop.svg'
+      imgSrc='/icons/arrows/arrowTop.svg'
     />
   );
 }

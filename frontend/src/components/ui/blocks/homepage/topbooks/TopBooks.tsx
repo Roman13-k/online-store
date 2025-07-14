@@ -20,7 +20,7 @@ export default function TopBooks() {
                 title={book.title}
                 comments={book.comments}
                 rating={book.rating}
-                image={book.image}
+                images={book.images}
                 key={index}
               />
             );

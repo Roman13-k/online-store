@@ -13,7 +13,7 @@ interface BookCardRowProps {
   title: string;
   comments: number;
   rating: number;
-  image: string;
+  images: string[];
 
   author: string;
   publishing: string;
@@ -23,12 +23,61 @@ interface BookCardRowProps {
   category_slug: string;
 }
 
+export interface BookInformation {
+  publishing: string;
+  isbn: string;
+  series: string;
+  year: number;
+  author: string;
+  typeBook?: string;
+  isDot?: boolean;
+}
+
+function DotRow({
+  label,
+  value,
+  isDot = false,
+}: {
+  label: string;
+  value: string | number;
+  isDot?: boolean;
+}) {
+  return (
+    <li className='flex items-end text-[16px] text-black'>
+      <span className='text-black/40 whitespace-nowrap'>{label}: </span>
+      {isDot && <span className='flex-1 border-b border-dotted border-black/40 mx-2 mb-1'></span>}
+      <span className='whitespace-nowrap'>{value}</span>
+    </li>
+  );
+}
+
+export function BookInformation({
+  publishing,
+  isbn,
+  series,
+  author,
+  year,
+  typeBook,
+  isDot,
+}: BookInformation) {
+  return (
+    <ul className='flex flex-col gap-2'>
+      {typeBook && <DotRow isDot={isDot} label='Тип книги' value={typeBook} />}
+      <DotRow isDot={isDot} label='Издательство' value={publishing} />
+      <DotRow isDot={isDot} label='ISBN' value={isbn} />
+      <DotRow isDot={isDot} label='Серия' value={series} />
+      <DotRow isDot={isDot} label='Автор' value={author} />
+      <DotRow isDot={isDot} label='Год издания' value={year} />
+    </ul>
+  );
+}
+
 export default function BookCardRow({
   price,
   title,
   comments,
   rating,
-  image,
+  images,
   author,
   publishing,
   isbn,
@@ -45,7 +94,7 @@ export default function BookCardRow({
         className='object-contain flex-shrink-0'
         height={217}
         width={143}
-        src={image}
+        src={images[0]}
         alt='book.png'
       />
       <div className='flex flex-col gap-3'>
@@ -58,23 +107,13 @@ export default function BookCardRow({
               rating={rating}
               title={title}
             />
-            <ul className='flex flex-col gap-2 text-black text-[16px]'>
-              <li>
-                <span className='opacity-40'>Издательство: </span> {publishing}
-              </li>
-              <li>
-                <span className='opacity-40'>ISBN: </span> {isbn}
-              </li>
-              <li>
-                <span className='opacity-40'>Серия: </span> {series}
-              </li>
-              <li>
-                <span className='opacity-40'>Автор: </span> {author}
-              </li>
-              <li>
-                <span className='opacity-40'>Год издания: </span> {year}
-              </li>
-            </ul>
+            <BookInformation
+              isbn={isbn}
+              publishing={publishing}
+              series={series}
+              author={author}
+              year={year}
+            />
           </div>
           <div className='flex flex-col gap-4 items-start justify-end'>
             <div className='flex gap-5 self-end mb-auto'>

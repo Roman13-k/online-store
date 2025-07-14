@@ -9,10 +9,10 @@ export interface BookCardInterface {
   isbn: string;
   series: string;
   year: number;
-  image: string;
+  images: string[];
   comments: number;
   rating: number;
-  type_book: string;
+  typeBook: string;
   category: string;
   category_slug: string;
   shop: ShopInterface;

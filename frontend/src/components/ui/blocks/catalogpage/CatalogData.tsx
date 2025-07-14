@@ -30,7 +30,7 @@ export default function CatalogData({ direction }: { direction: DirectionType })
                 title={book.title}
                 comments={book.comments}
                 rating={book.rating}
-                image={book.image}
+                images={book.images}
                 key={index}
               />
             );
@@ -48,8 +48,8 @@ export default function CatalogData({ direction }: { direction: DirectionType })
                 title={book.title}
                 comments={book.comments}
                 rating={book.rating}
-                image={book.image}
-                author={book.author}
+                images={book.images}
+                author={book.shop.title}
                 publishing={book.publishing}
                 isbn={book.isbn}
                 series={book.series}

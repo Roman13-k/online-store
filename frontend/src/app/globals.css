@@ -36,7 +36,12 @@
   --shadow-normal: 0 2px 4px 0 rgba(18, 18, 18, 0.25);
 }
 
-button {
+html {
+  scroll-behavior: smooth;
+}
+
+button,
+a {
   cursor: pointer;
 }
 
