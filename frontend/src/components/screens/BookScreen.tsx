@@ -12,7 +12,10 @@ export default function BookScreen() {
     <Container className='pt-10'>
       <CatalogPath />
       <MainInfo book={BookCards} />
-      <Description />
+      <Description
+        description={BookCards.description}
+        characteristics={BookCards.characteristics}
+      />
       <SimilarBooks />
       <Collections category_slug={BookCards.category_slug} category={BookCards.category} />
     </Container>
