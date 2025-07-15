@@ -84,5 +84,6 @@ export const BookCards: BookCardInterface = {
     title: "Smart Reading",
     description: "Ценные идеи в инфографике",
     cover: "/img/shop/shop1.png",
+    rate: 4,
   },
 };

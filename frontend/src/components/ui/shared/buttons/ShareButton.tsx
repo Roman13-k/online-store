@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React from "react";
 
-export default function ShareButton() {
+export default function ShareButton({ isNeedText = true }: { isNeedText?: boolean }) {
   const handleShare = async () => {
     await navigator.share({
       title: document.title,
@@ -19,7 +19,7 @@ export default function ShareButton() {
         src='/icons/bookCard/share.svg'
         alt='share.svg'
       />
-      <p className='text-black/50'>рассказать</p>
+      {isNeedText && <p className='text-black/50'>рассказать</p>}
     </button>
   );
 }
