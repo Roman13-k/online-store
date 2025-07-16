@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "bun run next dev",
+    "build": "bun run next build",
+    "start": "bun run next start"
   },
   "dependencies": {
     "@heroui/react": "^2.8.0-beta.11",
