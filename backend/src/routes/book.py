@@ -44,23 +44,22 @@ async def create_book(
 
     db.add(new_book)
     await db.flush()
-    
+
     for i, filename in enumerate(saved_filenames):
-        is_main = (i == main_image_index)
+        is_main = i == main_image_index
         book_image = BookImageModel(
-            book_id=new_book.book_id,
-            filename=filename,
-            is_main=is_main
+            book_id=new_book.book_id, filename=filename, is_main=is_main
         )
         db.add(book_image)
-    
+
     await db.commit()
-    
+
     return {
         "message": "Book created successfully",
         "book_id": new_book.book_id,
-        "images_count": len(saved_filenames)
+        "images_count": len(saved_filenames),
     }
+
 
 @book_router.get("/book/{book_id}")
 async def get_book(book_id: int, db: AsyncSession = Depends(get_session)):

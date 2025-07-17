@@ -47,7 +47,9 @@ class BookModel(Base):
     isbn: Mapped[int]
     series: Mapped[str] = mapped_column(nullable=False)
 
-    images: Mapped[List["BookImageModel"]] = relationship(back_populates="book", cascade="all, delete-orphan")
+    images: Mapped[List["BookImageModel"]] = relationship(
+        back_populates="book", cascade="all, delete-orphan"
+    )
 
 
 class BookImageModel(Base):
