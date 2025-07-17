@@ -1,4 +1,6 @@
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from typing import List
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
 class Base(DeclarativeBase): ...
@@ -33,7 +35,6 @@ class BookModel(Base):
     __tablename__ = "books"
 
     book_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    image_url: Mapped[str] = mapped_column(nullable=True)
     title: Mapped[str] = mapped_column(nullable=True)
     description: Mapped[str] = mapped_column(nullable=False)
     type_book: Mapped[str] = mapped_column(nullable=False)
@@ -45,3 +46,16 @@ class BookModel(Base):
     publishing: Mapped[str] = mapped_column(nullable=False)
     isbn: Mapped[int]
     series: Mapped[str] = mapped_column(nullable=False)
+
+    images: Mapped[List["BookImageModel"]] = relationship(back_populates="book", cascade="all, delete-orphan")
+
+
+class BookImageModel(Base):
+    __tablename__ = "book_images"
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    book_id: Mapped[int] = mapped_column(ForeignKey("books.book_id"))
+    filename: Mapped[str] = mapped_column(nullable=False)
+    is_main: Mapped[bool] = mapped_column(default=False)
+
+    book: Mapped["BookModel"] = relationship(back_populates="images")
