@@ -1,13 +1,14 @@
 "use client";
-import { BuyerOrSeller } from "@/types";
+import { useAuthContext } from "@/contexts/AuthContext";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 
 export default function SwitchButton() {
-  const [auth, setAuth] = useState<BuyerOrSeller>("buyer");
+  const { handleSwitchProfile, auth } = useAuthContext();
+
   return (
     <button
-      onClick={() => setAuth((prev) => (prev === "buyer" ? "seller" : "buyer"))}
+      onClick={handleSwitchProfile}
       className='bg-colar py-[6px] px-3 justify-center rounded-[5px] flex items-center h-[56px] flex-shrink-0'>
       <Image
         width={44}

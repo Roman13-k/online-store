@@ -15,12 +15,13 @@ import { RegBuyer } from "../../blocks/homepage/login/RegBuyer";
 import { RegSeller } from "../../blocks/homepage/login/RegSeller";
 import Image from "next/image";
 import { P2 } from "../../shared/text";
+import { useLoginContext } from "@/contexts/LoginContext";
 
 export function Header() {
   const [isCatalogMenu, setIsCatalogMenu] = useState(false);
   const [isOpenUploadModal, setIsOpenUploadModal] = useState(false);
 
-  const [loginModal, setLoginModal] = useState(false);
+  const { loginModal, setLoginModal } = useLoginContext();
   const [nextLoginModal, setNextLoginModal] = useState(false);
   const [authChoose, setAuthChoose] = useState<AuthChoose | null>(null);
   const [buyerOrSeller, setBuyerOrSeller] = useState<BuyerOrSeller | null>(null);

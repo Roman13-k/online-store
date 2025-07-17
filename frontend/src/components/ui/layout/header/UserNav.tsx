@@ -25,7 +25,7 @@ export default function UserNav({ setLoginModal }: UserNavProps) {
           </button>
         ) : (
           <Link
-            href={auth == "buyer" ? "/buyer" : "/seller"}
+            href={auth == "buyer" ? "/profile/buyer" : "/profile/seller"}
             className='flex flex-col items-center max-h-[53px]'>
             <AccountIcon stroke={"#f35935"} />
             <P2 className='font-normal text-sm text-[#f35935]'>Аккаунт</P2>
