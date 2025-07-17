@@ -47,7 +47,7 @@ export default function Description({
         </button>
       </div>
 
-      <div className='bg-grey-f5f7 shadow-normal rounded-[5px] px-6 py-7'>
+      <div className='bg-grey-f5f7 shadow-normal rounded-b-[5px] px-6 py-7'>
         {selectedVariant === "description" && <DescriptionData description={description} />}
         {selectedVariant === "characteristics" && (
           <Characteristics characteristics={characteristics} />

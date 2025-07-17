@@ -33,19 +33,23 @@ export default function UserNav({ setLoginModal }: UserNavProps) {
         )}
       </li>
       <li>
-        <Link href='' className='flex flex-col items-center max-h-[53px]'>
+        <Link href='/profile/buyer?variant=sub' className='flex flex-col items-center max-h-[53px]'>
           <Image width={33} height={33} alt='favorite.svg' src='/icons/nav/favorite.svg' />
           <P2>Избранное</P2>
         </Link>
       </li>
       <li>
-        <Link href='' className='flex flex-col items-center max-h-[53px]'>
+        <Link
+          href='/profile/buyer?variant=orders'
+          className='flex flex-col items-center max-h-[53px]'>
           <Image width={33} height={33} alt='order.svg' src='/icons/nav/order.svg' />
           <P2>Заказы</P2>
         </Link>
       </li>
       <li>
-        <Link href='' className='flex flex-col items-center max-h-[53px]'>
+        <Link
+          href='/profile/buyer?variant=basket'
+          className='flex flex-col items-center max-h-[53px]'>
           <Image width={33} height={33} alt='cart.svg' src='/icons/nav/cart.svg' />
           <P2>Корзина</P2>
         </Link>

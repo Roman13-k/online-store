@@ -5,10 +5,15 @@ import React, { useState } from "react";
 interface LikeButtonProps {
   className?: string;
   isNeedText?: boolean;
+  initValue?: boolean;
 }
 
-export default function LikeButton({ className = "", isNeedText = false }: LikeButtonProps) {
-  const [isFavorite, setIsFavorite] = useState(false);
+export default function LikeButton({
+  className = "",
+  isNeedText = false,
+  initValue = false,
+}: LikeButtonProps) {
+  const [isFavorite, setIsFavorite] = useState(initValue);
 
   const toggleFavorite = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
