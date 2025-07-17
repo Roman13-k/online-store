@@ -1,6 +1,7 @@
 from typing import List
 from fastapi import APIRouter, Form, Depends, File, UploadFile, HTTPException
 from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.database.database import get_session
@@ -63,10 +64,36 @@ async def create_book(
 
 @book_router.get("/book/{book_id}")
 async def get_book(book_id: int, db: AsyncSession = Depends(get_session)):
-    response = await db.execute(select(BookModel).where(BookModel.book_id == book_id))
+    response = await db.execute(
+        select(BookModel)
+        .options(selectinload(BookModel.images))
+        .where(BookModel.book_id == book_id)
+    )
     book = response.scalar_one_or_none()
 
     if not book:
         raise HTTPException(status_code=404, detail="Book not found")
 
-    return book
+    return {
+        "book_id": book.book_id,
+        "title": book.title,
+        "description": book.description,
+        "type_book": book.type_book,
+        "price": book.price,
+        "author": book.author,
+        "age_reader": book.age_reader,
+        "language": book.language,
+        "type_cover": book.type_cover,
+        "publishing": book.publishing,
+        "isbn": book.isbn,
+        "series": book.series,
+        "images": [
+            {
+                "id": img.id,
+                "filename": img.filename,
+                "url": f"/uploads/{img.filename}",
+                "is_main": img.is_main
+            }
+            for img in book.images
+        ]
+    }
