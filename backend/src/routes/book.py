@@ -92,8 +92,8 @@ async def get_book(book_id: int, db: AsyncSession = Depends(get_session)):
                 "id": img.id,
                 "filename": img.filename,
                 "url": f"/uploads/{img.filename}",
-                "is_main": img.is_main
+                "is_main": img.is_main,
             }
             for img in book.images
-        ]
+        ],
     }

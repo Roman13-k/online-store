@@ -40,7 +40,7 @@ async def registration_buyer(
 
     db.add(new_buyer)
     await db.commit()
-    
+
     jwt = create_access_token({"id": new_buyer.id, "role": "buyer"})
     return {"token": jwt}
 
@@ -86,6 +86,7 @@ async def registration_seller(
 
     jwt = create_access_token({"id": new_seller.id, "role": "seller"})
     return {"token": jwt}
+
 
 @auth_router.post("/login/buyer")
 async def login_buyer(
