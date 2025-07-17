@@ -11,13 +11,13 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ### 1. Install dependencies
 
 ```bash
-npm install
+bun install
 ```
 
 ### 2. Run the frontend
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 The app will be available at:
@@ -43,7 +43,7 @@ uv sync
 ### 2. Run the backend
 
 ```bash
-uvicorn main:app --reload
+uvicorn src.main:app --reload
 ```
 
 The backend will be available at:

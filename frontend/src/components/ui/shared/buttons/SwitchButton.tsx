@@ -8,7 +8,7 @@ export default function SwitchButton() {
   return (
     <button
       onClick={() => setAuth((prev) => (prev === "buyer" ? "seller" : "buyer"))}
-      className='bg-colar py-[6px] px-3 justify-center rounded-[5px] flex items-center h-[56px] flex-shrink-0 ml-auto'>
+      className='bg-colar py-[6px] px-3 justify-center rounded-[5px] flex items-center h-[56px] flex-shrink-0'>
       <Image
         width={44}
         height={44}

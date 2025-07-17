@@ -19,6 +19,8 @@ export const customSubmit = async (
     if (res.status === 200) {
       if (ref.current) ref.current.reset();
       setIsSuccess(true);
+      const token = res.data.token;
+      if (token) localStorage.setItem(String(path.split("/")[1]), token);
     }
   } catch (error) {
     console.log(error);

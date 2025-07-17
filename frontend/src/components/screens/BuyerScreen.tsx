@@ -8,19 +8,21 @@ import PersonalOrders from "../ui/blocks/buyerpage/PersonalOrders";
 import Subscriptions from "../ui/blocks/buyerpage/Subscriptions";
 import PersonalReviews from "../ui/blocks/buyerpage/PersonalReviews";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useAuthContext } from "@/contexts/AuthContext";
+import { Loading } from "../ui/shared/loading/Loading";
+import { navBarDataBuyer } from "@/utils/profilepage/profile";
 
-export type SelectedVariantType = "Личные данные" | "Заказы" | "Отзывы" | "Подписки" | "Корзина";
+export type SelectedVariantBuyerType =
+  | "Личные данные"
+  | "Заказы"
+  | "Отзывы"
+  | "Подписки"
+  | "Корзина";
 
 export default function BuyerScreen() {
-  const navBarData: SelectedVariantType[] = [
-    "Личные данные",
-    "Заказы",
-    "Корзина",
-    "Подписки",
-    "Отзывы",
-  ];
+  const { auth, buyerData } = useAuthContext();
 
-  const [selectedVariant, setSelectedVariant] = useState<SelectedVariantType>("Личные данные");
+  const [selectedVariant, setSelectedVariant] = useState<SelectedVariantBuyerType>("Личные данные");
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -42,10 +44,14 @@ export default function BuyerScreen() {
     router.replace(`?${newParams}`, { scroll: false });
   }, [searchParams]);
 
+  useEffect(() => {
+    if (!auth) router.replace("/");
+  }, []);
+
   const renderComponent = () => {
     switch (selectedVariant) {
       case "Личные данные":
-        return <PersonalData />;
+        return <PersonalData buyerData={buyerData} />;
       case "Отзывы":
         return <PersonalReviews />;
       case "Корзина":
@@ -59,11 +65,13 @@ export default function BuyerScreen() {
     }
   };
 
+  if (!auth || !buyerData) return <Loading />;
+
   return (
     <section className='mt-6'>
       <Container className='items-center'>
-        <NavBarProfile
-          navBarData={navBarData}
+        <NavBarProfile<SelectedVariantBuyerType>
+          navBarData={navBarDataBuyer}
           selectedVariant={selectedVariant}
           setSelectedVariant={setSelectedVariant}
         />
