@@ -82,6 +82,7 @@ async def registration_seller(
     )
 
     db.add(new_seller)
+    await db.commit()
 
     jwt = create_access_token({"id": new_seller.id, "role": "seller"})
     return {"token": jwt}
