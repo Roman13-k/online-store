@@ -9,7 +9,7 @@ app = FastAPI()
 app.include_router(auth_router)
 app.include_router(book_router)
 
-origins = ["http://localhost:3000"]
+origins = ["http://localhost:3000", "https://online-store-one-rho.vercel.app"]
 
 app.add_middleware(
     CORSMiddleware,
