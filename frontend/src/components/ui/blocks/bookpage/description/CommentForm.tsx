@@ -1,5 +1,7 @@
 "use client";
 import MainButton from "@/components/ui/shared/buttons/MainButton";
+import FormInput from "@/components/ui/shared/inputs/FormInput";
+import FormTextarea from "@/components/ui/shared/textareas/FormTextarea";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -35,17 +37,15 @@ export default function CommentForm() {
             );
           })}
         </div>
-        <label className='flex flex-col w-full '>
-          <input
-            onChange={(e) => setText((prev) => ({ ...prev, userName: e.target.value }))}
-            value={text.userName}
-            name='userName'
-            className={`p-3 text-[16px] text-black placeholder:text-black/40 focus:outline-none border-2 rounded-[5px]  ${
-              text.userName.length > symbolLimit.userName ? "border-red-500" : "border-black/40"
-            }`}
-            type='text'
-            placeholder='Имя (необязательно)'
-          />
+        <FormInput
+          onChange={(e) => setText((prev) => ({ ...prev, userName: e.target.value }))}
+          value={text.userName}
+          name='userName'
+          className={` ${
+            text.userName.length > symbolLimit.userName ? "border-red-500" : "border-black/40"
+          }`}
+          type='text'
+          placeholder='Имя (необязательно)'>
           <p
             className={`${
               text.userName.length > symbolLimit.userName
@@ -54,20 +54,18 @@ export default function CommentForm() {
             } ml-auto`}>
             {text.userName.length} / {symbolLimit.userName}
           </p>
-        </label>
+        </FormInput>
 
-        <label className='flex flex-col w-full'>
-          <textarea
-            onChange={(e) => setText((prev) => ({ ...prev, description: e.target.value }))}
-            value={text.description}
-            name='description'
-            className={`p-3 text-[16px] text-black placeholder:text-black/40 border-2  focus:outline-none rounded-[5px] ${
-              text.description.length > symbolLimit.description
-                ? "border-red-500"
-                : "border-black/40 "
-            }`}
-            placeholder='Отзыв'
-          />
+        <FormTextarea
+          onChange={(e) => setText((prev) => ({ ...prev, description: e.target.value }))}
+          value={text.description}
+          name='description'
+          className={`${
+            text.description.length > symbolLimit.description
+              ? "border-red-500"
+              : "border-black/40 "
+          }`}
+          placeholder='Отзыв'>
           <p
             className={`${
               text.description.length > symbolLimit.description
@@ -76,7 +74,7 @@ export default function CommentForm() {
             } ml-auto`}>
             {text.description.length} / {symbolLimit.description}
           </p>
-        </label>
+        </FormTextarea>
 
         <label className='flex items-center gap-2 cursor-pointer'>
           <input type='file' className='hidden' accept='*/image' />

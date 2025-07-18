@@ -73,20 +73,16 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
   };
 
   useEffect(() => {
-    if (buyerData) {
-      setAuth("buyer");
-    } else if (buyerError) {
+    if (buyerError) {
       setAuth(null);
       const token = localStorage.getItem("buyer");
       if (token) localStorage.removeItem("buyer");
-    } else if (sellerData) {
-      setAuth("seller");
     } else if (sellerError) {
       setAuth(null);
       const token = localStorage.getItem("seller");
       if (token) localStorage.removeItem("seller");
     }
-  }, [buyerData, sellerData, buyerError, sellerError]);
+  }, [buyerError, sellerError]);
 
   if (buyerLoading || sellerLoading || authLoading) return <Loading />;
 
