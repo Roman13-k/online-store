@@ -28,7 +28,9 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     return encoded_jwt
 
 
-async def get_current_buyer(token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_session)):
+async def get_current_buyer(
+    token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_session)
+):
     try:
         payload = jwt.decode(
             token, jwt_config.SECRET_KEY, algorithms=[jwt_config.ALGORITHM]
@@ -53,7 +55,9 @@ async def get_current_buyer(token: str = Depends(oauth2_scheme), db: AsyncSessio
         )
 
 
-async def get_current_seller(token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_session)):
+async def get_current_seller(
+    token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_session)
+):
     try:
         payload = jwt.decode(
             token, jwt_config.SECRET_KEY, algorithms=[jwt_config.ALGORITHM]
