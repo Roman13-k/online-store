@@ -30,5 +30,5 @@ export async function generateMetadata({
 }
 
 export default function page({ params }: { params: { category_slug: string } }) {
-  return <CategoryScreen />;
+  return <CategoryScreen params={params} />;
 }

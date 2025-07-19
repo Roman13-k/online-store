@@ -8,8 +8,10 @@ import Sorting from "../ui/blocks/catalogpage/sorting/Sorting";
 import CatalogData from "../ui/blocks/catalogpage/CatalogData";
 import { DirectionType } from "@/types";
 
-export default function CategoryScreen() {
+export default function CategoryScreen({ params }: { params: { category_slug: string } }) {
   const [direction, setDirection] = useState<DirectionType>("row");
+  const category_slug = params.category_slug;
+  console.log(category_slug);
   return (
     <section className='mt-10'>
       <Container>
