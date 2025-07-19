@@ -34,11 +34,12 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
   }, []);
 
   const buyerToken = typeof window !== "undefined" ? localStorage.getItem("buyer") : null;
+
   const {
     data: buyerData,
     isLoading: buyerLoading,
     isError: buyerError,
-  } = useBuyerProfileQuery(buyerToken, {
+  } = useBuyerProfileQuery(buyerToken ?? "", {
     skip: auth !== "buyer" || !buyerToken,
   });
 
@@ -47,7 +48,7 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
     data: sellerData,
     isLoading: sellerLoading,
     isError: sellerError,
-  } = useSellerProfileQuery(sellerToken, {
+  } = useSellerProfileQuery(sellerToken ?? "", {
     skip: auth !== "seller" || !sellerToken,
   });
 

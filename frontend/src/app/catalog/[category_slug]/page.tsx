@@ -3,15 +3,16 @@ import { CategoriesInterface } from "@/interface/catalogpage/categories";
 import { Metadata } from "next";
 import React from "react";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { category_slug: string };
-}): Promise<Metadata> {
+type Props = {
+  params: Promise<{ category_slug: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { category_slug } = await params;
   const res = await fetch(`${process.env.NEXT_PUBLIC_ADMIN_URL}/categories?populate=*`);
   const json = await res.json();
   const category: CategoriesInterface = json.data.find(
-    (category: CategoriesInterface) => category.category_slug === params.category_slug,
+    (category: CategoriesInterface) => category.category_slug === category_slug,
   );
   return {
     title: category.category,
@@ -29,6 +30,6 @@ export async function generateMetadata({
   };
 }
 
-export default function page({ params }: { params: { category_slug: string } }) {
-  return <CategoryScreen params={params} />;
+export default function page() {
+  return <CategoryScreen />;
 }
