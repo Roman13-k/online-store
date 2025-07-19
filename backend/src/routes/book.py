@@ -24,6 +24,9 @@ async def create_book(
     publishing: str = Form(...),
     isbn: int = Form(...),
     series: str = Form(...),
+    year: int = Form(...),
+    characteristics: str = Form(...),
+    category: str = Form(...),
     images: List[UploadFile] = File(...),
     main_image_index: int = Form(0),
     db: AsyncSession = Depends(get_session),
@@ -41,6 +44,9 @@ async def create_book(
         publishing=publishing,
         isbn=isbn,
         series=series,
+        year=year,
+        characteristics=characteristics,
+        category=category
     )
 
     db.add(new_book)
@@ -87,6 +93,9 @@ async def get_book(book_id: int, db: AsyncSession = Depends(get_session)):
         "publishing": book.publishing,
         "isbn": book.isbn,
         "series": book.series,
+        "year": book.year,
+        "characteristics": book.characteristics,
+        "category": book.category,
         "images": [
             {
                 "id": img.id,

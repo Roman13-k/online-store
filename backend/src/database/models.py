@@ -44,8 +44,11 @@ class BookModel(Base):
     language: Mapped[str] = mapped_column(nullable=False)
     type_cover: Mapped[str] = mapped_column(nullable=False)
     publishing: Mapped[str] = mapped_column(nullable=False)
-    isbn: Mapped[int]
+    isbn: Mapped[int] = mapped_column(nullable=False)
     series: Mapped[str] = mapped_column(nullable=False)
+    year: Mapped[int] = mapped_column(nullable=False)
+    characteristics: Mapped[str] = mapped_column(nullable=False)
+    category: Mapped[str] = mapped_column(nullable=False)
 
     images: Mapped[List["BookImageModel"]] = relationship(
         back_populates="book", cascade="all, delete-orphan"
