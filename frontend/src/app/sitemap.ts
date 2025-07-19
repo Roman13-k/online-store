@@ -1,11 +1,14 @@
-import { categories } from "@/utils/catalogPage";
+import { CategoriesInterface } from "@/interface/catalogpage/categories";
 import { MetadataRoute } from "next";
 
 export const URL = "https://online-store-one-rho.vercel.app";
 
 async function getCategories(): Promise<MetadataRoute.Sitemap> {
-  return categories.map((category) => ({
-    url: `${URL}/catalog/${category.slug}`,
+  const res = await fetch(`${process.env.NEXT_PUBLIC_ADMIN_URL}/categories`);
+  const json = await res.json();
+
+  return json.data.map((category: CategoriesInterface) => ({
+    url: `${URL}/catalog/${category.category_slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,

@@ -7,17 +7,21 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${API_URL}/profile/`, credentials: "include" }),
   endpoints: (build) => ({
     buyerProfile: build.query({
-      query: (token) => ({
+      query: (token: string) => ({
         url: "buyer",
         method: "GET",
-        params: { token: token },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }),
     }),
     sellerProfile: build.query({
-      query: (token) => ({
+      query: (token: string) => ({
         url: "seller",
         method: "GET",
-        params: { token: token },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }),
     }),
   }),

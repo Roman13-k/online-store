@@ -1,23 +1,34 @@
 import CategoryScreen from "@/components/screens/CategoryScreen";
-import { BookCards } from "@/utils/catalogPage";
+import { CategoriesInterface } from "@/interface/catalogpage/categories";
 import { Metadata } from "next";
 import React from "react";
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { category_slug: string };
+}): Promise<Metadata> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_ADMIN_URL}/categories?populate=*`);
+  const json = await res.json();
+  const category: CategoriesInterface = json.data.find(
+    (category: CategoriesInterface) => category.category_slug === params.category_slug,
+  );
   return {
-    title: BookCards.category,
+    title: category.category,
     openGraph: {
-      title: BookCards.category,
+      title: category.category,
       type: "website",
-      url: `/catalog/${BookCards.category_slug}`,
+      url: `/catalog/${category.category_slug}`,
+      images: `${process.env.NEXT_PUBLIC_ADMIN_URL}${category.share_img.url}`,
     },
     twitter: {
       card: "summary_large_image",
-      title: BookCards.category,
+      title: category.category,
+      images: `${process.env.NEXT_PUBLIC_ADMIN_URL}${category.share_img.url}`,
     },
   };
 }
 
-export default function page() {
+export default function page({ params }: { params: { category_slug: string } }) {
   return <CategoryScreen />;
 }

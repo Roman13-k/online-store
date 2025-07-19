@@ -1,15 +1,18 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { userApi } from "./userApi";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { categoriesApi } from "./categoriesApi";
 
 export const rootReducer = combineReducers({
   [userApi.reducerPath]: userApi.reducer,
+  [categoriesApi.reducerPath]: categoriesApi.reducer,
 });
 
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(userApi.middleware),
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(userApi.middleware, categoriesApi.middleware),
   });
 };
 

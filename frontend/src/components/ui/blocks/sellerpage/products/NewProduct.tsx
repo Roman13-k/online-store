@@ -68,7 +68,7 @@ export default function NewProduct() {
               name='type_cover'
               type='text'
               className='border-black/40'
-              label='Эт шо такое'
+              label='Тип Обложки'
             />
             <FormInput
               name='publishing'
@@ -93,9 +93,13 @@ export default function NewProduct() {
               Далее
             </MainButton>
           ) : (
-            <MainButton className='flex-1' type='button'>
-              Сохранить
-            </MainButton>
+            <div className='fixed inset-0 z-100 flex justify-center items-center '>
+              <div className='flex flex-col bg-white shadow-normal rounded-[5px] border-2 border-black/40 p-5'>
+                <MainButton className='flex-1' type='button'>
+                  Сохранить
+                </MainButton>
+              </div>
+            </div>
           )}
         </div>
       </form>

@@ -1,5 +1,9 @@
 export interface CategoriesInterface {
-  id: string;
+  id: number;
   category: string;
-  slug: string;
+  category_slug: string;
+  description: string;
+  share_img: {
+    url: string;
+  };
 }
