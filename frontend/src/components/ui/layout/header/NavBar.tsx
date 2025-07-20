@@ -6,6 +6,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 import I18nSelect from "../../shared/selectes/I18nSelect";
+import ThemeButton from "../../shared/buttons/ThemeButton";
 
 export default function NavBar({ setAuthChoose, setBuyerOrSeller }: AuthInterface) {
   const { auth, setAuth } = useAuthContext();
@@ -38,6 +39,7 @@ export default function NavBar({ setAuthChoose, setBuyerOrSeller }: AuthInterfac
         </button>
       )}
       <I18nSelect />
+      <ThemeButton />
     </nav>
   );
 }

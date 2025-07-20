@@ -5,12 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  /* Font families */
   --font-first: "Rubik", sans-serif;
   --font-second: "Montserrat", sans-serif;
   --font-third: "IBM Plex Sans", sans-serif;
 
-  /* Colors */
   --color-black: #121212;
   --color-grey: #f5f5f7;
   --color-grey-f5f7: #f5f5f7;
@@ -32,8 +30,32 @@
   --color-blue: #105caa;
   --color-light-green: #a9e1c0;
 
-  /* Box Shadow */
   --shadow-normal: 0 2px 4px 0 rgba(18, 18, 18, 0.25);
+}
+
+@theme dark {
+  --color-black: #f5f5f5;
+  --color-grey: #1e1e1e;
+  --color-grey-f5f7: #1e1e1e;
+  --color-grey-e9: #2a2a2a;
+  --color-grey-e9-70: rgba(42, 42, 42, 0.7);
+  --color-grey-d9: #3a3a3a;
+  --color-grey-promo2-bkgd: #2f2f2f;
+  --color-grey-price: #b5b5b5;
+
+  --color-white: #121212;
+  --color-yellow: #ffd54f;
+  --color-colar: #402c28;
+
+  --color-orange-main: #ff6e40;
+  --color-orange-secondary: #ff3d00;
+  --color-orange-tertiary: #5b2c21;
+
+  --color-red: #ff5252;
+  --color-blue: #64b5f6;
+  --color-light-green: #66bb6a;
+
+  --shadow-normal: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 html {
