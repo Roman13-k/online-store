@@ -1,10 +1,12 @@
 "use client";
 import ChooseButton from "@/components/ui/shared/buttons/ChooseButton";
 import SortArrow from "@/components/ui/shared/icons/SortArrow";
-import { sortingChoose } from "@/utils/catalogPage/sorting";
+import LoadingSmall from "@/components/ui/shared/loading/LoadingSmall";
+import { useGetSortingChooseQuery } from "@/store/api/sortingApi";
 import React, { useState } from "react";
 
 export default function SortingChoose() {
+  const { data, isLoading, isError } = useGetSortingChooseQuery("");
   const [isFullOpen, setIsFullOpen] = useState(false);
   const [chooseСriterion, setChooseСriterion] = useState<null | number>(null);
 
@@ -13,19 +15,27 @@ export default function SortingChoose() {
   };
   return (
     <div className='flex justify-between gap-5'>
-      <div className='flex flex-wrap gap-2'>
-        {sortingChoose.map((choose, index) => {
-          if (index > 5 && !isFullOpen) return;
-          return (
-            <ChooseButton
-              key={index}
-              onClick={() => handleChoose(index)}
-              className={`${chooseСriterion == index ? "border-orange-main" : "border-grey-e9 "}`}>
-              {choose}
-            </ChooseButton>
-          );
-        })}
-      </div>
+      {isLoading ? (
+        <LoadingSmall />
+      ) : isError ? (
+        <p className='text-[18px] text-red-500'>Загрузка не удалась</p>
+      ) : (
+        <div className='flex flex-wrap gap-2'>
+          {data.data.choose.choose.map((choose: string[], index: number) => {
+            if (index > 5 && !isFullOpen) return;
+            return (
+              <ChooseButton
+                key={index}
+                onClick={() => handleChoose(index)}
+                className={`${
+                  chooseСriterion == index ? "border-orange-main" : "border-grey-e9 "
+                }`}>
+                {choose}
+              </ChooseButton>
+            );
+          })}
+        </div>
+      )}
       <button
         onClick={() => setIsFullOpen((prev) => !prev)}
         className={`${

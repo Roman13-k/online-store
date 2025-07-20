@@ -1,6 +1,6 @@
 "use client";
 import { CategoriesInterface } from "@/interface/catalogpage/categories";
-import { useGetCategoriesQuery } from "@/store/categoriesApi";
+import { useGetCategoriesQuery } from "@/store/api/categoriesApi";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 import LoadingSmall from "../../shared/loading/LoadingSmall";

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_options",
+  "info": {
+    "displayName": "option",
+    "icon": "dashboard"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

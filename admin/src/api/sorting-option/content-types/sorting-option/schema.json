@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sorting_options",
+  "info": {
+    "singularName": "sorting-option",
+    "pluralName": "sorting-options",
+    "displayName": "sortingOption"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "options": {
+      "type": "component",
+      "component": "shared.option",
+      "repeatable": true
+    }
+  }
+}

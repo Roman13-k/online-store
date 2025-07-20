@@ -10,5 +10,18 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "BookType": {
+      "type": "json"
+    },
+    "AgeOfReader": {
+      "type": "json"
+    },
+    "BookLanguages": {
+      "type": "json"
+    },
+    "BookCovers": {
+      "type": "json"
+    }
+  }
 }

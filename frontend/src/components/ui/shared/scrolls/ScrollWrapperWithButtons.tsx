@@ -1,10 +1,13 @@
 "use client";
 import ArrowButton from "@/components/ui/shared/buttons/ArrowButton";
 import HorizontalScroll from "@/components/ui/shared/scrolls/HorizontalScroll";
-import { IntroBanners } from "@/utils/homePage";
+import { IntroBanner } from "@/interface/homePage/banner";
 import React, { PropsWithChildren, useEffect, useRef, useState } from "react";
 
-export default function ScrollWrapperWithButtons({ children }: PropsWithChildren) {
+export default function ScrollWrapperWithButtons({
+  children,
+  IntroBanners,
+}: PropsWithChildren<{ IntroBanners: IntroBanner[] }>) {
   const [selectedBanner, setSelectedBanner] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 

@@ -1,5 +1,5 @@
 "use client";
-import { useGetCategoriesQuery } from "@/store/categoriesApi";
+import { useGetCategoriesQuery } from "@/store/api/categoriesApi";
 import { findCategoryBySlug } from "@/utils/findCategoryBySlug";
 import { usePathname } from "next/navigation";
 import LoadingSmall from "../../shared/loading/LoadingSmall";
