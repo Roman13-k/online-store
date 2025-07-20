@@ -1,13 +1,14 @@
 "use client";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { AuthInterface } from "@/interface/homePage/login";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 
 export default function NavBar({ setAuthChoose, setBuyerOrSeller }: AuthInterface) {
   const { auth, setAuth } = useAuthContext();
-
+  const t = useTranslations("HomePage");
   const logout = () => {
     if (auth === "buyer") {
       localStorage.removeItem("buyer");
@@ -28,7 +29,7 @@ export default function NavBar({ setAuthChoose, setBuyerOrSeller }: AuthInterfac
         Стать продавцом
       </button>
       <Link href='/certificates'>Подарочные сертификаты</Link>
-      <Link href='/support'>Помощь</Link>
+      <Link href='/support'>{t("title")}</Link>
       <Link href='/pickup-points'>Пункты выдачи</Link>
       {auth && (
         <button onClick={logout} className='text-red-500 bg-transparent'>
