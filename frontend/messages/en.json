@@ -1,6 +1,354 @@
 {
-  "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
+  "header": {
+    "title": "Support",
+    "becomeSeller": "Become a Seller",
+    "certificates": "Gift Certificates",
+    "pickupPoints": "Pickup Points",
+    "logout": "Logout",
+    "catalog": "Catalog",
+    "pickup-point": "Pickup Point — Central St., 1",
+    "search-input": "Find an interesting book",
+    "upload": {
+      "1": "Upload a photo",
+      "2": "of the book or a fragment of it"
+    },
+    "photo": {
+      "1": "Point your device's",
+      "2": "camera at the book"
+    },
+    "login": "Login",
+    "account": "Account",
+    "favorites": "Favorites",
+    "orders": "Orders",
+    "cart": "Cart"
+  },
+  "main": {
+    "homePage": {
+      "TopBooks": "Top 100",
+      "GreatOffers": "Great Offers",
+      "NewBooks": "New Arrivals"
+    },
+    "aboutPage": {
+      "title": "About Us",
+      "intro": "Welcome to <strong>PROBooks</strong> — your cozy online space where every book finds its reader. We combine a passion for reading with the convenience of online shopping.",
+      "history": {
+        "title": "Our Story",
+        "1": "It all started when we, avid book lovers, noticed that many interesting books weren't accessible to everyone. So the idea was born — to create an online store with classics, new releases, academic works, and children's stories — all in one place.",
+        "2": "Since 2021, we've been working with authors, publishers, and independent suppliers so that everyone can find a book they love."
+      },
+      "mission": {
+        "title": "Our Mission",
+        "1": "To build an accessible online platform for readers of all ages.",
+        "2": "To promote reading as a tool for personal growth and development.",
+        "3": "To support local authors and small publishers."
+      },
+      "whyUs": {
+        "title": "Why Choose Us",
+        "1": {
+          "title": "📦 Convenient Delivery",
+          "desc": "Delivery across Russia: by courier, post, or pickup points."
+        },
+        "2": {
+          "title": "💳 Easy Payment",
+          "desc": "We accept cards, e-wallets, and online banking."
+        },
+        "3": {
+          "title": "⭐ Curated Collection",
+          "desc": "Carefully selected books — from bestsellers to rare editions."
+        },
+        "4": {
+          "title": "🤝 Reader Support",
+          "desc": "We help you choose, share reviews, and read together."
+        }
+      },
+      "team": {
+        "title": "Our Team",
+        "intro": "We are a team of enthusiasts united by one goal — to make reading accessible and enjoyable. We have:",
+        "1": "<strong>Cataloguers</strong> who find rare and fascinating books.",
+        "2": "<strong>Literary editors</strong> who ensure content quality and relevance.",
+        "3": "<strong>Logistics and packaging specialists</strong> who care about your delivery.",
+        "4": "<strong>Support service</strong> that’s ready to help 24/7."
+      },
+      "approach": {
+        "title": "Our Approach",
+        "intro": "We focus on people, not algorithms. Even if you have a unique request — we’ll do our best to fulfill it. Our four key principles:",
+        "1": "Personalized book recommendations.",
+        "2": "Fast and neat order processing.",
+        "3": "Feedback: reviews, suggestions, and support.",
+        "4": "Constant catalog updates."
+      }
+    },
+    "certificatesPage": {
+      "title": "Gift Certificates",
+      "intro": "Give the gift of choice! An electronic certificate is the perfect present for any book lover on any occasion.",
+      "denominations": {
+        "title": "Available Denominations",
+        "item1": "500 ₽ — a pleasant book surprise",
+        "item2": "1000 ₽ — a great option for one or two books",
+        "item3": "2000 ₽ — no limits to imagination",
+        "item4": "Custom amount — fits any budget"
+      },
+      "howWorks": {
+        "title": "How It Works",
+        "step1": "Choose the amount and pay online.",
+        "step2": "The certificate will be sent by email (to you or the recipient) within 5 minutes.",
+        "step3": "The recipient enters the code at checkout and gets a discount for the specified amount."
+      },
+      "conditions": {
+        "title": "Terms of Use",
+        "item1": "Valid for 1 year from the date of purchase.",
+        "item2": "Can be used partially — remaining balance is saved.",
+        "item3": "Valid for all products, including discounted ones.",
+        "item4": "Cannot be exchanged for cash or refunded."
+      },
+      "giftFriend": {
+        "title": "Send to a Friend",
+        "description": "Enter the recipient’s email at checkout — we’ll style the email and send it for you. You can add a personal message!"
+      }
+    },
+    "faqPage": {
+      "title": "Frequently Asked Questions",
+      "intro": "Here you'll find answers to the most common questions about orders, delivery, and how PROBooks operates.",
+      "questions": {
+        "howOrder": {
+          "title": "How to place an order?",
+          "text": "Simply add your favorite books to the cart and proceed to checkout. Choose a delivery and payment method — it’s easy!"
+        },
+        "payment": {
+          "title": "What payment methods are available?",
+          "text": "We accept Visa, MasterCard, Mir cards, as well as SBP and digital wallets."
+        },
+        "track": {
+          "title": "How to track an order?",
+          "text": "After shipping, you’ll receive a tracking number by email. You can also track your order in your account."
+        },
+        "return": {
+          "title": "How to return or exchange a book?",
+          "text": "You can return the item within 14 days if unused and in its original condition. Contact support to request a return."
+        },
+        "russia": {
+          "title": "Do you deliver across Russia?",
+          "text": "Yes! We partner with CDEK, Boxberry, and Russian Post to deliver to any location."
+        },
+        "ebooks": {
+          "title": "Are there e-books available?",
+          "text": "Some books are available in digital format. If available, a download link will be sent by email after payment."
+        }
+      }
+    },
+    "supportPage": {
+      "title": "Support",
+      "intro": "We're always here to help — from choosing a book to handling returns. Contact us anytime, and we’ll do our best to resolve your issue quickly and conveniently.",
+      "contact": {
+        "title": "How to contact us",
+        "email": "📧 Email: support@proknigi.ru",
+        "phone": "📞 Phone: +7 (800) 123-45-67 (from 9:00 to 20:00 MSK)",
+        "chat": "💬 Online chat: available in the bottom right corner of the site",
+        "telegram": "📱 Telegram bot: @proknigi_support_bot"
+      },
+      "support": {
+        "title": "Support service",
+        "p1": "Our support team is ready to help 7 days a week. We aim to respond within <strong>30 minutes</strong> during working hours and no later than <strong>24 hours</strong> on weekends and holidays.",
+        "p2": "All requests are handled manually — with care and attention. Your trust means everything to us!"
+      },
+      "delivery": {
+        "title": "Delivery and returns",
+        "p1": "📦 We work with trusted delivery services: CDEK, Boxberry, Russian Post. Track your order in your personal account.",
+        "p2": "🔁 Returns are processed via email or your personal account. No unnecessary questions.",
+        "p3": "💰 Refunds are issued within 3–5 business days to the same card used for payment."
+      },
+      "help": {
+        "title": "Didn’t find an answer?",
+        "p": "Write to us directly — we’re always open to communication. Fill out the <strong>feedback form</strong> or send us a message in the chat, and we’ll get back to you as soon as possible."
+      }
+    },
+    "pickupPointsPage": {
+      "title": "Pickup Points",
+      "intro": "You can collect your order at a convenient pickup point. We work with the largest delivery services across Russia.",
+      "howTo": {
+        "title": "How to choose a pickup point",
+        "steps": {
+          "1": "Add items to the cart and proceed to checkout.",
+          "2": "Select delivery to a pickup point and enter your city.",
+          "3": "Choose the nearest address from the suggested list."
+        }
+      },
+      "examples": {
+        "title": "Example pickup points",
+        "locations": {
+          "moscow": {
+            "city": "Moscow",
+            "address": "Tverskaya St, 12",
+            "hours": "Daily from 10:00 to 20:00"
+          },
+          "spb": {
+            "city": "St. Petersburg",
+            "address": "Nevsky Prospekt, 56",
+            "hours": "Mon–Sat from 9:00 to 19:00"
+          },
+          "nsk": {
+            "city": "Novosibirsk",
+            "address": "Lenina St, 85",
+            "hours": "Mon–Fri from 10:00 to 18:00"
+          }
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "storage": {
+          "title": "How long is the order stored at the pickup point?",
+          "text": "Usually 5–7 days. Check with the selected delivery service."
+        },
+        "passport": {
+          "title": "Is an ID required upon pickup?",
+          "text": "Yes, to verify your identity."
+        },
+        "payment": {
+          "title": "Can I pay on the spot?",
+          "text": "Some pickup points accept payment upon pickup. This will be shown during selection."
+        }
+      }
+    },
+    "sellerScreen": {
+      "navBar": {
+        "0": "Home",
+        "1": "Products",
+        "2": "Analytics",
+        "3": "Reviews"
+      },
+      "productActions": {
+        "0": "Add Products",
+        "1": "Product List",
+        "2": "Manage Products"
+      },
+      "sellerData": {
+        "title": "User Information",
+        "fields": {
+          "email": "Email",
+          "type_organization": "Organization Type",
+          "country": "Country",
+          "itn": "ITN",
+          "name": "First Name",
+          "last_name": "Last Name",
+          "patronymic": "Patronymic",
+          "company_name": "Company Name"
+        }
+      },
+      "newProduct": {
+        "title": "Add new product",
+        "bookTitle": "Book title",
+        "descriptionPlaceholder": "Enter description",
+        "characteristicsPlaceholder": "Enter characteristics",
+        "year": "Year of release",
+        "category": "Category",
+        "type_book": "Book Type",
+        "author": "Author",
+        "price": "Price (₽)",
+        "type_cover": "Cover type",
+        "publishing": "Publishing",
+        "isbn": "ISBN",
+        "series": "Series",
+        "back": "Back",
+        "next": "Next",
+        "save": "Save"
+      }
+    },
+    "buyerScreen": {
+      "navBar1": "Personal Data",
+      "navBar2": "Orders",
+      "navBar3": "Basket",
+      "navBar4": "Subscriptions",
+      "navBar5": "Reviews",
+      "personalData": {
+        "title": "User Information",
+        "email": "Email"
+      },
+      "subscriptions": {
+        "books": "Books",
+        "shops": "Shops"
+      }
+    }
+  },
+  "footer": {
+    "buyersAndSellers": "For Buyers and Sellers",
+    "becomeSeller": "Become a Seller",
+    "openPickupPoint": "Open a Pickup Point",
+    "faq": "FAQ",
+    "aboutMarketplace": "About the Marketplace",
+    "aboutProBooks": "About PROBooks",
+    "information": "Information",
+    "giftCards": "Gift Cards",
+    "pickupPointsAddresses": "Pickup Points Addresses",
+    "stayInTouchEmail": "Stay in Touch (Email)",
+    "paymentMethods": "We Accept",
+    "publicOffer": "Public Offer"
+  },
+  "shared": {
+    "backet": "Add to Cart",
+    "log": "Log In",
+    "reg": "Register",
+    "or": "or",
+    "buyer": "Buyer",
+    "seller": "Seller"
+  },
+  "LoginModal": {
+    "title": "Login",
+    "placeholders": {
+      "email": "Enter your email",
+      "password": "Enter your password"
+    },
+    "errors": {
+      "email": "Please enter a valid email",
+      "loginFailed": "Incorrect login or password"
+    },
+    "button": {
+      "login": "Log In"
+    }
+  },
+  "RegBuyer": {
+    "title": "Registration",
+    "placeholders": {
+      "email": "Enter your email",
+      "password": "Enter your password"
+    },
+    "errors": {
+      "email": "Please enter a valid email",
+      "emailTaken": "Oops!.. this email is already taken"
+    },
+    "button": {
+      "start": "Start Registration"
+    }
+  },
+  "RegSeller": {
+    "title": "Registration",
+    "errors": {
+      "email": "Please enter a valid email",
+      "password": "Please enter a valid password",
+      "country": "Please specify your country",
+      "organizationType": "Please specify the type of organization",
+      "itn": "Please specify the Taxpayer Identification Number (INN)",
+      "lastName": "Please enter a valid last name",
+      "firstName": "Please enter a valid first name",
+      "patronymic": "Please enter a valid middle name",
+      "companyName": "Please enter a valid company name",
+      "emailTaken": "Oops!.. This email is already taken"
+    },
+    "placeholders": {
+      "email": "Enter your email",
+      "password": "Enter your password",
+      "country": "Country of registration",
+      "organizationType": "Type of organization",
+      "itn": "Taxpayer Identification Number (INN)",
+      "lastName": "Last name",
+      "firstName": "First name",
+      "patronymic": "Middle name",
+      "companyName": "Company (store) name"
+    },
+    "button": {
+      "start": "Start Registration"
+    }
+  },
+  "sortingCategories": {
+    "sortBy": "Sort by:"
   }
 }

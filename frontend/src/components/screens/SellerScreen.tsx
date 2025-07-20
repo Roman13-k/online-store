@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Container from "../ui/shared/containers/Container";
 import NavBarProfile from "../ui/blocks/buyerpage/NavBarProfile";
@@ -11,38 +12,46 @@ import ProductManagement from "../ui/blocks/sellerpage/products/ProductManagemen
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { Loading } from "../ui/shared/loading/Loading";
-import { navBarDataSeller } from "@/utils/profilepage/profile";
-
-export type SelectedVariantSellerType = "Главная" | "Товары" | "Аналитика" | "Отзывы";
-export type ProductActionType = "Добавить товары" | "Список товаров" | "Управление товарами";
+import { useTranslations } from "next-intl";
 
 export default function SellerScreen() {
   const { auth, sellerData } = useAuthContext();
-
-  const [selectedVariant, setSelectedVariant] = useState<SelectedVariantSellerType>("Главная");
-  const [productAction, setProductAction] = useState<ProductActionType>("Добавить товары");
   const router = useRouter();
+  const t = useTranslations("main.sellerScreen");
+
+  const navBarDataSeller: string[] = [t("navBar.0"), t("navBar.1"), t("navBar.2"), t("navBar.3")];
+
+  const productActionData: string[] = [
+    t("productActions.0"),
+    t("productActions.1"),
+    t("productActions.2"),
+  ];
+
+  const [selectedVariant, setSelectedVariant] = useState<string>(navBarDataSeller[0]);
+  const [productAction, setProductAction] = useState<string>(productActionData[0]);
 
   useEffect(() => {
     if (!auth) router.replace("/");
-  }, []);
+  }, [auth, router]);
 
   const renderComponent = () => {
     switch (selectedVariant) {
-      case "Главная":
+      case navBarDataSeller[0]:
         return <SellerData />;
-      case "Отзывы":
+      case navBarDataSeller[3]:
         return <SellerReviews />;
-      case "Товары":
+      case navBarDataSeller[1]:
         switch (productAction) {
-          case "Добавить товары":
+          case productActionData[0]:
             return <NewProduct />;
-          case "Список товаров":
+          case productActionData[1]:
             return <ProductsList />;
-          case "Управление товарами":
+          case productActionData[2]:
             return <ProductManagement />;
+          default:
+            return null;
         }
-      case "Аналитика":
+      case navBarDataSeller[2]:
         return <SellerAnalytics />;
       default:
         return null;
@@ -54,12 +63,13 @@ export default function SellerScreen() {
   return (
     <section className='mt-6'>
       <Container className='items-center'>
-        <NavBarProfile<SelectedVariantSellerType>
+        <NavBarProfile
           navBarData={navBarDataSeller}
           selectedVariant={selectedVariant}
           setSelectedVariant={setSelectedVariant}
           setProductAction={setProductAction}
           productAction={productAction}
+          productActionData={productActionData}
         />
         {renderComponent()}
       </Container>

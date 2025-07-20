@@ -2,6 +2,7 @@ import ModalLayout from "@/components/ui/layout/ModalLayout";
 import MainButton from "@/components/ui/shared/buttons/MainButton";
 import TextDivider from "@/components/ui/shared/divider/TextDivider";
 import { AuthChoose } from "@/types";
+import { useTranslations } from "next-intl";
 import React, { Dispatch, SetStateAction } from "react";
 
 interface RegOrLogModalProps {
@@ -15,6 +16,7 @@ export function RegOrLogModal({
   setAuthChoose,
   setNextLoginModal,
 }: RegOrLogModalProps) {
+  const t = useTranslations("shared");
   const handleNextLoginModal = (authChoose: AuthChoose) => {
     setLoginModal(false);
     setAuthChoose(authChoose);
@@ -28,7 +30,7 @@ export function RegOrLogModal({
           handleNextLoginModal("registration");
         }}
         className='flex justify-center items-center min-h-[62px] min-w-[385px] text-white mt-[40px]'>
-        Зарегистрироваться
+        {t("reg")}
       </MainButton>
       <TextDivider />
       <button
@@ -36,7 +38,7 @@ export function RegOrLogModal({
           handleNextLoginModal("login");
         }}
         className='flex justify-center items-center h-[62px] w-[385px] bg-colar font-medium text-lg text-orange-main rounded-[5px] mb-[38px]'>
-        Войти
+        {t("log")}
       </button>
     </ModalLayout>
   );

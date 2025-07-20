@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Container from "../ui/shared/containers/Container";
 import NavBarProfile from "../ui/blocks/buyerpage/NavBarProfile";
@@ -10,56 +11,61 @@ import PersonalReviews from "../ui/blocks/buyerpage/PersonalReviews";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { Loading } from "../ui/shared/loading/Loading";
-import { navBarDataBuyer } from "@/utils/profilepage/profile";
-
-export type SelectedVariantBuyerType =
-  | "Личные данные"
-  | "Заказы"
-  | "Отзывы"
-  | "Подписки"
-  | "Корзина";
+import { useTranslations } from "next-intl";
 
 export default function BuyerScreen() {
   const { auth, buyerData } = useAuthContext();
-
-  const [selectedVariant, setSelectedVariant] = useState<SelectedVariantBuyerType>("Личные данные");
-  const searchParams = useSearchParams();
+  const t = useTranslations("main.buyerScreen");
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const navBarDataBuyer: string[] = [
+    t("navBar1"),
+    t("navBar2"),
+    t("navBar3"),
+    t("navBar4"),
+    t("navBar5"),
+  ];
+
+  const [selectedVariant, setSelectedVariant] = useState<string>(navBarDataBuyer[0]);
 
   useEffect(() => {
     const variant = searchParams.get("variant");
-    switch (variant) {
-      case "sub":
-        setSelectedVariant("Подписки");
-        break;
-      case "orders":
-        setSelectedVariant("Заказы");
-        break;
-      case "basket":
-        setSelectedVariant("Корзина");
-        break;
+    if (variant) {
+      switch (variant) {
+        case "sub":
+          setSelectedVariant(navBarDataBuyer[3]);
+          break;
+        case "orders":
+          setSelectedVariant(navBarDataBuyer[1]);
+          break;
+        case "basket":
+          setSelectedVariant(navBarDataBuyer[2]);
+          break;
+        default:
+          setSelectedVariant(navBarDataBuyer[0]);
+      }
+      const newParams = new URLSearchParams(searchParams);
+      newParams.delete("variant");
+      router.replace(`?${newParams.toString()}`, { scroll: false });
     }
-    const newParams = new URLSearchParams(searchParams);
-    newParams.delete("variant");
-    router.replace(`?${newParams}`, { scroll: false });
-  }, [searchParams]);
+  }, [searchParams, router, navBarDataBuyer]);
 
   useEffect(() => {
     if (!auth) router.replace("/");
-  }, []);
+  }, [auth, router]);
 
   const renderComponent = () => {
     switch (selectedVariant) {
-      case "Личные данные":
+      case navBarDataBuyer[0]:
         return <PersonalData buyerData={buyerData} />;
-      case "Отзывы":
-        return <PersonalReviews />;
-      case "Корзина":
-        return <PersonalBasket />;
-      case "Заказы":
+      case navBarDataBuyer[1]:
         return <PersonalOrders />;
-      case "Подписки":
+      case navBarDataBuyer[2]:
+        return <PersonalBasket />;
+      case navBarDataBuyer[3]:
         return <Subscriptions />;
+      case navBarDataBuyer[4]:
+        return <PersonalReviews />;
       default:
         return null;
     }
@@ -70,7 +76,7 @@ export default function BuyerScreen() {
   return (
     <section className='mt-6'>
       <Container className='items-center'>
-        <NavBarProfile<SelectedVariantBuyerType>
+        <NavBarProfile
           navBarData={navBarDataBuyer}
           selectedVariant={selectedVariant}
           setSelectedVariant={setSelectedVariant}

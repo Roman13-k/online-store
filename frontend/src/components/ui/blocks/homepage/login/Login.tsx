@@ -7,6 +7,7 @@ import ModalLayout from "@/components/ui/layout/ModalLayout";
 import { AuthChoose, BuyerOrSeller } from "@/types";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { redirect } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface LoginModalProps {
   buyerOrSeller: null | BuyerOrSeller;
@@ -15,6 +16,7 @@ interface LoginModalProps {
 }
 
 export function Login({ buyerOrSeller, authChoose, handleCLose }: LoginModalProps) {
+  const t = useTranslations("LoginModal");
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState<null | boolean>(null);
   const formRef = useRef(null);
@@ -29,18 +31,18 @@ export function Login({ buyerOrSeller, authChoose, handleCLose }: LoginModalProp
 
   return (
     <ModalLayout onClose={handleCLose}>
-      <h2 className='text-4xl text-orange-main font-bold mb-4'>Вход</h2>
+      <h2 className='text-4xl text-orange-main font-bold mb-4'>{t("title")}</h2>
       <Form
         ref={formRef}
-        className=' flex flex-col items-center gap-4'
+        className='flex flex-col items-center gap-4'
         validationBehavior='native'
         onSubmit={(e) =>
           customSubmit(e, formRef, setIsSuccess, `${authChoose}/${buyerOrSeller}`, setIsLoading)
         }>
         <Input
           isRequired
-          errorMessage='Укажите верную почту'
-          placeholder='Укажите почту'
+          errorMessage={t("errors.email")}
+          placeholder={t("placeholders.email")}
           type='email'
           name='email'
           size='lg'
@@ -50,7 +52,7 @@ export function Login({ buyerOrSeller, authChoose, handleCLose }: LoginModalProp
         <Input
           isRequired
           validate={customValidator}
-          placeholder='Укажите пароль'
+          placeholder={t("placeholders.password")}
           type='password'
           name='password'
           size='lg'
@@ -61,14 +63,10 @@ export function Login({ buyerOrSeller, authChoose, handleCLose }: LoginModalProp
           isLoading={isLoading}
           type='submit'
           className='bg-[#F35935] rounded-[5px] pl-3 pr-3 w-[340px] h-[58px] font-medium text-white text-lg shadow-normal active:translate-y-1'>
-          Вход
+          {t("button.login")}
         </Button>
       </Form>
-      <SubEvent
-        isSuccess={isSuccess}
-        textFalse={"Неверный логин или пароль"}
-        textTrue={"Вы вошли в аккаунт!"}
-      />
+      <SubEvent isSuccess={isSuccess} textFalse={t("errors.loginFailed")} />
     </ModalLayout>
   );
 }

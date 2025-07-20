@@ -1,69 +1,60 @@
+"use client";
+
 import React from "react";
 import Container from "../ui/shared/containers/Container";
+import { useTranslations } from "next-intl";
 
 export default function FaqScreen() {
+  const t = useTranslations("main.faqPage");
+
   return (
     <Container className='py-12 space-y-10'>
       <section className='text-center'>
-        <h1 className='text-5xl font-extrabold text-orange-600 mb-4'>Часто задаваемые вопросы</h1>
-        <p className='text-lg text-gray-700'>
-          Здесь вы найдёте ответы на самые популярные вопросы, связанные с заказами, доставкой и
-          другими аспектами работы магазина ПРОКниги.
-        </p>
+        <h1 className='text-5xl font-extrabold text-orange-600 mb-4'>{t("title")}</h1>
+        <p className='text-lg text-gray-700'>{t("intro")}</p>
       </section>
 
       <section className='space-y-6'>
         <div>
-          <h2 className='text-2xl font-semibold text-gray-900 mb-2'>Как оформить заказ?</h2>
-          <p className='text-gray-700'>
-            Просто добавьте понравившиеся книги в корзину и перейдите к оформлению. Укажите способ
-            доставки и оплаты — всё просто!
-          </p>
+          <h2 className='text-2xl font-semibold text-gray-900 mb-2'>
+            {t("questions.howOrder.title")}
+          </h2>
+          <p className='text-gray-700'>{t("questions.howOrder.text")}</p>
         </div>
 
         <div>
           <h2 className='text-2xl font-semibold text-gray-900 mb-2'>
-            Какие способы оплаты доступны?
+            {t("questions.payment.title")}
           </h2>
-          <p className='text-gray-700'>
-            Мы принимаем оплату картами Visa, MasterCard, Мир, а также через СБП и электронные
-            кошельки.
-          </p>
-        </div>
-
-        <div>
-          <h2 className='text-2xl font-semibold text-gray-900 mb-2'>Как отследить заказ?</h2>
-          <p className='text-gray-700'>
-            После отправки вы получите трек-номер по email. Также вы можете отследить заказ в личном
-            кабинете.
-          </p>
+          <p className='text-gray-700'>{t("questions.payment.text")}</p>
         </div>
 
         <div>
           <h2 className='text-2xl font-semibold text-gray-900 mb-2'>
-            Как вернуть или обменять книгу?
+            {t("questions.track.title")}
           </h2>
-          <p className='text-gray-700'>
-            Вы можете вернуть товар в течение 14 дней, если он не был в употреблении и сохранён
-            товарный вид. Обратитесь в поддержку, чтобы оформить возврат.
-          </p>
+          <p className='text-gray-700'>{t("questions.track.text")}</p>
         </div>
 
         <div>
           <h2 className='text-2xl font-semibold text-gray-900 mb-2'>
-            Вы доставляете по всей России?
+            {t("questions.return.title")}
           </h2>
-          <p className='text-gray-700'>
-            Да! Мы работаем с СДЭК, Boxberry и Почтой России — доставим в любой населённый пункт.
-          </p>
+          <p className='text-gray-700'>{t("questions.return.text")}</p>
         </div>
 
         <div>
-          <h2 className='text-2xl font-semibold text-gray-900 mb-2'>Есть ли электронные книги?</h2>
-          <p className='text-gray-700'>
-            Некоторые книги доступны в цифровом формате. При наличии — ссылка для скачивания придёт
-            вам на почту сразу после оплаты.
-          </p>
+          <h2 className='text-2xl font-semibold text-gray-900 mb-2'>
+            {t("questions.russia.title")}
+          </h2>
+          <p className='text-gray-700'>{t("questions.russia.text")}</p>
+        </div>
+
+        <div>
+          <h2 className='text-2xl font-semibold text-gray-900 mb-2'>
+            {t("questions.ebooks.title")}
+          </h2>
+          <p className='text-gray-700'>{t("questions.ebooks.text")}</p>
         </div>
       </section>
     </Container>

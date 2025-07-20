@@ -1,6 +1,354 @@
 {
-  "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
+  "header": {
+    "title": "支持",
+    "becomeSeller": "成为卖家",
+    "certificates": "礼品卡",
+    "pickupPoints": "自提点",
+    "logout": "退出登录",
+    "catalog": "目录",
+    "pickup-point": "自提点 — 中央街，1号",
+    "search-input": "寻找有趣的书籍",
+    "upload": {
+      "1": "上传照片",
+      "2": "书籍或其片段"
+    },
+    "photo": {
+      "1": "将设备的摄像头",
+      "2": "对准书籍"
+    },
+    "login": "登录",
+    "account": "账户",
+    "favorites": "收藏夹",
+    "orders": "订单",
+    "cart": "购物车"
+  },
+  "main": {
+    "homePage": {
+      "TopBooks": "百强书单",
+      "GreatOffers": "优惠推荐",
+      "NewBooks": "新书上市"
+    },
+    "aboutPage": {
+      "title": "关于我们",
+      "intro": "欢迎来到 <strong>PROBooks</strong> —— 您在网上的温馨角落，每本书都能找到属于它的读者。我们将对阅读的热爱与网购的便利相结合。",
+      "history": {
+        "title": "我们的故事",
+        "1": "一切始于我们这些热爱读书的人发现，许多有趣的书籍并不容易获取。因此我们决定创建一个网上书店，汇集经典、新品、学术著作和儿童故事于一体。",
+        "2": "自 2021 年以来，我们与作者、出版社和独立供应商合作，让每位读者都能找到心仪的书籍。"
+      },
+      "mission": {
+        "title": "我们的使命",
+        "1": "打造一个适合所有年龄读者的在线平台。",
+        "2": "推广阅读，作为个人成长和发展的工具。",
+        "3": "支持本地作者和小型出版社。"
+      },
+      "whyUs": {
+        "title": "为什么选择我们",
+        "1": {
+          "title": "📦 便捷配送",
+          "desc": "全俄配送：快递、邮寄或自提点。"
+        },
+        "2": {
+          "title": "💳 简单支付",
+          "desc": "支持银行卡、电子钱包和网银。"
+        },
+        "3": {
+          "title": "⭐ 精选书籍",
+          "desc": "从畅销书到稀有收藏，我们都精心挑选。"
+        },
+        "4": {
+          "title": "🤝 读者支持",
+          "desc": "为您推荐好书，分享书评，一起阅读。"
+        }
+      },
+      "team": {
+        "title": "我们的团队",
+        "intro": "我们是一群热爱阅读的人，目标是让阅读更容易、更愉快。我们拥有：",
+        "1": "<strong>书目策划人</strong>，寻找稀有且有趣的书籍。",
+        "2": "<strong>文学编辑</strong>，确保内容的质量与时效性。",
+        "3": "<strong>物流与包装人员</strong>，为您的包裹保驾护航。",
+        "4": "<strong>客服团队</strong>，全天候为您服务。"
+      },
+      "approach": {
+        "title": "我们的理念",
+        "intro": "我们关注的是人，而不是算法。即使您有独特的需求，我们也会尽力满足。我们的四大原则：",
+        "1": "根据读者喜好进行个性化推荐。",
+        "2": "快速且有序地处理订单。",
+        "3": "重视反馈：书评、建议与支持。",
+        "4": "不断更新书目。"
+      }
+    },
+    "certificatesPage": {
+      "title": "礼品卡",
+      "intro": "送出选择的权利！电子礼品卡是送给书迷的完美礼物，适用于任何节日。",
+      "denominations": {
+        "title": "可选面额",
+        "item1": "500 ₽ — 小小惊喜，送书一份",
+        "item2": "1000 ₽ — 适合一到两本书的选择",
+        "item3": "2000 ₽ — 无限的阅读想象",
+        "item4": "自定义金额 — 满足任何预算"
+      },
+      "howWorks": {
+        "title": "使用方法",
+        "step1": "选择面额并在线支付。",
+        "step2": "礼品卡将在 5 分钟内通过电子邮件发送给您或收件人。",
+        "step3": "收件人在结账时输入礼品码，获得相应金额的折扣。"
+      },
+      "conditions": {
+        "title": "使用条款",
+        "item1": "有效期为购买日起一年。",
+        "item2": "可部分使用 — 余额将保留。",
+        "item3": "适用于所有商品，包括促销商品。",
+        "item4": "不可兑换现金或退款。"
+      },
+      "giftFriend": {
+        "title": "送给朋友",
+        "description": "结账时填写收件人的邮箱 — 我们将为您美观地设计并发送邮件。可添加个人留言！"
+      }
+    },
+    "faqPage": {
+      "title": "常见问题",
+      "intro": "在这里，您可以找到有关订单、配送以及PROBooks运作方式的常见问题解答。",
+      "questions": {
+        "howOrder": {
+          "title": "如何下订单？",
+          "text": "只需将喜欢的书籍加入购物车并前往结算页面。选择配送方式和支付方式即可，简单方便！"
+        },
+        "payment": {
+          "title": "支持哪些付款方式？",
+          "text": "我们支持Visa、MasterCard、Mir卡，以及通过快速支付系统（SBP）和电子钱包付款。"
+        },
+        "track": {
+          "title": "如何查询订单状态？",
+          "text": "订单发货后，您将通过电子邮件收到快递单号。也可以在个人账户中查看订单状态。"
+        },
+        "return": {
+          "title": "如何退换书籍？",
+          "text": "如果商品未使用且保留完好，可在14天内申请退货。请联系客户支持办理退货手续。"
+        },
+        "russia": {
+          "title": "是否可以配送至俄罗斯各地？",
+          "text": "可以！我们与CDEK、Boxberry和俄罗斯邮政合作，可配送至全国各地。"
+        },
+        "ebooks": {
+          "title": "有电子书吗？",
+          "text": "部分书籍提供电子版。如有电子书，支付完成后您将收到下载链接。"
+        }
+      }
+    },
+    "supportPage": {
+      "title": "支持",
+      "intro": "我们始终在您身边，帮助您从选书到退货的每一步。随时联系我们，我们会尽快为您解决问题，方便快捷。",
+      "contact": {
+        "title": "如何联系我们",
+        "email": "📧 邮箱: support@proknigi.ru",
+        "phone": "📞 电话: +7 (800) 123-45-67（莫斯科时间 9:00 至 20:00）",
+        "chat": "💬 在线聊天：网站右下角可用",
+        "telegram": "📱 Telegram 机器人: @proknigi_support_bot"
+      },
+      "support": {
+        "title": "客服服务",
+        "p1": "我们的支持团队每周 7 天为您服务。我们在工作时间内尽力在 <strong>30 分钟</strong> 内回复请求，节假日不晚于 <strong>24 小时</strong>。",
+        "p2": "所有请求均由人工处理 —— 用心且细致。我们非常重视您的信任！"
+      },
+      "delivery": {
+        "title": "配送与退货",
+        "p1": "📦 我们与值得信赖的快递服务合作：CDEK、Boxberry、俄罗斯邮政。您可通过个人账户跟踪订单。",
+        "p2": "🔁 可通过邮箱或个人账户提交退货申请。无需多余问题。",
+        "p3": "💰 退款将在 3–5 个工作日内退回到原支付卡。"
+      },
+      "help": {
+        "title": "未找到答案？",
+        "p": "请直接联系我们 —— 我们乐意沟通。填写<strong>反馈表单</strong>或通过聊天发送消息，我们将尽快回复您。"
+      }
+    },
+    "pickupPointsPage": {
+      "title": "自提点",
+      "intro": "您可以在方便的自提点领取订单。我们与全俄最大的快递公司合作。",
+      "howTo": {
+        "title": "如何选择自提点",
+        "steps": {
+          "1": "将商品加入购物车并进入结算页面。",
+          "2": "选择送货到自提点并填写城市名称。",
+          "3": "从建议列表中选择最近的地址。"
+        }
+      },
+      "examples": {
+        "title": "自提点示例",
+        "locations": {
+          "moscow": {
+            "city": "莫斯科",
+            "address": "特维尔街12号",
+            "hours": "每日10:00 至 20:00"
+          },
+          "spb": {
+            "city": "圣彼得堡",
+            "address": "涅夫斯基大街56号",
+            "hours": "周一至周六 9:00 至 19:00"
+          },
+          "nsk": {
+            "city": "新西伯利亚",
+            "address": "列宁街85号",
+            "hours": "周一至周五 10:00 至 18:00"
+          }
+        }
+      },
+      "faq": {
+        "title": "常见问题",
+        "storage": {
+          "title": "订单在自提点可以保存多久？",
+          "text": "通常为5到7天。具体请咨询选择的快递服务。"
+        },
+        "passport": {
+          "title": "取货时需要身份证吗？",
+          "text": "需要，用于身份验证。"
+        },
+        "payment": {
+          "title": "可以现场付款吗？",
+          "text": "部分自提点支持现场付款，选择时将显示相关信息。"
+        }
+      }
+    },
+    "sellerScreen": {
+      "navBar": {
+        "0": "主页",
+        "1": "产品",
+        "2": "分析",
+        "3": "评论"
+      },
+      "productActions": {
+        "0": "添加产品",
+        "1": "产品列表",
+        "2": "管理产品"
+      },
+      "sellerData": {
+        "title": "用户信息",
+        "fields": {
+          "email": "电子邮件",
+          "type_organization": "组织类型",
+          "country": "国家",
+          "itn": "税号",
+          "name": "名字",
+          "last_name": "姓氏",
+          "patronymic": "父名",
+          "company_name": "公司名称"
+        }
+      },
+      "newProduct": {
+        "title": "添加新产品",
+        "bookTitle": "书名",
+        "descriptionPlaceholder": "输入描述",
+        "characteristicsPlaceholder": "输入特征",
+        "year": "出版年份",
+        "category": "类别",
+        "type_book": "书籍类型",
+        "author": "作者",
+        "price": "价格（₽）",
+        "type_cover": "封面类型",
+        "publishing": "出版社",
+        "isbn": "ISBN",
+        "series": "系列",
+        "back": "返回",
+        "next": "下一步",
+        "save": "保存"
+      }
+    },
+    "buyerScreen": {
+      "navBar1": "个人资料",
+      "navBar2": "订单",
+      "navBar3": "购物篮",
+      "navBar4": "订阅",
+      "navBar5": "评论"
+    },
+    "personalData": {
+      "title": "用户信息",
+      "email": "电子邮件"
+    },
+    "subscriptions": {
+      "books": "书籍",
+      "shops": "商店"
+    }
+  },
+  "footer": {
+    "buyersAndSellers": "买家和卖家",
+    "becomeSeller": "成为卖家",
+    "openPickupPoint": "开设自提点",
+    "faq": "常见问题",
+    "aboutMarketplace": "关于市场",
+    "aboutProBooks": "关于PROBooks",
+    "information": "信息",
+    "giftCards": "礼品卡",
+    "pickupPointsAddresses": "自提点地址",
+    "stayInTouchEmail": "保持联系（邮箱）",
+    "paymentMethods": "接受以下付款方式",
+    "publicOffer": "公开报价"
+  },
+  "shared": {
+    "backet": "加入购物车",
+    "log": "登录",
+    "reg": "注册",
+    "or": "或者",
+    "buyer": "买家",
+    "seller": "卖家"
+  },
+  "LoginModal": {
+    "title": "登录",
+    "placeholders": {
+      "email": "请输入邮箱",
+      "password": "请输入密码"
+    },
+    "errors": {
+      "email": "请输入有效的邮箱",
+      "loginFailed": "登录名或密码错误"
+    },
+    "button": {
+      "login": "登录"
+    }
+  },
+  "RegBuyer": {
+    "title": "注册",
+    "placeholders": {
+      "email": "请输入邮箱",
+      "password": "请输入密码"
+    },
+    "errors": {
+      "email": "请输入有效的邮箱",
+      "emailTaken": "哎呀！该邮箱已被占用"
+    },
+    "button": {
+      "start": "开始注册"
+    }
+  },
+  "RegSeller": {
+    "title": "注册",
+    "errors": {
+      "email": "请输入有效的邮箱",
+      "password": "请输入有效的密码",
+      "country": "请输入所在国家",
+      "organizationType": "请输入组织类型",
+      "itn": "请输入纳税人识别号 (INN)",
+      "lastName": "请输入有效的姓氏",
+      "firstName": "请输入有效的名字",
+      "patronymic": "请输入有效的中间名",
+      "companyName": "请输入有效的公司名称",
+      "emailTaken": "哎呀！该邮箱已被占用"
+    },
+    "placeholders": {
+      "email": "请输入邮箱",
+      "password": "请输入密码",
+      "country": "注册国家",
+      "organizationType": "组织类型",
+      "itn": "纳税人识别号 (INN)",
+      "lastName": "姓氏",
+      "firstName": "名字",
+      "patronymic": "中间名",
+      "companyName": "公司（商店）名称"
+    },
+    "button": {
+      "start": "开始注册"
+    }
+  },
+  "sortingCategories": {
+    "sortBy": "排序方式:"
   }
 }

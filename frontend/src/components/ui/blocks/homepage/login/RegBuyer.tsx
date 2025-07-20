@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import { Form, Input, Button } from "@heroui/react";
 import { SubEvent } from "./SubEvent";
@@ -6,8 +8,10 @@ import { customValidator } from "@/utils/login/customValidator";
 import ModalLayout from "@/components/ui/layout/ModalLayout";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { redirect } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export function RegBuyer({ handleClose }: { handleClose: () => void }) {
+  const t = useTranslations("RegBuyer");
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState<null | boolean>(null);
   const formRef = useRef(null);
@@ -18,22 +22,22 @@ export function RegBuyer({ handleClose }: { handleClose: () => void }) {
       setAuth("buyer");
       redirect("/profile/buyer");
     }
-  }, [isSuccess]);
+  }, [isSuccess, isLoading, setAuth]);
 
   return (
     <ModalLayout onClose={handleClose}>
-      <h2 className='text-4xl text-orange-main font-bold mb-4'>Регистрация</h2>
+      <h2 className='text-4xl text-orange-main font-bold mb-4'>{t("title")}</h2>
       <Form
         ref={formRef}
-        className=' flex flex-col items-center gap-4'
+        className='flex flex-col items-center gap-4'
         validationBehavior='native'
         onSubmit={(e) =>
           customSubmit(e, formRef, setIsSuccess, "registration/buyer", setIsLoading)
         }>
         <Input
           isRequired
-          errorMessage='Укажите верную почту'
-          placeholder='Укажите почту'
+          errorMessage={t("errors.email")}
+          placeholder={t("placeholders.email")}
           type='email'
           name='email'
           size='lg'
@@ -43,7 +47,7 @@ export function RegBuyer({ handleClose }: { handleClose: () => void }) {
         <Input
           isRequired
           validate={customValidator}
-          placeholder='Укажите пароль'
+          placeholder={t("placeholders.password")}
           type='password'
           name='password'
           size='lg'
@@ -54,14 +58,10 @@ export function RegBuyer({ handleClose }: { handleClose: () => void }) {
           isLoading={isLoading}
           type='submit'
           className='bg-[#F35935] rounded-[5px] pl-3 pr-3 w-[340px] h-[58px] font-medium text-white text-lg shadow-normal active:translate-y-1'>
-          Начать регистрацию
+          {t("button.start")}
         </Button>
       </Form>
-      <SubEvent
-        isSuccess={isSuccess}
-        textFalse={"Упс!.. такая почта уже занята"}
-        textTrue={"Регистрация успешна!"}
-      />
+      <SubEvent isSuccess={isSuccess} textFalse={t("errors.emailTaken")} />
     </ModalLayout>
   );
 }

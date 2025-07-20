@@ -6,6 +6,7 @@ import { CommentAndRating } from "./BookCardCol";
 import CopyButton from "../buttons/CopyButton";
 import LikeButton from "../buttons/LikeButton";
 import MainButton from "../buttons/MainButton";
+import { useTranslations } from "next-intl";
 
 interface BookCardRowProps {
   id: string;
@@ -86,6 +87,7 @@ export default function BookCardRow({
   id,
   category_slug,
 }: BookCardRowProps) {
+  const t = useTranslations("shared");
   return (
     <Link
       href={`/catalog/${category_slug}/${id}`}
@@ -121,7 +123,7 @@ export default function BookCardRow({
               <LikeButton />
             </div>
             <p className='text-orange-main font-semibold text-[28px] '>{price} ₽</p>
-            <MainButton className='min-w-[274px]'>Положить в корзину</MainButton>
+            <MainButton className='min-w-[274px]'>{t("backet")}</MainButton>
           </div>
         </div>
       </div>
