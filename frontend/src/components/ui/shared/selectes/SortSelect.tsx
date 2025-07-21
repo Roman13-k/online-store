@@ -1,5 +1,5 @@
 "use client";
-import React, { Dispatch, SetStateAction, useState, useMemo } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import SortArrow from "../icons/SortArrow";
 import { useGetSortingOptionsQuery } from "@/store/api/sortingApi";
 import LoadingSmall from "../loading/LoadingSmall";
