@@ -8,11 +8,7 @@ import { useTranslations } from "next-intl";
 export function Footer() {
   const t = useTranslations("footer");
   return (
-    <footer
-      className='shadow-normal mt-[100px]'
-      style={{
-        background: "linear-gradient(to bottom,#e9e9e9 90%, #d9d9d9 10%)",
-      }}>
+    <footer className='shadow-normal mt-[100px] bg-grey-e9'>
       <Container className='pt-10'>
         <ul className='flex gap-[111px]'>
           <li className='flex flex-col gap-3'>

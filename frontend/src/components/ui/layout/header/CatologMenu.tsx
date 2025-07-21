@@ -14,7 +14,7 @@ export default function CatologMenu({ isOpenCatalog, setIsCatalogMenu }: Catalog
   const { data: categories, isLoading, error } = useGetCategoriesQuery("");
   return (
     <ul
-      className={`absolute top-[123px] left-[388px] rounded-[5px] grid grid-rows-4 grid-cols-2 bg-[#f6f6f6] ${
+      className={`absolute top-[123px] left-[388px] rounded-[5px] grid grid-rows-4 grid-cols-2 bg-grey-f5f7 ${
         isOpenCatalog ? "opacity-100 translate-y-0 z-50" : "opacity-0 -translate-y-full -z-40"
       } transition-all duration-300`}>
       {isLoading ? (

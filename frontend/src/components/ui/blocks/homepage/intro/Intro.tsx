@@ -24,7 +24,7 @@ export default function Intro() {
   return (
     <ScrollWrapperWithButtons IntroBanners={IntroBanners.data.slider[0].files}>
       {IntroBanners.data.slider[0].files.map((banner: IntroBanner) => (
-        <div key={banner.id} className='min-w-full flex-shrink-0'>
+        <div key={banner.id} className='min-w-full max-h-[541px] flex-shrink-0'>
           <Image
             width={1280}
             height={540}

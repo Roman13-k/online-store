@@ -43,10 +43,10 @@ export default function SearchInput({ isOpenUploadModal, setIsOpenUploadModal }:
   return (
     <>
       <UploadModal isOpenUploadModal={isOpenUploadModal} />
-      <div className='flex w-[520px] px-5 h-[46px] rounded-[5px] overflow-hidden border border-black opacity-40'>
+      <div className='flex w-[520px] px-5 h-[46px] rounded-[5px] overflow-hidden border border-black '>
         <input
           type='text'
-          className="flex-1  bg-white outline-none bg-[url('/icons/search/loupe.svg')] bg-no-repeat bg-[95%_50%]"
+          className="flex-1 text-black/40 dark:text-black placeholder:dark:text-black bg-white outline-none bg-[url('/icons/search/loupe.svg')] bg-no-repeat bg-[95%_50%]"
           placeholder={t("search-input")}
         />
         <button

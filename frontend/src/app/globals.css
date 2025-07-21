@@ -3,6 +3,11 @@
 @plugin './hero.ts';
 @source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 @custom-variant dark (&:is(.dark *));
+@custom-variant warm (&:is(.warm *));
+
+/*  темы работают кроме иконок,
+    как вариант скачать svg и
+    самому определять stroke но слижком запарно */
 
 @theme {
   --font-first: "Rubik", sans-serif;
@@ -33,7 +38,7 @@
   --shadow-normal: 0 2px 4px 0 rgba(18, 18, 18, 0.25);
 }
 
-@theme dark {
+.dark {
   --color-black: #f5f5f5;
   --color-grey: #1e1e1e;
   --color-grey-f5f7: #1e1e1e;
@@ -56,6 +61,31 @@
   --color-light-green: #66bb6a;
 
   --shadow-normal: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.warm {
+  --color-black: #5a4634;
+  --color-grey: #fff8f0;
+  --color-grey-f5f7: #fff8f0;
+  --color-grey-e9: #f9e6d3;
+  --color-grey-e9-70: rgba(249, 230, 211, 0.7);
+  --color-grey-d9: #d7b899;
+  --color-grey-promo2-bkgd: #f4dbb7;
+  --color-grey-price: #a9784a;
+
+  --color-white: #fff9f3;
+  --color-yellow: #fbbf24;
+  --color-colar: #f9decf;
+
+  --color-orange-main: #ea580c;
+  --color-orange-secondary: #c2410c;
+  --color-orange-tertiary: #fcd9b8;
+
+  --color-red: #ef4444;
+  --color-blue: #2563eb;
+  --color-light-green: #a7f3d0;
+
+  --shadow-normal: 0 2px 6px 0 rgba(90, 70, 52, 0.3);
 }
 
 html {
