@@ -1,9 +1,24 @@
 "use client";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useState, useMemo } from "react";
 import SortArrow from "../icons/SortArrow";
 import { useGetSortingOptionsQuery } from "@/store/api/sortingApi";
 import LoadingSmall from "../loading/LoadingSmall";
-import { SortingOptionsIntrface } from "@/interface/catalogpage/sorting";
+import { useLocale } from "next-intl";
+
+interface Option {
+  id: number;
+  value: string;
+  label: string;
+}
+
+interface SortingOptionsInterface {
+  id: number;
+  documentId: string;
+  title: string;
+  locale: string;
+  localizations?: SortingOptionsInterface[];
+  options: Option[];
+}
 
 interface SortSelectProps {
   selected: Record<string, string>;
@@ -11,10 +26,21 @@ interface SortSelectProps {
 }
 
 export default function SortSelect({ selected, setSelected }: SortSelectProps) {
+  const locale = useLocale();
   const { data: sortingOptions, isLoading, isError } = useGetSortingOptionsQuery("");
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
+
   const handleSelect = (groupIndex: number, value: string) => {
     setSelected((prev) => ({ ...prev, [groupIndex]: value }));
+  };
+
+  const getLocalizedTitle = (group: SortingOptionsInterface) => {
+    if (group.locale === locale) return group.title;
+    const loc = group.localizations?.find((loc) => loc.locale === locale);
+    if (loc) return loc.title;
+    if (group.locale === "en") return group.title;
+    const enLoc = group.localizations?.find((loc) => loc.locale === "en");
+    return enLoc?.title ?? group.title;
   };
 
   return (
@@ -24,16 +50,14 @@ export default function SortSelect({ selected, setSelected }: SortSelectProps) {
       ) : isError ? (
         <p className='text-[18px] text-red-500'>Загрузка не удалась</p>
       ) : (
-        sortingOptions.data.map((group: SortingOptionsIntrface, index: number) => (
-          <div key={index} className='relative font-first'>
+        sortingOptions.data.map((group: SortingOptionsInterface, index: number) => (
+          <div key={group.id} className='relative font-first'>
             <button
               onClick={() => setActiveDropdown((prev) => (prev === index ? null : index))}
               className={`${
-                activeDropdown === index
-                  ? "text-orange-main font-normal"
-                  : " text-black font-light "
-              }   transition-all flex gap-2 items-center`}>
-              {group.title}
+                activeDropdown === index ? "text-orange-main font-normal" : "text-black font-light"
+              } transition-all flex gap-2 items-center`}>
+              {getLocalizedTitle(group)}
               <SortArrow isFullOpen={activeDropdown === index} />
             </button>
 

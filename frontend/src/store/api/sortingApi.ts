@@ -8,13 +8,13 @@ export const sortingApi = createApi({
   endpoints: (build) => ({
     getSortingChoose: build.query({
       query: () => ({
-        url: "/sorting-choose",
+        url: "/sorting-choose?populate=*",
         method: "GET",
       }),
     }),
     getSortingOptions: build.query({
       query: () => ({
-        url: "/sorting-options?populate=options",
+        url: "/sorting-options?populate=*",
         method: "GET",
       }),
     }),

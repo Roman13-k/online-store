@@ -350,5 +350,16 @@
   },
   "sortingCategories": {
     "sortBy": "Сортировать по:"
-  }
+  },
+  "breadcrumb": {
+    "home": "Главная",
+    "catalog": "Каталог"
+  },
+  "filters": {
+    "author": "Автор",
+    "authorPlaceholder": "Поиск по имени автора",
+    "price": "Цена"
+  },
+  "collapse": "Свернуть",
+  "showMore": "Показать ещё"
 }

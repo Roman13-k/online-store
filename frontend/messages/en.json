@@ -350,5 +350,16 @@
   },
   "sortingCategories": {
     "sortBy": "Sort by:"
-  }
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "catalog": "Catalog"
+  },
+  "filters": {
+    "author": "Author",
+    "authorPlaceholder": "Search by author name",
+    "price": "Price"
+  },
+  "collapse": "Collapse",
+  "showMore": "Show more"
 }

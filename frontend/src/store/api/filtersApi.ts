@@ -8,7 +8,7 @@ export const filtersApi = createApi({
   endpoints: (build) => ({
     getFilters: build.query({
       query: () => ({
-        url: "/filters",
+        url: "/filters?populate=*",
         method: "GET",
       }),
     }),

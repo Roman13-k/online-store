@@ -1,9 +1,11 @@
 "use client";
+
 import { CategoriesInterface } from "@/interface/catalogpage/categories";
 import { useGetCategoriesQuery } from "@/store/api/categoriesApi";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 import LoadingSmall from "../../shared/loading/LoadingSmall";
+import { useLocale } from "next-intl";
 
 interface CatalogMenuProps {
   isOpenCatalog: boolean;
@@ -12,6 +14,8 @@ interface CatalogMenuProps {
 
 export default function CatologMenu({ isOpenCatalog, setIsCatalogMenu }: CatalogMenuProps) {
   const { data: categories, isLoading, error } = useGetCategoriesQuery("");
+  const locale = useLocale();
+
   return (
     <ul
       className={`absolute top-[123px] left-[388px] rounded-[5px] grid grid-rows-4 grid-cols-2 bg-grey-f5f7 ${
@@ -22,18 +26,23 @@ export default function CatologMenu({ isOpenCatalog, setIsCatalogMenu }: Catalog
       ) : error ? (
         <p>Ошибка при загрузке категорий</p>
       ) : (
-        categories.data.map((category: CategoriesInterface) => (
-          <li
-            key={category.id}
-            className='bg-[url("/icons/arrows/arrow-up.svg")] bg-no-repeat bg-[95%_50%] text-[16px] w-[340px] h-[56px] border border-[#e9e9e9] flex justify-center items-center'>
-            <Link
-              onClick={() => setIsCatalogMenu(false)}
-              href={`/catalog/${category.category_slug}`}
-              className='text-center'>
-              {category.category}
-            </Link>
-          </li>
-        ))
+        categories.data.map((category: CategoriesInterface) => {
+          const localized = category.localizations?.find((loc) => loc.locale === locale);
+          const displayName = localized?.category || category.category;
+
+          return (
+            <li
+              key={category.id}
+              className='bg-[url("/icons/arrows/arrow-up.svg")] bg-no-repeat bg-[95%_50%] text-[16px] w-[340px] h-[56px] border border-[#e9e9e9] flex justify-center items-center'>
+              <Link
+                onClick={() => setIsCatalogMenu(false)}
+                href={`/catalog/${category.category_slug}`}
+                className='text-center'>
+                {displayName}
+              </Link>
+            </li>
+          );
+        })
       )}
     </ul>
   );

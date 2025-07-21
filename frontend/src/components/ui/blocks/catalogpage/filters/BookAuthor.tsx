@@ -1,13 +1,18 @@
+"use client";
+
 import { FieldSetContainer } from "@/components/ui/shared/fieldset/Fieldset";
 import Image from "next/image";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 export default function BookAuthor() {
+  const t = useTranslations();
+
   return (
-    <FieldSetContainer legend='Автор'>
+    <FieldSetContainer legend={t("filters.author")}>
       <div className='w-full relative'>
         <input
-          placeholder='Поиск по имени автора'
+          placeholder={t("filters.authorPlaceholder")}
           className='w-full rounded-[5px] py-[7px] px-[12px] text-black/40 font-first text-[16px] bg-grey-d9'
           type='text'
         />

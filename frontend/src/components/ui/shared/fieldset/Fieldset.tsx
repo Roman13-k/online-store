@@ -2,6 +2,7 @@
 import React, { PropsWithChildren, useState } from "react";
 import Checkbox from "../checkboxes/Checkbox";
 import LoadingSmall from "../loading/LoadingSmall";
+import { useLocale } from "next-intl";
 
 interface FieldsetProps {
   fieldsetData: string[] | undefined;
@@ -33,6 +34,17 @@ export default function Fieldset({
   isError,
 }: FieldsetProps) {
   const [isFullOpen, setIsFullOpen] = useState(false);
+  const locale = useLocale();
+
+  const showAllText =
+    locale === "ru"
+      ? "Показать весь список"
+      : locale === "zh-CN"
+      ? "显示完整列表"
+      : "Show full list";
+
+  const hideText =
+    locale === "ru" ? "Скрыть список" : locale === "zh-CN" ? "隐藏列表" : "Hide list";
 
   return (
     <FieldSetContainer className={className} legend={legend}>
@@ -50,7 +62,7 @@ export default function Fieldset({
             <button
               onClick={() => setIsFullOpen((prev) => !prev)}
               className='text-orange-main text-[14px] font-semibold mt-2'>
-              {isFullOpen ? "Скрыть список" : "Показать весь список"}
+              {isFullOpen ? hideText : showAllText}
             </button>
           )}
         </>

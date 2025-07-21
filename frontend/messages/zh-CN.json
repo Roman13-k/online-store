@@ -350,5 +350,16 @@
   },
   "sortingCategories": {
     "sortBy": "排序方式:"
-  }
+  },
+  "breadcrumb": {
+    "home": "首页",
+    "catalog": "目录"
+  },
+  "filters": {
+    "author": "作者",
+    "authorPlaceholder": "按作者姓名搜索",
+    "price": "价格"
+  },
+  "collapse": "收起",
+  "showMore": "显示更多"
 }
