@@ -20,7 +20,9 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from src.database.models import Base  # noqa: E402
+from src.buyers.models import BuyerModel  # noqa: E402, F401
+from src.database import Base  # noqa: E402
+from src.sellers.models import SellerModel  # noqa: E402, F401
 
 target_metadata = Base.metadata
 
@@ -28,7 +30,7 @@ target_metadata = Base.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-from src.config import database_config  # noqa: E402
+from src.core.config import database_config  # noqa: E402
 
 config.set_main_option("sqlalchemy.url", database_config.DB_URL)
 

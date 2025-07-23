@@ -1,13 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.routes.auth import auth_router
-from src.routes.book import book_router
+from src.buyers.router import router as buyers_router
+from src.sellers.router import router as sellers_router
 
-
-app = FastAPI()
-app.include_router(auth_router)
-app.include_router(book_router)
+app = FastAPI(title="Onechapter API")
+app.include_router(buyers_router)
+app.include_router(sellers_router)
 
 origins = ["http://localhost:3000", "https://online-store-one-rho.vercel.app"]
 
