@@ -1,11 +1,15 @@
 "use client";
 import React, { PropsWithChildren, useState } from "react";
 import Checkbox from "../checkboxes/Checkbox";
+import LoadingSmall from "../loading/LoadingSmall";
+import { useLocale } from "next-intl";
 
 interface FieldsetProps {
-  fieldsetData: string[];
+  fieldsetData: string[] | undefined;
   legend: string;
   className?: string;
+  isLoading?: boolean;
+  isError?: boolean;
 }
 
 interface FieldSetContainerProps extends PropsWithChildren {
@@ -22,24 +26,47 @@ export function FieldSetContainer({ className, children, legend }: FieldSetConta
   );
 }
 
-export default function Fieldset({ className, legend, fieldsetData }: FieldsetProps) {
+export default function Fieldset({
+  className,
+  legend,
+  fieldsetData,
+  isLoading,
+  isError,
+}: FieldsetProps) {
   const [isFullOpen, setIsFullOpen] = useState(false);
+  const locale = useLocale();
+
+  const showAllText =
+    locale === "ru"
+      ? "Показать весь список"
+      : locale === "zh-CN"
+      ? "显示完整列表"
+      : "Show full list";
+
+  const hideText =
+    locale === "ru" ? "Скрыть список" : locale === "zh-CN" ? "隐藏列表" : "Hide list";
 
   return (
     <FieldSetContainer className={className} legend={legend}>
-      <div>
-        {fieldsetData.map((data, index) => {
-          if (!isFullOpen && index > 5) return;
-          return <Checkbox key={index} data={data} />;
-        })}
-      </div>
-      <button
-        onClick={() => setIsFullOpen((prev) => !prev)}
-        className={`${
-          fieldsetData.length < 7 ? "hidden" : "block"
-        } text-orange-main text-[14px] font-semibold mt-2`}>
-        {isFullOpen ? "Скрыть список" : "Показать весь список"}
-      </button>
+      {isLoading && <LoadingSmall />}
+      {isError && <div className='text-sm text-red-500'>Не удалось загрузить данные</div>}
+      {!isLoading && !isError && fieldsetData && (
+        <>
+          <div>
+            {fieldsetData.map((data, index) => {
+              if (!isFullOpen && index > 5) return null;
+              return <Checkbox key={index} data={data} />;
+            })}
+          </div>
+          {fieldsetData.length > 6 && (
+            <button
+              onClick={() => setIsFullOpen((prev) => !prev)}
+              className='text-orange-main text-[14px] font-semibold mt-2'>
+              {isFullOpen ? hideText : showAllText}
+            </button>
+          )}
+        </>
+      )}
     </FieldSetContainer>
   );
 }

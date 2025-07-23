@@ -1,27 +1,29 @@
+"use client";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import SwitchButton from "../../shared/buttons/SwitchButton";
-import { ProductActionType } from "@/components/screens/SellerScreen";
-import { productActionData } from "@/utils/profilepage/profile";
+import { useTranslations } from "next-intl";
 
-export default function NavBarProfile<T extends string>({
+export default function NavBarProfile({
   navBarData,
   selectedVariant,
   setSelectedVariant,
   setProductAction,
   productAction,
+  productActionData,
 }: {
-  navBarData: T[];
-  selectedVariant: T;
-  setSelectedVariant: Dispatch<SetStateAction<T>>;
-  setProductAction?: Dispatch<SetStateAction<ProductActionType>>;
-  productAction?: ProductActionType;
+  navBarData: string[];
+  selectedVariant: string;
+  setSelectedVariant: Dispatch<SetStateAction<string>>;
+  setProductAction?: Dispatch<SetStateAction<string>>;
+  productAction?: string;
+  productActionData?: string[];
 }) {
+  const t = useTranslations("main.sellerScreen");
   const [isActionSelected, setIsActionSelected] = useState(false);
-  const handleProductActionSelect = (action: ProductActionType) => {
+  const handleProductActionSelect = (action: string) => {
     setProductAction?.(action);
     setIsActionSelected(true);
   };
-
   return (
     <div className='flex w-full flex-col'>
       <div className='flex w-full justify-between'>
@@ -33,7 +35,7 @@ export default function NavBarProfile<T extends string>({
               <button
                 onClick={() => {
                   setSelectedVariant(value);
-                  if (value === "Товары") setIsActionSelected(false);
+                  if (value === t("navBar.1")) setIsActionSelected(false);
                 }}
                 className={`${
                   selectedVariant === value
@@ -43,12 +45,12 @@ export default function NavBarProfile<T extends string>({
                 {value}
               </button>
 
-              {value === "Товары" &&
-                selectedVariant === "Товары" &&
+              {value === t("navBar.1") &&
+                selectedVariant === t("navBar.1") &&
                 setProductAction &&
                 !isActionSelected && (
                   <div className='absolute top-full mt-2 flex flex-col rounded-[5px] border border-grey-e9  z-10'>
-                    {productActionData.map((action) => (
+                    {productActionData?.map((action) => (
                       <button
                         key={action}
                         onClick={() => handleProductActionSelect(action)}

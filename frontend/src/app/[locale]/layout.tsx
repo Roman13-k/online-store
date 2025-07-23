@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import { Providers } from "./providers";
+import "../globals.css";
 import { Footer } from "@/components/ui/layout/footer/Footer";
 import { Header } from "@/components/ui/layout/header/Header";
 import ScrollToTopButton from "@/components/ui/shared/buttons/ScrollToTopButton";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+import { Providers } from "../providers";
 
 export const metadata: Metadata = {
   title: "ПРОКниги — интернет-магазин книг",
@@ -30,7 +33,7 @@ export const metadata: Metadata = {
     url: "https://online-store-one-rho.vercel.app/",
     siteName: "ПРОКниги",
     type: "website",
-    locale: "ru_RU",
+    locale: "ru",
   },
   twitter: {
     card: "summary_large_image",
@@ -40,18 +43,28 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({
+  children,
+  params,
+}: Readonly<{ children: React.ReactNode; params: Promise<{ locale: string }> }>) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
   return (
-    <html lang='ru'>
+    <html lang={locale}>
       <body className={`antialiased`}>
-        <Providers>
-          <Header />
-          <main>
-            {children}
-            <ScrollToTopButton />
-          </main>
-          <Footer />
-        </Providers>
+        <NextIntlClientProvider>
+          <Providers>
+            <Header />
+            <main>
+              {children}
+              <ScrollToTopButton />
+            </main>
+            <Footer />
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

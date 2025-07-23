@@ -1,6 +1,8 @@
 import CategoryScreen from "@/components/screens/CategoryScreen";
 import { CategoriesInterface } from "@/interface/catalogpage/categories";
 import { Metadata } from "next";
+import { getLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
 import React from "react";
 
 type Props = {
@@ -8,24 +10,37 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = await getLocale();
   const { category_slug } = await params;
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_ADMIN_URL}/categories?populate=*`);
   const json = await res.json();
-  const category: CategoriesInterface = json.data.find(
+
+  const baseCategory: CategoriesInterface = json.data.find(
     (category: CategoriesInterface) => category.category_slug === category_slug,
   );
+
+  if (!baseCategory) {
+    notFound();
+  }
+
+  const localized =
+    locale === "en"
+      ? baseCategory
+      : baseCategory.localizations?.find((loc) => loc.locale === locale) || baseCategory;
+
   return {
-    title: category.category,
+    title: localized.category,
     openGraph: {
-      title: category.category,
+      title: localized.category,
       type: "website",
-      url: `/catalog/${category.category_slug}`,
-      images: `${process.env.NEXT_PUBLIC_ADMIN_URL}${category.share_img.url}`,
+      url: `/catalog/${localized.category_slug}`,
+      images: `http://localhost:1337${baseCategory.share_img?.url}`,
     },
     twitter: {
       card: "summary_large_image",
-      title: category.category,
-      images: `${process.env.NEXT_PUBLIC_ADMIN_URL}${category.share_img.url}`,
+      title: localized.category,
+      images: `http://localhost:1337${baseCategory.share_img?.url}`,
     },
   };
 }

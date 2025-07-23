@@ -1,29 +1,12 @@
 "use client";
-import MainButton from "@/components/ui/shared/buttons/MainButton";
+import { useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import FormInput from "@/components/ui/shared/inputs/FormInput";
 import TextEditor from "@/components/ui/shared/textareas/TextEditor";
-import React, { useRef, useState } from "react";
-
-/*
-title *
-description *
-//!  year: number
-//!  characteristics: string
-//!  shop: ShopInterface;
-//!  category: string;
-type_book *
-price *
-author * 
-age_reader *
-language *
-type_cover *
-publishing *
-isbn *
-series *
-images *
-*/
+import MainButton from "@/components/ui/shared/buttons/MainButton";
 
 export default function NewProduct() {
+  const t = useTranslations("main.sellerScreen.newProduct");
   const descriptionRef = useRef<HTMLDivElement>(null);
   const characteristicsRef = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState(0);
@@ -33,20 +16,23 @@ export default function NewProduct() {
 
   return (
     <div className='flex flex-col gap-5'>
-      <h2 className='font-semibold text-[30px] text-black mb-5'>Добавить новый продукт</h2>
+      <h2 className='font-semibold text-[30px] text-black mb-5'>{t("title")}</h2>
 
-      <form className='max-w-[750px] flex flex-col gap-7'>
+      <form className='max-w-[750px] min-w-[500px] flex flex-col gap-7'>
         {step === 0 && (
           <>
             <FormInput
               name='title'
               type='text'
               className='border-black/40'
-              label='Название книги'
+              label={t("bookTitle")}
             />
-            <TextEditor content={`<div>Введите описание</div>`} editorRef={descriptionRef} />
             <TextEditor
-              content={`<div>Введите характеристики</div>`}
+              content={`<div>${t("descriptionPlaceholder")}</div>`}
+              editorRef={descriptionRef}
+            />
+            <TextEditor
+              content={`<div>${t("characteristicsPlaceholder")}</div>`}
               editorRef={characteristicsRef}
             />
           </>
@@ -54,11 +40,21 @@ export default function NewProduct() {
 
         {step === 1 && (
           <>
-            <FormInput name='year' type='date' className='border-black/40' label='Год выпуска' />
-            <FormInput name='category' type='text' className='border-black/40' label='Категория' />
-            <FormInput name='type_book' type='text' className='border-black/40' label='Тип Книги' />
-            <FormInput name='author' type='text' className='border-black/40' label='Автор' />
-            <FormInput name='price' type='number' className='border-black/40' label='Цена (₽)' />
+            <FormInput name='year' type='date' className='border-black/40' label={t("year")} />
+            <FormInput
+              name='category'
+              type='text'
+              className='border-black/40'
+              label={t("category")}
+            />
+            <FormInput
+              name='type_book'
+              type='text'
+              className='border-black/40'
+              label={t("type_book")}
+            />
+            <FormInput name='author' type='text' className='border-black/40' label={t("author")} />
+            <FormInput name='price' type='number' className='border-black/40' label={t("price")} />
           </>
         )}
 
@@ -68,35 +64,35 @@ export default function NewProduct() {
               name='type_cover'
               type='text'
               className='border-black/40'
-              label='Тип Обложки'
+              label={t("type_cover")}
             />
             <FormInput
               name='publishing'
               type='text'
               className='border-black/40'
-              label='Издательство'
+              label={t("publishing")}
             />
-            <FormInput name='isbn' type='text' className='border-black/40' label='ISBN' />
-            <FormInput name='series' type='text' className='border-black/40' label='Серия' />
-            <p>images</p>
+            <FormInput name='isbn' type='text' className='border-black/40' label={t("isbn")} />
+            <FormInput name='series' type='text' className='border-black/40' label={t("series")} />
+            <p>{t("images")}</p>
           </>
         )}
 
         <div className='flex w-full gap-3'>
           {step > 0 && (
             <MainButton className='flex-1' type='button' onPress={prevStep}>
-              Назад
+              {t("back")}
             </MainButton>
           )}
           {step < 2 ? (
             <MainButton className='flex-1' type='button' onPress={nextStep}>
-              Далее
+              {t("next")}
             </MainButton>
           ) : (
             <div className='fixed inset-0 z-100 flex justify-center items-center '>
               <div className='flex flex-col bg-white shadow-normal rounded-[5px] border-2 border-black/40 p-5'>
                 <MainButton className='flex-1' type='button'>
-                  Сохранить
+                  {t("save")}
                 </MainButton>
               </div>
             </div>

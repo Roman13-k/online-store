@@ -16,8 +16,10 @@ import { RegSeller } from "../../blocks/homepage/login/RegSeller";
 import Image from "next/image";
 import { P2 } from "../../shared/text";
 import { useLoginContext } from "@/contexts/LoginContext";
+import { useTranslations } from "next-intl";
 
 export function Header() {
+  const t = useTranslations("header");
   const [isCatalogMenu, setIsCatalogMenu] = useState(false);
   const [isOpenUploadModal, setIsOpenUploadModal] = useState(false);
 
@@ -58,9 +60,9 @@ export function Header() {
       <header className='flex flex-col min-h-[110px] text-sm pt-2 shadow-md bg-white'>
         <Container className='relative'>
           <div>
-            <div className='flex justify-between mb-5'>
+            <div className='flex justify-between items-center mb-5'>
               <P2 className='relative before:content-[url("/icons/pick-up/marker.svg")] before:mr-2'>
-                Пункт выдачи — Центральная ул., 1
+                {t("pickup-point")}
               </P2>
               <NavBar setBuyerOrSeller={setBuyerOrSeller} setAuthChoose={setAuthChoose} />
             </div>
@@ -72,7 +74,7 @@ export function Header() {
                 </h1>
               </Link>
               <MainButton className='ml-14 mr-5 ' onPress={() => setIsCatalogMenu((prev) => !prev)}>
-                <p> Католог</p>
+                <p> {t("catalog")}</p>
                 <Image
                   width={12}
                   height={16}

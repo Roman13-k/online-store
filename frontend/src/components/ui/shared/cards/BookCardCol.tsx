@@ -5,6 +5,7 @@ import { P1 } from "../text";
 import MainButton from "../buttons/MainButton";
 import CopyButton from "../buttons/CopyButton";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 interface BookCardColProps {
   price: number;
@@ -51,6 +52,7 @@ export default function BookCardCol({
   id,
   category_slug,
 }: BookCardColProps) {
+  const t = useTranslations("shared");
   return (
     <Link
       href={`/catalog/${category_slug}/${id}`}
@@ -76,7 +78,7 @@ export default function BookCardCol({
         <CopyButton textToCopy={title} className='ml-auto' />
       </div>
       <p className='text-black font-semibold text-[22px] mb-[11px] self-start'>{price} ₽</p>
-      <MainButton className='w-full'>В корзину</MainButton>
+      <MainButton className='w-full'>{t("backet")}</MainButton>
     </Link>
   );
 }

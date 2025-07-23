@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React, { Dispatch, SetStateAction } from "react";
 import TextDivider from "../divider/TextDivider";
+import { useTranslations } from "next-intl";
 
 interface SearchInputProps {
   isOpenUploadModal: boolean;
@@ -8,6 +9,7 @@ interface SearchInputProps {
 }
 
 export function UploadModal({ isOpenUploadModal }: { isOpenUploadModal: boolean }) {
+  const t = useTranslations("header");
   return (
     <div
       className={`absolute top-[123px] w-[270px] right-[288px] rounded-[5px] p-5 border border-dashed border-black  bg-white ${
@@ -18,8 +20,8 @@ export function UploadModal({ isOpenUploadModal }: { isOpenUploadModal: boolean 
           <input type='file' accept='image/*' className='hidden' />
           <Image width={46} height={46} src='/icons/search/upload.svg' alt='upload.svg' />
           <p>
-            <span className='text-orange-main'>Загрузите фото </span>
-            книги или фрагмента из неё
+            <span className='text-orange-main'>{t("upload.1")} </span>
+            {t("upload.2")}
           </p>
         </label>
         <TextDivider className='flex items-center' />
@@ -27,8 +29,8 @@ export function UploadModal({ isOpenUploadModal }: { isOpenUploadModal: boolean 
           <input type='file' accept='image/*' capture='environment' className='hidden' />
           <Image width={46} height={46} src='/icons/search/photo.svg' alt='photo.svg' />
           <p>
-            <span className='text-orange-main'>Наведите камеру </span>
-            своего устройства на книгу
+            <span className='text-orange-main'>{t("photo.1")} </span>
+            {t("photo.2")}
           </p>
         </label>
       </div>
@@ -37,14 +39,15 @@ export function UploadModal({ isOpenUploadModal }: { isOpenUploadModal: boolean 
 }
 
 export default function SearchInput({ isOpenUploadModal, setIsOpenUploadModal }: SearchInputProps) {
+  const t = useTranslations("header");
   return (
     <>
       <UploadModal isOpenUploadModal={isOpenUploadModal} />
-      <div className='flex w-[520px] px-5 h-[46px] rounded-[5px] overflow-hidden border border-black opacity-40'>
+      <div className='flex w-[520px] px-5 h-[46px] rounded-[5px] overflow-hidden border border-black '>
         <input
           type='text'
-          className="flex-1  bg-white outline-none bg-[url('/icons/search/loupe.svg')] bg-no-repeat bg-[95%_50%]"
-          placeholder='Найти интересную книгу'
+          className="flex-1 text-black/40 dark:text-black placeholder:dark:text-black bg-white outline-none bg-[url('/icons/search/loupe.svg')] bg-no-repeat bg-[95%_50%]"
+          placeholder={t("search-input")}
         />
         <button
           className='flex items-center gap-5'

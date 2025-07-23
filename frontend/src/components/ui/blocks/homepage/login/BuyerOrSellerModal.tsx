@@ -3,6 +3,7 @@
 import ModalLayout from "@/components/ui/layout/ModalLayout";
 import TextDivider from "@/components/ui/shared/divider/TextDivider";
 import { BuyerOrSeller } from "@/types";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React, { Dispatch, SetStateAction } from "react";
 
@@ -15,6 +16,7 @@ export function BuyerOrSellerModal({
   setNextLoginModal,
   setBuyerOrSeller,
 }: BuyerOrSellerModalProps) {
+  const t = useTranslations("shared");
   const handleChoose = (choose: BuyerOrSeller) => {
     setNextLoginModal(false);
     setBuyerOrSeller(choose);
@@ -23,19 +25,17 @@ export function BuyerOrSellerModal({
   return (
     <ModalLayout onClose={() => setNextLoginModal(false)}>
       <button
-        onClick={() => {
-          handleChoose("buyer");
-        }}
+        onClick={() => handleChoose("buyer")}
         className='flex flex-col items-center font-medium text-lg text-black'>
         <Image alt='buyer.svg' width={150} height={150} src='/icons/profile/buyer.svg' />
-        <p className='font-bold text-[22px] leading-[88%] mt-3'>Покупатель</p>
+        <p className='font-bold text-[22px] leading-[88%] mt-3'>{t("buyer")}</p>
       </button>
       <TextDivider />
       <button
         onClick={() => handleChoose("seller")}
         className='flex flex-col items-center font-medium text-lg text-black mb-[38px]'>
         <Image alt='seller.svg' width={150} height={150} src='/icons/profile/seller.svg' />
-        <p className='font-bold text-[22px] leading-[88%]'>Продавец</p>
+        <p className='font-bold text-[22px] leading-[88%]'>{t("seller")}</p>
       </button>
     </ModalLayout>
   );

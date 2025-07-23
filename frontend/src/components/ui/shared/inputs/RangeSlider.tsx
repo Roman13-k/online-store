@@ -10,8 +10,8 @@ export default function RangeSlider({ priceValue, setPriceValue }: BookPriceProp
         base: "w-full gap-3",
         filler: "bg-orange-main",
       }}
-      defaultValue={[1000, 5000]}
-      maxValue={10000}
+      defaultValue={[5000, 15000]}
+      maxValue={100000}
       aria-label='Диапазон цены'
       value={priceValue}
       onChange={(e) => {

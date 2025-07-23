@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "sorting_chooses",
+  "info": {
+    "singularName": "sorting-choose",
+    "pluralName": "sorting-chooses",
+    "displayName": "sortingChoose"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "choose": {
+      "type": "json",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}

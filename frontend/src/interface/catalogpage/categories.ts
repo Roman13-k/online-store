@@ -6,4 +6,17 @@ export interface CategoriesInterface {
   share_img: {
     url: string;
   };
+  localizations?: Localization[];
+}
+
+export interface Localization {
+  id: number;
+  documentId: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  category: string;
+  category_slug: string;
 }

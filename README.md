@@ -29,6 +29,7 @@ Create a .env file in the root of the frontend project and add:
 
 ```bash
 NEXT_PUBLIC_API_URL="http://127.0.0.1:8000"
+NEXT_PUBLIC_ADMIN_URL="http://localhost:1337/api"
 ```
 
 ## Getting Started Backend

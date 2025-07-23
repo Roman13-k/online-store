@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-}; // если не ошибибаюсь Next по умолчанию not-found не индексирует
+};
 
 export default function NotFound() {
   return <NotFoundScreen />;

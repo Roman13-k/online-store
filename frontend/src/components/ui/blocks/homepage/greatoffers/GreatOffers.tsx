@@ -2,12 +2,14 @@ import BookCardCol from "@/components/ui/shared/cards/BookCardCol";
 import BooksContainer from "@/components/ui/shared/containers/BooksContainer";
 import { H1 } from "@/components/ui/shared/text";
 import { BookCards } from "@/utils/catalogPage";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 export default function GreatOffers() {
+  const t = useTranslations("main.homePage");
   return (
     <section className='flex flex-col gap-8'>
-      <H1>Топ-100</H1>
+      <H1>{t("GreatOffers")}</H1>
       <BooksContainer>
         {Array(20)
           .fill(BookCards)
