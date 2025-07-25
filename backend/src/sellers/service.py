@@ -2,7 +2,7 @@ from fastapi import HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.auth.utils import hash_password
+from src.auth.utils import create_access_token, create_refresh_token, hash_password
 
 from .models import SellerModel
 from .schemas import SellerCreateSchema
@@ -26,10 +26,19 @@ async def create_seller(data: SellerCreateSchema, db: AsyncSession):
         company_name=data.company_name,
     )
 
+    access_token = create_access_token(new_seller.id, "seller")
+    refresh_token = create_refresh_token(new_seller.id, "seller")
+
+    new_seller.refresh_token = refresh_token
+
     db.add(new_seller)
     await db.commit()
     await db.refresh(new_seller)
-    return new_seller
+    return {
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+        "token_type": "Bearer",
+    }
 
 
 async def get_seller_by_email(email: str, db: AsyncSession):

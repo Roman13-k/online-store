@@ -19,4 +19,6 @@ class SellerModel(Base):
     patronymic: Mapped[str] = mapped_column(nullable=False)
     company_name: Mapped[str] = mapped_column(nullable=False)
 
+    refresh_token: Mapped[str]
+
     is_active: Mapped[bool] = mapped_column(default=True)

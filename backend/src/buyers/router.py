@@ -9,7 +9,7 @@ from .service import create_buyer
 router = APIRouter(prefix="/buyer", tags=["Buyers 💳"])
 
 
-@router.post("/registration")
+@router.post("/registration/")
 async def registration_buyer(
     data: BuyerCreateSchema, db: AsyncSession = Depends(get_session)
 ):

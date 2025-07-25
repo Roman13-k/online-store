@@ -2,7 +2,7 @@ from fastapi import HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.auth.utils import hash_password
+from src.auth.utils import create_access_token, create_refresh_token, hash_password
 
 from .models import BuyerModel
 from .schemas import BuyerCreateSchema
@@ -16,10 +16,19 @@ async def create_buyer(data: BuyerCreateSchema, db: AsyncSession):
 
     new_buyer = BuyerModel(email=data.email, password=hash_password(data.password))
 
+    access_token = create_access_token(new_buyer.id, "buyer")
+    refresh_token = create_refresh_token(new_buyer.id, "buyer")
+
+    new_buyer.refresh_token = refresh_token
+
     db.add(new_buyer)
     await db.commit()
     await db.refresh(new_buyer)
-    return new_buyer
+    return {
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+        "token_type": "Bearer",
+    }
 
 
 async def get_buyer_by_email(email: str, db: AsyncSession):
