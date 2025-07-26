@@ -16,14 +16,17 @@ async def create_buyer(data: BuyerCreateSchema, db: AsyncSession):
 
     new_buyer = BuyerModel(email=data.email, password=hash_password(data.password))
 
+    db.add(new_buyer)
+    await db.commit()
+    await db.refresh(new_buyer)
+
     access_token = create_access_token(new_buyer.id, "buyer")
     refresh_token = create_refresh_token(new_buyer.id, "buyer")
 
     new_buyer.refresh_token = refresh_token
 
-    db.add(new_buyer)
     await db.commit()
-    await db.refresh(new_buyer)
+
     return {
         "access_token": access_token,
         "refresh_token": refresh_token,

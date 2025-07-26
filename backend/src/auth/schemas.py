@@ -13,8 +13,3 @@ class TokenResponse(BaseModel):
     access_token: str
     refresh_token: str
     token_type: str = "Bearer"
-    user_type: str
-
-
-class RefreshTokenSchema(BaseModel):
-    refresh_token: str

@@ -26,14 +26,17 @@ async def create_seller(data: SellerCreateSchema, db: AsyncSession):
         company_name=data.company_name,
     )
 
+    db.add(new_seller)
+    await db.commit()
+    await db.refresh(new_seller)
+
     access_token = create_access_token(new_seller.id, "seller")
     refresh_token = create_refresh_token(new_seller.id, "seller")
 
     new_seller.refresh_token = refresh_token
 
-    db.add(new_seller)
     await db.commit()
-    await db.refresh(new_seller)
+
     return {
         "access_token": access_token,
         "refresh_token": refresh_token,

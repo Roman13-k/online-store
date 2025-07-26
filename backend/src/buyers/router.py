@@ -13,4 +13,4 @@ router = APIRouter(prefix="/buyer", tags=["Buyers 💳"])
 async def registration_buyer(
     data: BuyerCreateSchema, db: AsyncSession = Depends(get_session)
 ):
-    return await create_buyer(data, db)
+    return await create_buyer(data=data, db=db)
