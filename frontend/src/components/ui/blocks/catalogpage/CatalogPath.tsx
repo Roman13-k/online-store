@@ -1,7 +1,7 @@
 import { useGetCategoriesQuery } from "@/store/api/categoriesApi";
 import { useLocale, useTranslations } from "next-intl";
 import LoadingSmall from "../../shared/loading/LoadingSmall";
-import { findCategoryBySlug } from "@/utils/findCategoryBySlug";
+import { findCategoryBySlug } from "@/utils/findCategoryBySlug/findCategoryBySlug";
 import { usePathname } from "@/i18n/navigation";
 
 export default function CatalogPath({ className }: { className?: string }) {

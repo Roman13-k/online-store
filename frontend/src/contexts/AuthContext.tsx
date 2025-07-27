@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useBuyerProfileQuery, useSellerProfileQuery } from "@/store/api/userApi";
 import { BuyerOrSeller } from "@/types";
-import { isFromEnum } from "@/utils/isFromEnum";
+import { isFromEnum } from "@/utils/isFromEnum/isFromEnum";
 import { Loading } from "@/components/ui/shared/loading/Loading";
 import { BuyerInterface, SellerInterface } from "@/interface/profilepage/profile";
 import { useLoginContext } from "./LoginContext";

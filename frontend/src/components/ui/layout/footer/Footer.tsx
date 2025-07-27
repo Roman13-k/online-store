@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { getYear } from "@/utils/getYear";
+import { getYear } from "@/utils/getYear/getYear";
 import Image from "next/image";
 import Container from "../../shared/containers/Container";
 import { useTranslations } from "next-intl";
