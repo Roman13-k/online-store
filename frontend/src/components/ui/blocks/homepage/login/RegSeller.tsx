@@ -3,8 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Form, Input, Button } from "@heroui/react";
 import { SubEvent } from "./SubEvent";
-import { customValidator } from "@/utils/login/customValidator";
-import { customSubmit } from "@/utils/login/customSubmit";
+import { customValidator } from "@/utils/login/customValidator/customValidator";
+import { customSubmit } from "@/utils/login/customSubmit/customSubmit";
 import ModalLayout from "@/components/ui/layout/ModalLayout";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { redirect } from "next/navigation";

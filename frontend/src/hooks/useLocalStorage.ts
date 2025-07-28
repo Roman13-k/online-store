@@ -14,7 +14,6 @@ export default function useLocalStorage<T extends string>(
   }, []);
 
   useEffect(() => {
-    if (value === initValue) return;
     localStorage.setItem(key, value);
   }, [value]);
 
