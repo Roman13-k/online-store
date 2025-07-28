@@ -1,31 +1,31 @@
 "use client";
 import { useEffect } from "react";
-import useLocalStorage from "./useLocalStorage";
+import useLocalStorage from "../useLocalStorage/useLocalStorage";
 
 export type Theme = "light" | "dark" | "warm";
 
 export default function useTheme(initValue: Theme): [Theme, (t: Theme) => void] {
-  const [theme, setTheme] = useLocalStorage<Theme>("theme", initValue);
+  const [theme, setTheme, isInitialized] = useLocalStorage<Theme>("theme", initValue);
 
   useEffect(() => {
+    if (!isInitialized) return;
+
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-    if (theme === "dark" || theme === "warm") {
-      applyTheme(theme);
-    } else if (theme === "light") {
-      applyTheme("light");
-    } else if (prefersDark) {
-      setTheme("dark");
-      applyTheme("dark");
+    if (!localStorage.getItem("theme")) {
+      const defaultTheme = prefersDark ? "dark" : initValue;
+      setTheme(defaultTheme);
+      applyTheme(defaultTheme);
     } else {
-      setTheme("light");
-      applyTheme("light");
+      applyTheme(theme);
     }
-  }, []);
+  }, [isInitialized]);
 
   useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
+    if (isInitialized) {
+      applyTheme(theme);
+    }
+  }, [theme, isInitialized]);
 
   function applyTheme(theme: Theme) {
     const root = document.documentElement;

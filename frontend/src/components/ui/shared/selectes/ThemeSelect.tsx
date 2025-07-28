@@ -1,5 +1,5 @@
 "use client";
-import useTheme, { Theme } from "@/hooks/useTheme";
+import useTheme, { Theme } from "@/hooks/useTheme/useTheme";
 import { ChevronDown } from "lucide-react";
 import React from "react";
 
