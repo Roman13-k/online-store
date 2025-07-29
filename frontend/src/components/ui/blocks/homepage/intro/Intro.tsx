@@ -4,14 +4,13 @@ import ScrollWrapperWithButtons from "@/components/ui/shared/scrolls/ScrollWrapp
 import { IntroBanner } from "@/interface/homePage/banner";
 import { useGetBannersQuery } from "@/store/api/introApi";
 import Image from "next/image";
-import React from "react";
 
 export default function Intro() {
   const { data: IntroBanners, isLoading, isError } = useGetBannersQuery("");
 
   if (isLoading) {
     return (
-      <div className='flex justify-center items-center h-[540px] bg-white'>
+      <div data-testid='loading' className='flex justify-center items-center h-[540px] bg-white'>
         <LoadingSmall />
       </div>
     );

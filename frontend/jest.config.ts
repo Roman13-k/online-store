@@ -1,8 +1,18 @@
-export default {
+import type { Config } from "jest";
+
+const config: Config = {
   preset: "ts-jest",
-  testEnvironment: "jest-environment-jsdom",
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
-  moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/$1",
+  testEnvironment: "jsdom",
+  transform: {
+    "^.+\\.(ts|tsx)$": ["ts-jest", { tsconfig: "./tsconfig.json" }],
+    "^.+\\.js$": "babel-jest",
   },
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1",
+  },
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  setupFiles: ["whatwg-fetch"],
+  transformIgnorePatterns: ["node_modules/(?!(next-intl))"],
 };
+
+export default config;

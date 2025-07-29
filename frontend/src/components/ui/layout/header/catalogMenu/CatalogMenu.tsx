@@ -3,8 +3,8 @@
 import { CategoriesInterface } from "@/interface/catalogpage/categories";
 import { useGetCategoriesQuery } from "@/store/api/categoriesApi";
 import Link from "next/link";
-import React, { Dispatch, SetStateAction } from "react";
-import LoadingSmall from "../../shared/loading/LoadingSmall";
+import { Dispatch, SetStateAction } from "react";
+import LoadingSmall from "../../../shared/loading/LoadingSmall";
 import { useLocale } from "next-intl";
 
 interface CatalogMenuProps {
@@ -12,7 +12,7 @@ interface CatalogMenuProps {
   setIsCatalogMenu: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function CatologMenu({ isOpenCatalog, setIsCatalogMenu }: CatalogMenuProps) {
+export default function CatalogMenu({ isOpenCatalog, setIsCatalogMenu }: CatalogMenuProps) {
   const { data: categories, isLoading, error } = useGetCategoriesQuery("");
   const locale = useLocale();
 
@@ -22,7 +22,7 @@ export default function CatologMenu({ isOpenCatalog, setIsCatalogMenu }: Catalog
         isOpenCatalog ? "opacity-100 translate-y-0 z-50" : "opacity-0 -translate-y-full -z-40"
       } transition-all duration-300`}>
       {isLoading ? (
-        <LoadingSmall />
+        <LoadingSmall data-testid='loading' />
       ) : error ? (
         <p>Ошибка при загрузке категорий</p>
       ) : (

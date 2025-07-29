@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Container from "../ui/shared/containers/Container";
-import CatalogPath from "../ui/blocks/catalogpage/CatalogPath";
+import CatalogPath from "../ui/blocks/catalogpage/catalogPath/CatalogPath";
 import CatalogResently from "../ui/blocks/catalogpage/CatalogResently";
 import Filters from "../ui/blocks/catalogpage/filters/Filters";
 import Sorting from "../ui/blocks/catalogpage/sorting/Sorting";
