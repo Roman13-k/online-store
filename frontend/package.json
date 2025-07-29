@@ -9,7 +9,10 @@
     "test": "jest",
     "test:e2e": "npx playwright test",
     "test:e2e:headed": "npx playwright test --headed",
-    "test:e2e:update": "npx playwright test --update-snapshots"
+    "test:e2e:update": "npx playwright test --update-snapshots",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_2fc85ee223b85cc"
   },
   "dependencies": {
     "@heroui/react": "^2.8.0-beta.11",
@@ -28,8 +31,14 @@
   "devDependencies": {
     "@babel/core": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
+    "@chromatic-com/storybook": "^4.0.1",
     "@eslint/eslintrc": "^3",
     "@playwright/test": "^1.54.1",
+    "@storybook/addon-a11y": "^9.0.18",
+    "@storybook/addon-docs": "^9.0.18",
+    "@storybook/addon-onboarding": "^9.0.18",
+    "@storybook/addon-vitest": "^9.0.18",
+    "@storybook/nextjs-vite": "^9.0.18",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.6.4",
     "@testing-library/react": "^16.3.0",
@@ -38,15 +47,22 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/browser": "^3.2.4",
+    "@vitest/coverage-v8": "^3.2.4",
     "babel-jest": "^30.0.5",
+    "chromatic": "^13.1.2",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
+    "eslint-plugin-storybook": "^9.0.18",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
+    "playwright": "^1.54.1",
+    "storybook": "^9.0.18",
     "tailwindcss": "^4.1.11",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "typescript": "^5",
+    "vitest": "^3.2.4",
     "whatwg-fetch": "^3.6.20"
   }
 }
