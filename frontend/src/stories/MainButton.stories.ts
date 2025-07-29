@@ -1,5 +1,5 @@
 import MainButton from "@/components/ui/shared/buttons/MainButton";
-import type { StoryObj, Meta } from "@storybook/react";
+import type { StoryObj, Meta } from "@storybook/nextjs-vite";
 
 export default {
   title: "UI/Buttons/MainButton",

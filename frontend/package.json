@@ -37,7 +37,6 @@
     "@storybook/addon-a11y": "^9.0.18",
     "@storybook/addon-docs": "^9.0.18",
     "@storybook/addon-onboarding": "^9.0.18",
-    "@storybook/addon-vitest": "^9.0.18",
     "@storybook/nextjs-vite": "^9.0.18",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.6.4",
@@ -62,7 +61,6 @@
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "typescript": "^5",
-    "vitest": "^3.2.4",
     "whatwg-fetch": "^3.6.20"
   }
 }

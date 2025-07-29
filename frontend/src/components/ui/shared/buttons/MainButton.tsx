@@ -18,7 +18,7 @@ export default function MainButton({
   return (
     <Button
       className={`${className} ${
-        btnColor === "orange" ? "bg-orange-main  text-white" : " text-black bg-white"
+        btnColor === "orange" ? "bg-orange-main text-[100px]  text-white" : " text-black bg-white"
       } rounded-[5px] px-3 h-[46px] font-medium  text-lg shadow-md active:translate-y-1 flex items-center justify-center`}
       {...props}>
       {children}
