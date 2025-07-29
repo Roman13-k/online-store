@@ -3,9 +3,10 @@
 import { CategoriesInterface } from "@/interface/catalogpage/categories";
 import { useGetCategoriesQuery } from "@/store/api/categoriesApi";
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useRef } from "react";
 import LoadingSmall from "../../../shared/loading/LoadingSmall";
 import { useLocale } from "next-intl";
+import useCloseModal from "@/hooks/useCloseModal/useCloseModal";
 
 interface CatalogMenuProps {
   isOpenCatalog: boolean;
@@ -15,9 +16,13 @@ interface CatalogMenuProps {
 export default function CatalogMenu({ isOpenCatalog, setIsCatalogMenu }: CatalogMenuProps) {
   const { data: categories, isLoading, error } = useGetCategoriesQuery("");
   const locale = useLocale();
+  const menuRef = useRef<HTMLUListElement | null>(null);
+
+  useCloseModal(menuRef, () => setIsCatalogMenu(false));
 
   return (
     <ul
+      ref={menuRef}
       className={`absolute top-[123px] left-[388px] rounded-[5px] grid grid-rows-4 grid-cols-2 bg-grey-f5f7 ${
         isOpenCatalog ? "opacity-100 translate-y-0 z-50" : "opacity-0 -translate-y-full -z-40"
       } transition-all duration-300`}>
