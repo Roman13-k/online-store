@@ -69,3 +69,5 @@ Details:
 //   });
 //   test("Data render", () => {});
 // });
+
+test("Fake catalogMenu", () => {});

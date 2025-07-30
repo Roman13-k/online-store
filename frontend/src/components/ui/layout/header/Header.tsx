@@ -42,7 +42,7 @@ export function Header() {
         <RegSeller handleClose={handleCLose} />
       )}
       {authChoose === "login" && buyerOrSeller !== null && (
-        <Login authChoose={authChoose} buyerOrSeller={buyerOrSeller} handleCLose={handleCLose} />
+        <Login buyerOrSeller={buyerOrSeller} handleCLose={handleCLose} />
       )}
       {loginModal && (
         <RegOrLogModal

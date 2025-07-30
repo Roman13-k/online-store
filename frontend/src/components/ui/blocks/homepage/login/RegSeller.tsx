@@ -1,39 +1,61 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { Form, Input, Button } from "@heroui/react";
 import { SubEvent } from "./SubEvent";
 import { customValidator } from "@/utils/login/customValidator/customValidator";
-import { customSubmit } from "@/utils/login/customSubmit/customSubmit";
 import ModalLayout from "@/components/ui/layout/ModalLayout";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { redirect } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useRegisterSellerMutation } from "@/store/api/userApi";
+import { RegisterSellerData, Tokens } from "@/interface/homePage/login";
 
 export function RegSeller({ handleClose }: { handleClose: () => void }) {
   const t = useTranslations("RegSeller");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState<null | boolean>(null);
-  const formRef = useRef<null | HTMLFormElement>(null);
   const { setAuth } = useAuthContext();
+  const [registerSeller, { isLoading, isSuccess, isError, data }] = useRegisterSellerMutation();
 
   useEffect(() => {
     if (!isLoading && isSuccess) {
+      if (data) {
+        const tokens: Tokens = data;
+        localStorage.setItem("access_token_seller", tokens.access_token);
+        localStorage.setItem("refresh_token_seller", tokens.refresh_token);
+      }
       setAuth("seller");
       redirect("/profile/seller");
     }
   }, [isSuccess, isLoading, setAuth]);
 
+  const handleRegSeller = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+
+    const typedData: RegisterSellerData = {
+      email: data.email as string,
+      password: data.password as string,
+      type_organization: data.type_organization as string,
+      country: data.country as string,
+      itn: Number(data.itn),
+      name: data.name as string,
+      last_name: data.last_name as string,
+      patronymic: data.patronymic as string,
+      company_name: data.company_name as string,
+    };
+
+    registerSeller(typedData);
+  };
+
   return (
     <ModalLayout onClose={handleClose}>
       <h2 className='text-4xl text-orange-main font-bold mb-4'>{t("title")}</h2>
       <Form
-        ref={formRef}
         className='grid grid-cols-2 gap-4'
         validationBehavior='native'
-        onSubmit={(e) =>
-          customSubmit(e, formRef, setIsSuccess, "registration/seller", setIsLoading)
-        }>
+        onSubmit={(e) => handleRegSeller(e)}>
         <Input
           isRequired
           errorMessage={t("errors.email")}
@@ -131,7 +153,7 @@ export function RegSeller({ handleClose }: { handleClose: () => void }) {
           {t("button.start")}
         </Button>
       </Form>
-      <SubEvent isSuccess={isSuccess} textFalse={t("errors.emailTaken")} />
+      <SubEvent isError={isError} textFalse={t("errors.emailTaken")} />
     </ModalLayout>
   );
 }

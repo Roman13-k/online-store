@@ -1,44 +1,58 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { Form, Input, Button } from "@heroui/react";
 import { customValidator } from "../../../../../utils/login/customValidator/customValidator";
-import { customSubmit } from "../../../../../utils/login/customSubmit/customSubmit";
 import { SubEvent } from "./SubEvent";
 import ModalLayout from "@/components/ui/layout/ModalLayout";
-import { AuthChoose, BuyerOrSeller } from "@/types";
+import { BuyerOrSeller } from "@/types";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { redirect } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useLoginUserMutation } from "@/store/api/userApi";
+import { LoginData, Tokens } from "@/interface/homePage/login";
 
 interface LoginModalProps {
   buyerOrSeller: null | BuyerOrSeller;
-  authChoose: null | AuthChoose;
   handleCLose: () => void;
 }
 
-export function Login({ buyerOrSeller, authChoose, handleCLose }: LoginModalProps) {
+export function Login({ buyerOrSeller, handleCLose }: LoginModalProps) {
   const t = useTranslations("LoginModal");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState<null | boolean>(null);
-  const formRef = useRef(null);
   const { setAuth } = useAuthContext();
+  const [loginUser, { isSuccess, isError, isLoading, data }] = useLoginUserMutation();
 
   useEffect(() => {
     if (!isLoading && isSuccess) {
+      if (data) {
+        const tokens: Tokens = data;
+        localStorage.setItem(`access_token_${buyerOrSeller}`, tokens.access_token);
+        localStorage.setItem(`refresh_token_${buyerOrSeller}`, tokens.refresh_token);
+      }
       setAuth(buyerOrSeller);
       redirect(`/profile/${buyerOrSeller}`);
     }
   }, [isSuccess]);
 
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!buyerOrSeller) return;
+
+    const formData = new FormData(e.currentTarget);
+    const data: LoginData = {
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+      user_type: buyerOrSeller,
+    };
+
+    loginUser(data);
+  };
+
   return (
     <ModalLayout onClose={handleCLose}>
       <h2 className='text-4xl text-orange-main font-bold mb-4'>{t("title")}</h2>
       <Form
-        ref={formRef}
         className='flex flex-col items-center gap-4'
         validationBehavior='native'
-        onSubmit={(e) =>
-          customSubmit(e, formRef, setIsSuccess, `${authChoose}/${buyerOrSeller}`, setIsLoading)
-        }>
+        onSubmit={(e) => handleLogin(e)}>
         <Input
           isRequired
           errorMessage={t("errors.email")}
@@ -66,7 +80,7 @@ export function Login({ buyerOrSeller, authChoose, handleCLose }: LoginModalProp
           {t("button.login")}
         </Button>
       </Form>
-      <SubEvent isSuccess={isSuccess} textFalse={t("errors.loginFailed")} />
+      <SubEvent isError={isError} textFalse={t("errors.loginFailed")} />
     </ModalLayout>
   );
 }

@@ -1,1 +1,3 @@
-describe("Catalog Path", () => {});
+describe("Catalog Path", () => {
+  test("Fake", () => {});
+});

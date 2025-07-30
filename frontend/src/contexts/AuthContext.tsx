@@ -8,6 +8,7 @@ import { Loading } from "@/components/ui/shared/loading/Loading";
 import { BuyerInterface, SellerInterface } from "@/interface/profilepage/profile";
 import { useLoginContext } from "./LoginContext";
 import { redirect } from "next/navigation";
+import useAuthRefresh from "@/hooks/useAuthRefresh";
 
 interface AuthContextInterface {
   auth: BuyerOrSeller | null;
@@ -33,8 +34,8 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
     setAuthLoading(false);
   }, []);
 
-  const buyerToken = typeof window !== "undefined" ? localStorage.getItem("buyer") : null;
-
+  const buyerToken =
+    typeof window !== "undefined" ? localStorage.getItem("access_token_buyer") : null;
   const {
     data: buyerData,
     isLoading: buyerLoading,
@@ -42,8 +43,10 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
   } = useBuyerProfileQuery(buyerToken ?? "", {
     skip: auth !== "buyer" || !buyerToken,
   });
+  useAuthRefresh("buyer");
 
-  const sellerToken = typeof window !== "undefined" ? localStorage.getItem("seller") : null;
+  const sellerToken =
+    typeof window !== "undefined" ? localStorage.getItem("access_token_seller") : null;
   const {
     data: sellerData,
     isLoading: sellerLoading,
@@ -51,6 +54,7 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
   } = useSellerProfileQuery(sellerToken ?? "", {
     skip: auth !== "seller" || !sellerToken,
   });
+  useAuthRefresh("seller");
 
   const setAuth = (role: BuyerOrSeller | null) => {
     if (role) {
@@ -76,12 +80,12 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
   useEffect(() => {
     if (buyerError) {
       setAuth(null);
-      const token = localStorage.getItem("buyer");
-      if (token) localStorage.removeItem("buyer");
+      const token = localStorage.getItem("access_token_buyer");
+      if (token) localStorage.removeItem("access_token_buyer");
     } else if (sellerError) {
       setAuth(null);
-      const token = localStorage.getItem("seller");
-      if (token) localStorage.removeItem("seller");
+      const token = localStorage.getItem("access_token_seller");
+      if (token) localStorage.removeItem("access_token_seller");
     }
   }, [buyerError, sellerError]);
 
