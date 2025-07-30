@@ -1,7 +1,6 @@
 "use client";
 import { useAuthContext } from "@/contexts/AuthContext";
 import Image from "next/image";
-import React from "react";
 
 export default function SwitchButton() {
   const { handleSwitchProfile, auth } = useAuthContext();

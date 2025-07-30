@@ -1,6 +1,6 @@
 import React from "react";
 import Container from "../ui/shared/containers/Container";
-import CatalogPath from "../ui/blocks/catalogpage/CatalogPath";
+import CatalogPath from "../ui/blocks/catalogpage/catalogPath/CatalogPath";
 import { BookCards } from "@/utils/catalogPage";
 import MainInfo from "../ui/blocks/bookpage/maininfo/MainInfo";
 import SimilarBooks from "../ui/blocks/bookpage/SimilarBooks";

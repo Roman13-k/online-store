@@ -1,10 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { RegOrLogModal } from "../../blocks/homepage/login/RegOrLogModal";
 import { BuyerOrSellerModal } from "../../blocks/homepage/login/BuyerOrSellerModal";
 import NavBar from "./NavBar";
-import CatologMenu from "./CatologMenu";
 import MainButton from "../../shared/buttons/MainButton";
 import UserNav from "./UserNav";
 import SearchInput from "../../shared/inputs/SearchInput";
@@ -17,6 +16,7 @@ import Image from "next/image";
 import { P2 } from "../../shared/text";
 import { useLoginContext } from "@/contexts/LoginContext";
 import { useTranslations } from "next-intl";
+import CatalogMenu from "./catalogMenu/CatalogMenu";
 
 export function Header() {
   const t = useTranslations("header");
@@ -83,7 +83,7 @@ export function Header() {
                   className='ml-2'
                 />
               </MainButton>
-              <CatologMenu setIsCatalogMenu={setIsCatalogMenu} isOpenCatalog={isCatalogMenu} />
+              <CatalogMenu setIsCatalogMenu={setIsCatalogMenu} isOpenCatalog={isCatalogMenu} />
               <SearchInput
                 isOpenUploadModal={isOpenUploadModal}
                 setIsOpenUploadModal={setIsOpenUploadModal}
