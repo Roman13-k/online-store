@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.database import get_session
 
 from .schemas import LoginSchema
-from .service import authenticate_user
+from .service import authenticate_user, refresh_access_token_check
 
 router = APIRouter(prefix="/auth", tags=["Auth 🔐"])
 
@@ -20,4 +20,5 @@ async def login_user(data: LoginSchema, db: AsyncSession = Depends(get_session))
 @router.post("/refresh/")
 async def refresh_access_token(
     refresh_token: str = Body(...), db: AsyncSession = Depends(get_session)
-): ...
+):
+    await refresh_access_token_check(refresh_token=refresh_token, db=db)
