@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Body, Depends
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -15,3 +15,9 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login/")
 @router.post("/login/")
 async def login_user(data: LoginSchema, db: AsyncSession = Depends(get_session)):
     return await authenticate_user(data=data, db=db)
+
+
+@router.post("/refresh/")
+async def refresh_access_token(
+    refresh_token: str = Body(...), db: AsyncSession = Depends(get_session)
+): ...

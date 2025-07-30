@@ -13,4 +13,4 @@ router = APIRouter(prefix="/seller", tags=["Sellers 🛒"])
 async def registration_seller(
     data: SellerCreateSchema, db: AsyncSession = Depends(get_session)
 ):
-    return await create_seller(data, db)
+    return await create_seller(data=data, db=db)
