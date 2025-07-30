@@ -54,6 +54,7 @@ export function Login({ buyerOrSeller, handleCLose }: LoginModalProps) {
         validationBehavior='native'
         onSubmit={(e) => handleLogin(e)}>
         <Input
+          data-testid='login-email'
           isRequired
           errorMessage={t("errors.email")}
           placeholder={t("placeholders.email")}
@@ -64,6 +65,7 @@ export function Login({ buyerOrSeller, handleCLose }: LoginModalProps) {
           radius='sm'
         />
         <Input
+          data-testid='login-password'
           isRequired
           validate={customValidator}
           placeholder={t("placeholders.password")}
@@ -74,6 +76,7 @@ export function Login({ buyerOrSeller, handleCLose }: LoginModalProps) {
           radius='sm'
         />
         <Button
+          data-testid='login-submit-btn'
           isLoading={isLoading}
           type='submit'
           className='bg-[#F35935] rounded-[5px] pl-3 pr-3 w-[340px] h-[58px] font-medium text-white text-lg shadow-normal active:translate-y-1'>

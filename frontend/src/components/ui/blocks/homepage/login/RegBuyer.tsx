@@ -50,6 +50,7 @@ export function RegBuyer({ handleClose }: { handleClose: () => void }) {
         validationBehavior='native'
         onSubmit={(e) => handleRegBuyer(e)}>
         <Input
+          data-testid='reg-email'
           isRequired
           errorMessage={t("errors.email")}
           placeholder={t("placeholders.email")}
@@ -60,6 +61,7 @@ export function RegBuyer({ handleClose }: { handleClose: () => void }) {
           radius='sm'
         />
         <Input
+          data-testid='reg-password'
           isRequired
           validate={customValidator}
           placeholder={t("placeholders.password")}
@@ -70,6 +72,7 @@ export function RegBuyer({ handleClose }: { handleClose: () => void }) {
           radius='sm'
         />
         <Button
+          data-testid='reg-submit-btn'
           isLoading={isLoading}
           type='submit'
           className='bg-[#F35935] rounded-[5px] pl-3 pr-3 w-[340px] h-[58px] font-medium text-white text-lg shadow-normal active:translate-y-1'>

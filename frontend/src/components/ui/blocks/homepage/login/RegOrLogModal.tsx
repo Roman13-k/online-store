@@ -26,6 +26,7 @@ export function RegOrLogModal({
   return (
     <ModalLayout onClose={() => setLoginModal(false)}>
       <MainButton
+        data-testid='registration-btn'
         onPress={() => {
           handleNextLoginModal("registration");
         }}
@@ -34,6 +35,7 @@ export function RegOrLogModal({
       </MainButton>
       <TextDivider />
       <button
+        data-testid='login-btn'
         onClick={() => {
           handleNextLoginModal("login");
         }}

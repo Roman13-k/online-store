@@ -20,6 +20,7 @@ export default function UserNav({ setLoginModal }: UserNavProps) {
       <li>
         {!auth ? (
           <button
+            data-testid='openLoginModal-btn'
             onClick={() => setLoginModal((prev) => !prev)}
             className='flex flex-col items-center max-h-[53px]'>
             <AccountIcon stroke={"currentColor"} />

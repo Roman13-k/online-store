@@ -25,6 +25,7 @@ export function BuyerOrSellerModal({
   return (
     <ModalLayout onClose={() => setNextLoginModal(false)}>
       <button
+        data-testid='choose-buyer-btn'
         onClick={() => handleChoose("buyer")}
         className='flex flex-col items-center font-medium text-lg text-black'>
         <Image alt='buyer.svg' width={150} height={150} src='/icons/profile/buyer.svg' />
@@ -32,6 +33,7 @@ export function BuyerOrSellerModal({
       </button>
       <TextDivider />
       <button
+        data-testid='choose-seller-btn'
         onClick={() => handleChoose("seller")}
         className='flex flex-col items-center font-medium text-lg text-black mb-[38px]'>
         <Image alt='seller.svg' width={150} height={150} src='/icons/profile/seller.svg' />
