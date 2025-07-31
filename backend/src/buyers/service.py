@@ -2,7 +2,12 @@ from fastapi import HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.auth.utils import create_access_token, create_refresh_token, hash_password
+from src.auth.utils import (
+    create_access_token,
+    create_refresh_token,
+    hash_password,
+    verify_access_token,
+)
 
 from .models import BuyerModel
 from .schemas import BuyerCreateSchema
@@ -47,3 +52,10 @@ async def get_buyer_by_id(user_id: int, db: AsyncSession):
 async def email_exists(email: str, db: AsyncSession):
     buyer = await get_buyer_by_email(email, db)
     return buyer is not None
+
+
+async def get_current_buyer(token: str, db: AsyncSession):
+    data = verify_access_token(token=token)
+
+    if data.get("role") == "buyer":
+        return await get_buyer_by_id(data.get("user_id"), db)
