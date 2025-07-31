@@ -17,5 +17,5 @@ async def registration_buyer(
 
 
 @router.post("/me/")
-async def get_profile(token: str, db=Depends(get_session)):
+async def get_profile_buyer(token: str, db=Depends(get_session)):
     return await get_current_buyer(token=token, db=db)

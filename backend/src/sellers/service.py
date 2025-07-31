@@ -2,7 +2,12 @@ from fastapi import HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.auth.utils import create_access_token, create_refresh_token, hash_password
+from src.auth.utils import (
+    create_access_token,
+    create_refresh_token,
+    hash_password,
+    verify_access_token,
+)
 
 from .models import SellerModel
 from .schemas import SellerCreateSchema
@@ -57,3 +62,10 @@ async def get_seller_by_id(user_id: int, db: AsyncSession):
 async def email_exists(email: str, db: AsyncSession):
     seller = await get_seller_by_email(email, db)
     return seller is not None
+
+
+async def get_current_seller(token: str, db: AsyncSession):
+    data = verify_access_token(token=token)
+
+    if data.get("role") == "seller":
+        return await get_seller_by_id(data.get("user_id"), db)
