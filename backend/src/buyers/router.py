@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.auth.router import oauth2_scheme
 from src.database import get_session
 
 from .schemas import BuyerCreateSchema
@@ -17,5 +18,7 @@ async def registration_buyer(
 
 
 @router.post("/me/")
-async def get_profile_buyer(token: str, db=Depends(get_session)):
+async def get_profile_buyer(
+    token: str = Depends(oauth2_scheme), db=Depends(get_session)
+):
     return await get_current_buyer(token=token, db=db)
