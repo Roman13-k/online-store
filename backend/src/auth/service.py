@@ -90,3 +90,23 @@ async def refresh_access_token_check(refresh_token: str, db: AsyncSession):
         return TokenResponse(
             access_token=new_access_token, refresh_token=new_refresh_token
         )
+
+    elif role == "seller":
+        seller = await db.execute(select(SellerModel).where(SellerModel.id == user_id))
+        seller = seller.scalar_one_or_none()
+
+        if not seller or seller.refresh_token != refresh_token:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid refresh token"
+            )
+
+        new_access_token = create_access_token(user_id, role)
+        new_refresh_token = create_refresh_token(user_id, role)
+
+        seller.refresh_token = new_refresh_token
+
+        await db.commit()
+
+        return TokenResponse(
+            access_token=new_access_token, refresh_token=new_refresh_token
+        )
