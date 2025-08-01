@@ -42,7 +42,7 @@ def create_refresh_token(user_id: int, role: str) -> str:
 def verify_access_token(token: str):
     try:
         data = jwt.decode(token, jwt_config.SECRET_KEY, algorithms=["HS256"])
-        expire = data["expires"]
+        expire = data["exp"]
 
         if expire is None:
             raise HTTPException(
@@ -65,7 +65,7 @@ def verify_access_token(token: str):
 def verify_refresh_token(token: str) -> dict:
     try:
         data = jwt.decode(token, jwt_config.SECRET_KEY, algorithms=["HS256"])
-        expire = data["expires"]
+        expire = data["exp"]
 
         if expire is None:
             raise HTTPException(
