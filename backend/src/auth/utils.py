@@ -1,5 +1,4 @@
-import time
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 import jwt
 from argon2 import PasswordHasher
@@ -19,13 +18,23 @@ def verify_password(password: str, hashed_password: str) -> bool:
 
 
 def create_access_token(user_id: int, role: str) -> str:
-    payload = {"user_id": user_id, "role": role, "expires": time.time() + 3600}
+    expire = datetime.now(timezone.utc) + timedelta(hours=1)
+    payload = {
+        "user_id": user_id,
+        "role": role,
+    }
+    payload.update({"exp": expire})
     token = jwt.encode(payload, jwt_config.SECRET_KEY, algorithm="HS256")
     return token
 
 
 def create_refresh_token(user_id: int, role: str) -> str:
-    payload = {"user_id": user_id, "role": role, "expires": time.time() + 1209600}
+    expire = datetime.now(timezone.utc) + timedelta(days=14)
+    payload = {
+        "user_id": user_id,
+        "role": role,
+    }
+    payload.update({"exp": expire})
     token = jwt.encode(payload, jwt_config.SECRET_KEY, algorithm="HS256")
     return token
 
