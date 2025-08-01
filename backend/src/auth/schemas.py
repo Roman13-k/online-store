@@ -9,7 +9,7 @@ class LoginSchema(BaseModel):
     user_type: Literal["buyer", "seller"]
 
 
-class TokenResponse(BaseModel):
+class TokenResponseSchema(BaseModel):
     access_token: str
     refresh_token: str
     token_type: str = "Bearer"

@@ -1,7 +1,8 @@
-from fastapi import HTTPException, status
+from fastapi import HTTPException, Response, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.auth.schemas import TokenResponseSchema
 from src.auth.utils import (
     create_access_token,
     create_refresh_token,
@@ -13,7 +14,7 @@ from .models import BuyerModel
 from .schemas import BuyerCreateSchema
 
 
-async def create_buyer(data: BuyerCreateSchema, db: AsyncSession):
+async def create_buyer(data: BuyerCreateSchema, db: AsyncSession, response: Response):
     if await email_exists(data.email, db):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Email already exists"
@@ -32,11 +33,16 @@ async def create_buyer(data: BuyerCreateSchema, db: AsyncSession):
 
     await db.commit()
 
-    return {
-        "access_token": access_token,
-        "refresh_token": refresh_token,
-        "token_type": "Bearer",
-    }
+    response.set_cookie(
+        key="refresh_token",
+        value=refresh_token,
+        httponly=True,
+        secure=True,
+        samesite="strict",
+        max_age=1209600,
+    )
+
+    return TokenResponseSchema(access_token=access_token, refresh_token=refresh_token)
 
 
 async def get_buyer_by_email(email: str, db: AsyncSession):

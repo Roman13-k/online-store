@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.auth.router import oauth2_scheme
@@ -12,9 +12,9 @@ router = APIRouter(prefix="/buyer", tags=["Buyers 💳"])
 
 @router.post("/registration/")
 async def registration_buyer(
-    data: BuyerCreateSchema, db: AsyncSession = Depends(get_session)
+    data: BuyerCreateSchema, response: Response, db: AsyncSession = Depends(get_session)
 ):
-    return await create_buyer(data=data, db=db)
+    return await create_buyer(data=data, db=db, response=response)
 
 
 @router.post("/me/")

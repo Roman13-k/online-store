@@ -1,11 +1,11 @@
-from fastapi import HTTPException, status
+from fastapi import HTTPException, Response, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.buyers.models import BuyerModel
 from src.sellers.models import SellerModel
 
-from .schemas import TokenResponse
+from .schemas import TokenResponseSchema
 from .utils import (
     create_access_token,
     create_refresh_token,
@@ -14,7 +14,7 @@ from .utils import (
 )
 
 
-async def authenticate_user(data: dict, db: AsyncSession):
+async def authenticate_user(data: dict, db: AsyncSession, response: Response):
     if data.user_type == "buyer":
         buyer = await db.execute(
             select(BuyerModel).where(BuyerModel.email == data.email)
@@ -34,7 +34,22 @@ async def authenticate_user(data: dict, db: AsyncSession):
         access_token = create_access_token(buyer.id, data.user_type)
         refresh_token = create_refresh_token(buyer.id, data.user_type)
 
-        return TokenResponse(access_token=access_token, refresh_token=refresh_token)
+        buyer.refresh_token = refresh_token
+
+        await db.commit()
+
+        response.set_cookie(
+            key="refresh_token",
+            value=refresh_token,
+            httponly=True,
+            secure=True,
+            samesite="strict",
+            max_age=1209600,
+        )
+
+        return TokenResponseSchema(
+            access_token=access_token, refresh_token=refresh_token
+        )
 
     elif data.user_type == "seller":
         seller = await db.execute(
@@ -55,7 +70,22 @@ async def authenticate_user(data: dict, db: AsyncSession):
         access_token = create_access_token(seller.id, data.user_type)
         refresh_token = create_refresh_token(seller.id, data.user_type)
 
-        return TokenResponse(access_token=access_token, refresh_token=refresh_token)
+        seller.refresh_token = refresh_token
+
+        await db.commit()
+
+        response.set_cookie(
+            key="refresh_token",
+            value=refresh_token,
+            httponly=True,
+            secure=True,
+            samesite="strict",
+            max_age=1209600,
+        )
+
+        return TokenResponseSchema(
+            access_token=access_token, refresh_token=refresh_token
+        )
 
     else:
         raise HTTPException(
@@ -63,7 +93,9 @@ async def authenticate_user(data: dict, db: AsyncSession):
         )
 
 
-async def refresh_access_token_check(refresh_token: str, db: AsyncSession):
+async def refresh_access_token_check(
+    refresh_token: str, db: AsyncSession, response: Response
+):
     try:
         payload = verify_refresh_token(refresh_token)
         user_id = payload.get("user_id")
@@ -87,7 +119,16 @@ async def refresh_access_token_check(refresh_token: str, db: AsyncSession):
 
         await db.commit()
 
-        return TokenResponse(
+        response.set_cookie(
+            key="refresh_token",
+            value=new_refresh_token,
+            httponly=True,
+            secure=True,
+            samesite="strict",
+            max_age=1209600,
+        )
+
+        return TokenResponseSchema(
             access_token=new_access_token, refresh_token=new_refresh_token
         )
 
@@ -107,6 +148,15 @@ async def refresh_access_token_check(refresh_token: str, db: AsyncSession):
 
         await db.commit()
 
-        return TokenResponse(
+        response.set_cookie(
+            key="refresh_token",
+            value=new_refresh_token,
+            httponly=True,
+            secure=True,
+            samesite="strict",
+            max_age=1209600,
+        )
+
+        return TokenResponseSchema(
             access_token=new_access_token, refresh_token=new_refresh_token
         )
