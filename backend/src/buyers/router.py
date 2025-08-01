@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.auth.router import oauth2_scheme
 from src.database import get_session
 
-from .schemas import BuyerCreateSchema
+from .schemas import BuyerCreateSchema, BuyerResponseSchema
 from .service import create_buyer, get_current_buyer
 
 router = APIRouter(prefix="/buyer", tags=["Buyers 💳"])
@@ -21,4 +21,11 @@ async def registration_buyer(
 async def get_profile_buyer(
     token: str = Depends(oauth2_scheme), db=Depends(get_session)
 ):
-    return await get_current_buyer(token=token, db=db)
+    user = await get_current_buyer(token=token, db=db)
+
+    if user:
+        return BuyerResponseSchema(
+            id=user.id, email=user.email, is_active=user.is_active
+        )
+    else:
+        return user

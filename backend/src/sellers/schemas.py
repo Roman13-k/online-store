@@ -11,3 +11,16 @@ class SellerCreateSchema(BaseModel):
     last_name: str
     patronymic: str
     company_name: str
+
+
+class SellerResponseSchema(BaseModel):
+    id: int
+    email: EmailStr
+    type_organization: str
+    country: str
+    itn: int
+    name: str
+    last_name: str
+    patronymic: str
+    company_name: str
+    is_active: bool

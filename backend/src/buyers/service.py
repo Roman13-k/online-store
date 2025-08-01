@@ -59,3 +59,7 @@ async def get_current_buyer(token: str, db: AsyncSession):
 
     if data.get("role") == "buyer":
         return await get_buyer_by_id(data.get("user_id"), db)
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="Invalid token"
+        )
