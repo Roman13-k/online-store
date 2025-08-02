@@ -42,19 +42,12 @@ def create_refresh_token(user_id: int, role: str) -> str:
 def verify_access_token(token: str):
     try:
         data = jwt.decode(token, jwt_config.SECRET_KEY, algorithms=["HS256"])
-        expire = data["exp"]
-
-        if expire is None:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST, detail="Token has expired"
-            )
-
-        if datetime.utcnow() > datetime.utcfromtimestamp(expire):
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN, detail="Token has expired"
-            )
-
         return data
+
+    except jwt.exceptions.ExpiredSignatureError:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="Token has expired"
+        )
 
     except jwt.exceptions.InvalidTokenError:
         raise HTTPException(
@@ -65,20 +58,12 @@ def verify_access_token(token: str):
 def verify_refresh_token(token: str) -> dict:
     try:
         data = jwt.decode(token, jwt_config.SECRET_KEY, algorithms=["HS256"])
-        expire = data["exp"]
-
-        if expire is None:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="No refresh token supplied",
-            )
-
-        if datetime.utcnow() > datetime.utcfromtimestamp(expire):
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN, detail="Refresh token expired!"
-            )
-
         return data
+
+    except jwt.exceptions.ExpiredSignatureError:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="Token has expired"
+        )
 
     except jwt.exceptions.InvalidTokenError:
         raise HTTPException(
