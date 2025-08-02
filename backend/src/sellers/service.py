@@ -15,9 +15,17 @@ from .schemas import SellerCreateSchema
 
 
 async def create_seller(data: SellerCreateSchema, db: AsyncSession, response: Response):
+    from src.buyers.service import get_buyer_by_email
+
     if await email_exists(data.email, db):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST, detail="Email already exists"
+        )
+
+    if await get_buyer_by_email(email=data.email, db=db):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Buyer already exists with this email",
         )
 
     new_seller = SellerModel(
