@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Response
+from fastapi import APIRouter, Depends, HTTPException, Response, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.auth.router import oauth2_scheme
@@ -39,4 +39,6 @@ async def get_profile_seller(
             is_active=user.is_active,
         )
     else:
-        return user
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Unauthorized"
+        )
