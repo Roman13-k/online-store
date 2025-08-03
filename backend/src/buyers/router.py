@@ -17,7 +17,7 @@ async def registration_buyer(
     return await create_buyer(data=data, db=db, response=response)
 
 
-@router.post("/me/")
+@router.get("/me/")
 async def get_profile_buyer(
     token: str = Depends(oauth2_scheme), db=Depends(get_session)
 ):

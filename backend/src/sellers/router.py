@@ -19,7 +19,7 @@ async def registration_seller(
     return await create_seller(data=data, db=db, response=response)
 
 
-@router.post("/me/")
+@router.get("/me/")
 async def get_profile_seller(
     token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_session)
 ):
