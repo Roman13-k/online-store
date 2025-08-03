@@ -12,7 +12,7 @@ export default function PersonalData({ buyerData }: { buyerData: BuyerInterface 
       <ul className='flex flex-col gap-5'>
         <li className='text-black text-[18px]'>
           <span className='opacity-40'>{t("email")}: </span>
-          {buyerData?.profile.email}
+          {buyerData.email}
         </li>
       </ul>
     </div>

@@ -15,8 +15,7 @@ test.describe("Auth test", () => {
     await page.getByTestId("login-password").fill("Buyer11_");
     await page.getByTestId("login-submit-btn").click();
 
-    // описать профиль
-    // await page.waitForURL("/profile/buyer");
+    await page.waitForURL("/ru/profile/buyer");
   });
 
   test("Login Seller", async ({ page }) => {
@@ -28,8 +27,7 @@ test.describe("Auth test", () => {
     await page.getByTestId("login-password").fill("Seller11_");
     await page.getByTestId("login-submit-btn").click();
 
-    // описать профиль
-    // await page.waitForURL("/profile/seller");
+    await page.waitForURL("/ru/profile/seller");
   });
 
   test("Registration Buyer", async ({ page }) => {
@@ -37,12 +35,11 @@ test.describe("Auth test", () => {
     await page.getByTestId("registration-btn").click();
     await page.getByTestId("choose-buyer-btn").click();
 
-    await page.getByTestId("reg-email").fill("buyer1@gmail.com");
-    await page.getByTestId("reg-password").fill("Buyer11_");
+    await page.getByTestId("reg-email").fill("buyer41@gmail.com");
+    await page.getByTestId("reg-password").fill("Buyer411_");
     await page.getByTestId("reg-submit-btn").click();
 
-    // описать профиль
-    // await page.waitForURL("/profile/buyer");
+    await page.waitForURL("/ru/profile/buyer");
   });
 
   test("Registration Seller", async ({ page }) => {
@@ -50,8 +47,8 @@ test.describe("Auth test", () => {
     await page.getByTestId("registration-btn").click();
     await page.getByTestId("choose-seller-btn").click();
 
-    await page.getByTestId("reg-email").fill("seller1@gmail.com");
-    await page.getByTestId("reg-password").fill("Seller11_");
+    await page.getByTestId("reg-email").fill("seller10@gmail.com");
+    await page.getByTestId("reg-password").fill("Seller110_");
     await page.getByTestId("reg-country").fill("Беларусь");
     await page.getByTestId("reg-org-type").fill("ООО");
     await page.getByTestId("reg-itn").fill("1234567890");
@@ -62,8 +59,7 @@ test.describe("Auth test", () => {
 
     await page.getByTestId("reg-submit-btn").click();
 
-    // описать профиль
-    // await page.waitForURL("/profile/seller");
+    await page.waitForURL("/ru/profile/seller");
   });
 
   // test("Switch profile", async ({ page }) => {});

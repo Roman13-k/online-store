@@ -8,7 +8,7 @@ import { useAuthContext } from "@/contexts/AuthContext";
 import { redirect } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useLoginUserMutation } from "@/store/api/userApi";
-import { LoginData, Tokens } from "@/interface/homePage/login";
+import { LoginData, Token } from "@/interface/homePage/login";
 
 interface LoginModalProps {
   buyerOrSeller: null | BuyerOrSeller;
@@ -23,9 +23,8 @@ export function Login({ buyerOrSeller, handleCLose }: LoginModalProps) {
   useEffect(() => {
     if (!isLoading && isSuccess) {
       if (data) {
-        const tokens: Tokens = data;
+        const tokens: Token = data;
         localStorage.setItem(`access_token_${buyerOrSeller}`, tokens.access_token);
-        localStorage.setItem(`refresh_token_${buyerOrSeller}`, tokens.refresh_token);
       }
       setAuth(buyerOrSeller);
       redirect(`/profile/${buyerOrSeller}`);

@@ -29,15 +29,14 @@ export const userApi = createApi({
       }),
     }),
     refreshToken: build.mutation({
-      query: (token: string) => ({
+      query: () => ({
         url: "auth/refresh/",
         method: "POST",
-        body: token,
       }),
     }),
     buyerProfile: build.query({
       query: (token: string) => ({
-        url: "profile/buyer",
+        url: "/buyer/me/",
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -46,7 +45,7 @@ export const userApi = createApi({
     }),
     sellerProfile: build.query({
       query: (token: string) => ({
-        url: "profile/seller",
+        url: "/seller/me/",
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

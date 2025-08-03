@@ -34,7 +34,6 @@ export interface LoginData {
   user_type: BuyerOrSeller;
 }
 
-export interface Tokens {
+export interface Token {
   access_token: string;
-  refresh_token: string;
 }

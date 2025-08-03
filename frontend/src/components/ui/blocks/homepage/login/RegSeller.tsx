@@ -9,7 +9,7 @@ import { useAuthContext } from "@/contexts/AuthContext";
 import { redirect } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useRegisterSellerMutation } from "@/store/api/userApi";
-import { RegisterSellerData, Tokens } from "@/interface/homePage/login";
+import { RegisterSellerData, Token } from "@/interface/homePage/login";
 
 export function RegSeller({ handleClose }: { handleClose: () => void }) {
   const t = useTranslations("RegSeller");
@@ -19,9 +19,8 @@ export function RegSeller({ handleClose }: { handleClose: () => void }) {
   useEffect(() => {
     if (!isLoading && isSuccess) {
       if (data) {
-        const tokens: Tokens = data;
+        const tokens: Token = data;
         localStorage.setItem("access_token_seller", tokens.access_token);
-        localStorage.setItem("refresh_token_seller", tokens.refresh_token);
       }
       setAuth("seller");
       redirect("/profile/seller");
@@ -105,7 +104,7 @@ export function RegSeller({ handleClose }: { handleClose: () => void }) {
           isRequired
           errorMessage={t("errors.itn")}
           placeholder={t("placeholders.itn")}
-          type='text'
+          type='number'
           name='itn'
           size='lg'
           variant='bordered'

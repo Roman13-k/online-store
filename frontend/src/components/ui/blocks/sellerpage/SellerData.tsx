@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 export default function SellerData() {
   const { sellerData } = useAuthContext();
   const { email, type_organization, country, itn, name, last_name, patronymic, company_name } =
-    sellerData.profile;
+    sellerData;
 
   const t = useTranslations("main.sellerScreen.sellerData");
 

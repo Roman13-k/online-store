@@ -9,7 +9,7 @@ import { useAuthContext } from "@/contexts/AuthContext";
 import { redirect } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useRegisterBuyerMutation } from "@/store/api/userApi";
-import { RegisterBuyerData, Tokens } from "@/interface/homePage/login";
+import { RegisterBuyerData, Token } from "@/interface/homePage/login";
 
 export function RegBuyer({ handleClose }: { handleClose: () => void }) {
   const t = useTranslations("RegBuyer");
@@ -19,9 +19,8 @@ export function RegBuyer({ handleClose }: { handleClose: () => void }) {
   useEffect(() => {
     if (!isLoading && isSuccess) {
       if (data) {
-        const tokens: Tokens = data;
+        const tokens: Token = data;
         localStorage.setItem("access_token_buyer", tokens.access_token);
-        localStorage.setItem("refresh_token_buyer", tokens.refresh_token);
       }
       setAuth("buyer");
       redirect("/profile/buyer");
