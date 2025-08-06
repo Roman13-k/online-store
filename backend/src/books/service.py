@@ -1,4 +1,5 @@
 from fastapi import HTTPException, status
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.auth.utils import verify_access_token
@@ -38,3 +39,15 @@ async def create_book(data: BookSchema, token: str, db: AsyncSession):
     await db.commit()
     await db.refresh(new_book)
     return {"book": new_book}
+
+
+async def get_book_by_id(id: int, db: AsyncSession):
+    book = await db.execute(select(BookModel).where(BookModel.id == id))
+    book = book.scalar_one_or_none()
+
+    if book:
+        return {"book": book}
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Book not found"
+        )
