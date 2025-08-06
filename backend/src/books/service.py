@@ -51,3 +51,15 @@ async def get_book_by_id(id: int, db: AsyncSession):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Book not found"
         )
+
+
+async def get_book_by_category(category: str, db: AsyncSession):
+    books = await db.execute(select(BookModel).where(BookModel.category == category))
+    books = books.scalars().all()
+
+    if books:
+        return {"books": books}
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Book not found"
+        )
