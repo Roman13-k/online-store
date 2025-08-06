@@ -20,9 +20,10 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from src.buyers.models import BuyerModel  # noqa: E402, F401
+import src.books.models  # noqa: E402, F401
+import src.buyers.models  # noqa: E402, F401
+import src.sellers.models  # noqa: E402, F401
 from src.database import Base  # noqa: E402
-from src.sellers.models import SellerModel  # noqa: E402, F401
 
 target_metadata = Base.metadata
 
