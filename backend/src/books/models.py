@@ -13,7 +13,7 @@ class BookModel(Base):
     title: Mapped[str]
     characteristics: Mapped[str]
     year: Mapped[int]
-    category: Mapped[str]
+    category: Mapped[str] = mapped_column(index=True)
     type_book: Mapped[str]
     author: Mapped[str]
     price: Mapped[int]
