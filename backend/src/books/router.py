@@ -7,7 +7,7 @@ from src.database import get_session
 from .schemas import BookSchema
 from .service import create_book
 
-router = APIRouter(prefix="/book")
+router = APIRouter(prefix="/book", tags=["Books 📕"])
 
 
 @router.post("/add")
