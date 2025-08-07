@@ -1,4 +1,5 @@
 from fastapi import HTTPException, status
+from rapidfuzz import fuzz, process
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -63,3 +64,30 @@ async def get_book_by_category(category: str, db: AsyncSession):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Book not found"
         )
+
+
+async def get_book_by_title(title: str, db: AsyncSession, limit=5):
+    result = await db.execute(select(BookModel.id, BookModel.title))
+    all_books = result.all()
+
+    book_choices = {book.id: book.title for book in all_books}
+
+    search_results = process.extract(
+        title, book_choices, scorer=fuzz.WRatio, limit=limit
+    )
+
+    matched_book_ids = [
+        book_id for title, score, book_id in search_results if score > 70
+    ]
+
+    if not matched_book_ids:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Book not found"
+        )
+
+    stmt_final_books = select(BookModel).where(BookModel.id.in_(matched_book_ids))
+    result = await db.execute(stmt_final_books)
+
+    final_books = result.scalars().all()
+
+    return {"books": final_books}

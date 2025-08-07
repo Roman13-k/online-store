@@ -5,24 +5,34 @@ from src.auth.router import oauth2_scheme
 from src.database import get_session
 
 from .schemas import BookSchema
-from .service import create_book, get_book_by_category, get_book_by_id
+from .service import (
+    create_book,
+    get_book_by_category,
+    get_book_by_id,
+    get_book_by_title,
+)
 
 router = APIRouter(prefix="/book", tags=["Books 📕"])
 
 
-@router.get("/")
+@router.get("/search-by-category/")
 async def get_book_with_category(
     category: str, db: AsyncSession = Depends(get_session)
 ):
     return await get_book_by_category(category=category, db=db)
 
 
-@router.get("/{id}")
+@router.get("/search-by-title/")
+async def get_book_with_title(title: str, db: AsyncSession = Depends(get_session)):
+    return await get_book_by_title(title=title, db=db)
+
+
+@router.get("/{id}/")
 async def get_book_with_id(id: int, db: AsyncSession = Depends(get_session)):
     return await get_book_by_id(id=id, db=db)
 
 
-@router.post("/add")
+@router.post("/add/")
 async def add_book(
     data: BookSchema,
     token=Depends(oauth2_scheme),
