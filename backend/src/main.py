@@ -6,7 +6,7 @@ from src.books.router import router as books_router
 from src.buyers.router import router as buyers_router
 from src.sellers.router import router as sellers_router
 
-app = FastAPI(title="Onechapter API")
+app = FastAPI(title="Onechapter API 🎇", version="Beta")
 app.include_router(buyers_router)
 app.include_router(sellers_router)
 app.include_router(auth_router)

@@ -7,6 +7,7 @@ from src.database import get_session
 from .schemas import BookSchema
 from .service import (
     create_book,
+    delete_book,
     get_book_by_category,
     get_book_by_id,
     get_book_by_title,
@@ -30,6 +31,13 @@ async def get_book_with_title(title: str, db: AsyncSession = Depends(get_session
 @router.get("/{id}/")
 async def get_book_with_id(id: int, db: AsyncSession = Depends(get_session)):
     return await get_book_by_id(id=id, db=db)
+
+
+@router.delete("/{id}/")
+async def delete_book_with_id(
+    id: int, token=Depends(oauth2_scheme), db: AsyncSession = Depends(get_session)
+):
+    return await delete_book(id=id, token=token, db=db)
 
 
 @router.post("/add/")

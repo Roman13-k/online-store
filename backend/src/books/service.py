@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
 from rapidfuzz import fuzz, process
-from sqlalchemy import select
+from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.auth.utils import verify_access_token
@@ -91,3 +91,31 @@ async def get_book_by_title(title: str, db: AsyncSession, limit=5):
     final_books = result.scalars().all()
 
     return {"books": final_books}
+
+
+async def delete_book(id: int, token: str, db: AsyncSession):
+    user_data = verify_access_token(token=token)
+    user_role = user_data.get("role")
+
+    if user_role == "seller":
+        user_id = user_data.get("user_id")
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="You are not seller"
+        )
+
+    book = await db.execute(select(BookModel).where(BookModel.id == id))
+    book = book.scalar_one_or_none()
+
+    if not book:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Book not found"
+        )
+
+    if book.seller_id == user_id:
+        await db.execute(delete(BookModel).where(BookModel.id == id))
+        await db.commit()
+
+        return {"message": "Book deleted successfully"}
+    else:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Forbidden")
