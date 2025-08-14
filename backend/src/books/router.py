@@ -11,6 +11,7 @@ from .service import (
     get_book_by_category,
     get_book_by_id,
     get_book_by_title,
+    get_books,
 )
 
 router = APIRouter(prefix="/book", tags=["Books 📕"])
@@ -31,6 +32,11 @@ async def get_book_with_title(title: str, db: AsyncSession = Depends(get_session
 @router.get("/{id}/")
 async def get_book_with_id(id: int, db: AsyncSession = Depends(get_session)):
     return await get_book_by_id(id=id, db=db)
+
+
+@router.get("/all")
+async def get_all_books(db: AsyncSession = Depends(get_session)):
+    return await get_books(db=db)
 
 
 @router.delete("/{id}/")

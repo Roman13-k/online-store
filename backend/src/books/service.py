@@ -66,15 +66,13 @@ async def get_book_by_category(category: str, db: AsyncSession):
         )
 
 
-async def get_book_by_title(title: str, db: AsyncSession, limit=5):
+async def get_book_by_title(title: str, db: AsyncSession):
     result = await db.execute(select(BookModel.id, BookModel.title))
     all_books = result.all()
 
     book_choices = {book.id: book.title for book in all_books}
 
-    search_results = process.extract(
-        title, book_choices, scorer=fuzz.WRatio, limit=limit
-    )
+    search_results = process.extract(title, book_choices, scorer=fuzz.WRatio, limit=5)
 
     matched_book_ids = [
         book_id for title, score, book_id in search_results if score > 70
@@ -91,6 +89,13 @@ async def get_book_by_title(title: str, db: AsyncSession, limit=5):
     final_books = result.scalars().all()
 
     return {"books": final_books}
+
+
+async def get_books(db: AsyncSession):
+    books = await db.execute(select(BookModel))
+    books = books.scalars().all()
+
+    return books
 
 
 async def delete_book(id: int, token: str, db: AsyncSession):
