@@ -1,46 +1,16 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import { Footer } from "@/components/ui/layout/footer/Footer";
-import { Header } from "@/components/ui/layout/header/Header";
-import ScrollToTopButton from "@/components/ui/shared/buttons/ScrollToTopButton";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Providers } from "../providers";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "ПРОКниги — интернет-магазин книг",
-  description:
-    "ПРОКниги — это интернет-магазин книг на любой вкус. Покупайте художественную, научную, учебную и деловую литературу с доставкой по всей стране.",
-  keywords: [
-    "ПРОКниги",
-    "интернет-магазин книг",
-    "купить книги",
-    "книги с доставкой",
-    "литература",
-    "чтение",
-    "художественные книги",
-    "учебники",
-    "деловая литература",
-  ],
-  authors: [{ name: "ПРОКниги", url: "https://online-store-one-rho.vercel.app/" }],
-  creator: "ПРОКниги",
-  metadataBase: new URL("https://online-store-one-rho.vercel.app/"),
-  openGraph: {
-    title: "ПРОКниги — интернет-магазин книг",
-    description:
-      "Большой выбор книг с доставкой. Художественная, научная, учебная литература и многое другое в магазине ПРОКниги.",
-    url: "https://online-store-one-rho.vercel.app/",
-    siteName: "ПРОКниги",
-    type: "website",
-    locale: "ru",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "ПРОКниги — интернет-магазин книг",
-    description: "Лучшие книги с доставкой по всей стране. Заходите в ПРОКниги!",
-    site: "@proknigi",
-  },
+  title: "ПРОКниги — магазин книг",
+  description: "Веб-приложение книжного магазина: каталог, корзина, заказы, отчёты и аналитика.",
 };
 
 export default async function RootLayout({
@@ -48,20 +18,15 @@ export default async function RootLayout({
   params,
 }: Readonly<{ children: React.ReactNode; params: Promise<{ locale: string }> }>) {
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
-
+  if (!hasLocale(routing.locales, locale)) notFound();
+  const messages = await getMessages();
   return (
     <html lang={locale}>
-      <body className={`antialiased`}>
-        <NextIntlClientProvider>
+      <body className='antialiased font-first bg-white text-black min-h-screen flex flex-col'>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
             <Header />
-            <main>
-              {children}
-              <ScrollToTopButton />
-            </main>
+            <main className='flex-1'>{children}</main>
             <Footer />
           </Providers>
         </NextIntlClientProvider>

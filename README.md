@@ -1,69 +1,53 @@
-# 🛍️ Online Store
+# ПРОКниги — веб-приложение магазина книг
 
-Design: [Figma Design](https://www.figma.com/design/r2EfZD0pJNsLm3V4x6KTjp)
+Курсовая работа по дисциплине «Системы управления базами данных» (БГУИР).
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Клиент-серверное приложение из трёх звеньев:
 
----
+- `frontend` — клиентская часть на Next.js 15, HeroUI и Redux Toolkit Query, языки ru, be, en;
+- `backend` — сервер приложения на Node.js, Express и TypeScript; к базе обращается параметризованными SQL-запросами через драйвер `pg`, без ORM;
+- PostgreSQL 15+ — таблицы, ограничения целостности, индексы, представление `v_book_cards`, триггер создания корзины и хранимые функции `place_order` и `cancel_order`.
 
-## Getting Started Frontend
+## Возможности
 
-### 1. Install dependencies
+- регистрация с подтверждением почты, отдельные входы покупателя и администратора;
+- каталог: поиск по названию, автору и ISBN, фильтры, сортировка, постраничный вывод;
+- корзина, оформление заказа одной транзакцией в СУБД, история заказов, отмена;
+- скидки по периоду и минимальной сумме, пересчёт в BYN, USD, EUR, RUB с фиксацией курса в заказе, загрузка курсов НБРБ;
+- отзывы и оценки;
+- импорт и экспорт каталога и заказов в JSON, XML, CSV;
+- отчёты Word, Excel, PDF: продажи за период, остатки, накладная заказа;
+- аналитика: выручка по дням, самые продаваемые книги, продажи по жанрам, малые остатки;
+- письма о регистрации и заказе (SMTP или папка `backend/mail-outbox`).
 
-```bash
-bun install
-```
+## Запуск
 
-### 2. Run the frontend
-
-```bash
-bun run dev
-```
-
-The app will be available at:
-http://localhost:3000
-
-### Environment
-
-Create a .env file in the root of the frontend project and add:
+Требуются Node.js 20+ и PostgreSQL 15+.
 
 ```bash
-NEXT_PUBLIC_API_URL="http://127.0.0.1:8000"
-NEXT_PUBLIC_ADMIN_URL="http://localhost:1337/api"
+cd backend
+cp .env.example .env        # укажите DATABASE_URL и JWT_SECRET
+npm install
+npm run db:create           # создаёт базу из DATABASE_URL
+npm run db:migrate          # применяет sql/001_schema.sql
+npm run db:seed             # тестовые данные и строки интерфейса
+npm run dev                 # http://localhost:4000/api
 ```
-
-## Getting Started Backend
-
-### 1. Install dependencies
 
 ```bash
-pip install uv
-uv sync
+cd frontend
+cp .env.example .env        # NEXT_PUBLIC_API_URL=http://localhost:4000
+npm install
+npm run dev                 # http://localhost:3000
 ```
 
-### 2. Run the backend
+Учётные записи из тестовых данных:
 
-```bash
-uvicorn src.main:app --reload
-```
+| Роль | Почта | Пароль |
+| --- | --- | --- |
+| Администратор | admin@proknigi.by | Admin12345 |
+| Покупатель | buyer@proknigi.by | Buyer12345 |
 
-The backend will be available at:
-http://127.0.0.1:8000
+Страница входа администратора: `/ru/admin/login`.
 
-### Environment
-
-Create a .env file in the root of the backend project and add:
-
-```bash
-DB_URL="postgresql+asyncpg://postgres:123@localhost:5432/onechapter"
-DB_ECHO=True
-SECRET_KEY="p0iy3I05KmNOh8Zjk2eTlVcrccX2VSR-Mfh-BMARw-jV1OpU3f7UDNoyZNae2DyWj0446eeuDi1edHyCPF43PQ"
-ALGORITHM="HS256"
-```
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is via the  
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
-
-More info in the [Next.js deployment docs](https://nextjs.org/docs/app/building-your-application/deploying).
+Резервная копия базы: `pg_dump -U postgres -F c -f proknigi.backup proknigi`.

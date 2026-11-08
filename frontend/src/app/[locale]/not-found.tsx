@@ -1,15 +1,12 @@
-import NotFoundScreen from "@/components/screens/NotFoundScreen";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Страница не найдена | ПРОКниги",
-  description: "Похоже, такой страницы не существует. Вернитесь на главную.",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+import { Link } from "@/i18n/navigation";
 
 export default function NotFound() {
-  return <NotFoundScreen />;
+  return (
+    <div className='flex flex-col items-center gap-4 py-24'>
+      <p className='text-6xl font-semibold text-orange-main'>404</p>
+      <Link href='/' className='text-orange-main underline'>
+        ПРОКниги
+      </Link>
+    </div>
+  );
 }

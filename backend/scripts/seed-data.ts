@@ -10,7 +10,8 @@ export const genres = [
   "Программирование", "Психология", "История", "Нехудожественная литература",
 ];
 
-const cover = (isbn: string) => `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
+// default=false: при отсутствии обложки сервис отвечает 404, и клиент показывает заглушку
+const cover = (isbn: string) => `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg?default=false`;
 
 // isbn, название, авторы, жанры, издательство, год, страницы, цена BYN, остаток, аннотация
 export const books: [string, string, string[], string[], string, number, number, number, number, string][] = [
@@ -40,7 +41,9 @@ export const books: [string, string, string[], string[], string, number, number,
   ["9785171183660", "Пикник на обочине", ["Аркадий Стругацкий", "Борис Стругацкий"], ["Фантастика"], "АСТ", 2023, 256, 22.9, 12, "Зона, сталкеры и Золотой шар, исполняющий желания."],
 ].map((b) => b) as any;
 
-export const coverUrl = cover;
+// для этого издания сервис обложек возвращает изображение другой книги
+const NO_COVER = new Set(["9785171183660"]);
+export const coverUrl = (isbn: string) => (NO_COVER.has(isbn) ? null : cover(isbn));
 
 export const currencies = [
   ["BYN", "Белорусский рубль", 1],

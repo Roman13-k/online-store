@@ -1,19 +1,17 @@
 "use client";
-
-import { AuthContextProvider } from "@/contexts/AuthContext";
-import { LoginContextProvider } from "@/contexts/LoginContext";
-import { setupStore } from "@/store/store";
-import { HeroUIProvider } from "@heroui/react";
-import { Store } from "@reduxjs/toolkit";
+import { HeroUIProvider, ToastProvider } from "@heroui/react";
 import { Provider } from "react-redux";
+import { useState } from "react";
+import { setupStore } from "@/store/store";
+import { CurrencyProvider } from "@/lib/currency";
 
-export function Providers({ children, store }: { children: React.ReactNode; store?: Store }) {
+export function Providers({ children }: { children: React.ReactNode }) {
+  const [store] = useState(setupStore);
   return (
     <HeroUIProvider>
-      <Provider store={store ?? setupStore()}>
-        <LoginContextProvider>
-          <AuthContextProvider>{children}</AuthContextProvider>
-        </LoginContextProvider>
+      <ToastProvider placement='top-center' />
+      <Provider store={store}>
+        <CurrencyProvider>{children}</CurrencyProvider>
       </Provider>
     </HeroUIProvider>
   );
