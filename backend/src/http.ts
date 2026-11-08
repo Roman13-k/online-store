@@ -29,9 +29,10 @@ export function errorHandler(err: any, _req: Request, res: Response, _next: Next
   if (err instanceof HttpError) {
     return res.status(err.status).json({ error: err.code, message: err.message });
   }
-  if (err?.code === "23505") return res.status(409).json({ error: "DUPLICATE", message: err.detail });
-  if (err?.code === "23503") return res.status(409).json({ error: "IN_USE", message: err.detail });
-  if (err?.code === "23514") return res.status(400).json({ error: "CONSTRAINT", message: err.constraint });
+  // текст ошибки СУБД наружу не передаётся: он раскрывает имена таблиц и индексов
+  if (err?.code === "23505") return res.status(409).json({ error: "DUPLICATE", message: "Запись с таким значением уже существует" });
+  if (err?.code === "23503") return res.status(409).json({ error: "IN_USE", message: "Запись используется в других таблицах" });
+  if (err?.code === "23514") return res.status(400).json({ error: "CONSTRAINT", message: "Значение нарушает ограничение целостности" });
   if (err?.code === "P0001") {
     const [code, ...rest] = String(err.message).split(":");
     return res.status(409).json({ error: code.trim(), message: rest.join(":").trim() || code });
