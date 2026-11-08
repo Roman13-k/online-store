@@ -77,6 +77,10 @@ filesRouter.post("/admin/import/books", admin, upload.single("file"), asyncHandl
 }));
 
 // --- отчёты ---
+const STATUS_RU: Record<string, string> = {
+  new: "новый", paid: "оплачен", packed: "собран", issued: "выдан", cancelled: "отменён",
+};
+
 async function salesReport(from: string, to: string): Promise<Report> {
   const rows = await query<any>(
     `SELECT o.order_id, o.created_at, u.last_name || ' ' || u.first_name AS buyer, o.status,
@@ -86,6 +90,7 @@ async function salesReport(from: string, to: string): Promise<Report> {
       ORDER BY o.created_at`,
     [from, to],
   );
+  rows.forEach((r) => (r.status = STATUS_RU[r.status] ?? r.status));
   const sum = rows.reduce((s, r) => s + r.revenue, 0);
   return {
     title: "Продажи за период",
